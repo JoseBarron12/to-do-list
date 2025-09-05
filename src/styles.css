@@ -72,6 +72,10 @@ small {font-size: 0.600rem; /* 9.6px */}
   --header-height: 60.609px;
 }
 
+body {
+  font-family: "Noto Sans Osage";
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -132,6 +136,65 @@ main{
   background-color: rgb(28, 255, 21);
   width: var(--side-bar-width);
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar > nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+}
+
+nav > button, .sidebar-options > button{
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0px;
+}
+
+nav > button {
+  border-bottom: 1px solid black;
+}
+
+.sidebar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.projects {
+  height: 100%;
+  overflow-y: auto;
+  margin: 0px 16px 16px;
+  display: grid;
+  grid-auto-rows: 150px;
+  gap: 16px;
+}
+
+.projects::-webkit-scrollbar{
+  display: none;
+}
+
+.projects > * {
+  border: 1px solid black;
+}
+
+.sidebar-settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid black;
+}
+
+.add {
+  display: flex;
+  gap: 8px;
 }
 
 .main-content{
