@@ -70,12 +70,25 @@ small {font-size: 0.600rem; /* 9.6px */}
 :root {
   --side-bar-width: 300px;
   --header-height: 60.609px;
+}
+
+
+:root[data-theme="light"] {
+  --text: hsl(245, 46%, 5%);
+  --background: hsl(249, 79%, 78%);
+  --primary: hsl(249, 78%, 71%);
+  --secondary: hsl(249, 80%, 66%);
+  --accent: hsl(249, 91%, 50%);
+}
+:root[data-theme="dark"] {
   --text: hsl(245, 46%, 95%);
   --background: hsl(249, 79%, 22%);
-  --primary: hsl(249, 79%, 29%);
+  --primary: hsl(249, 78%, 29%);
   --secondary: hsl(249, 80%, 34%);
   --accent: hsl(249, 91%, 50%);
 }
+
+
 
 body {
   font-family: "Noto Sans Osage";
@@ -93,6 +106,7 @@ header {
   gap: 8px;
   height: var(--header-height);
   width: max(calc(600px + 16px + 200px),100vw);
+  user-select: none;
 }
 
 .menu-tab {

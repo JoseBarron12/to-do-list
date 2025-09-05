@@ -26,3 +26,27 @@ menuButton.addEventListener("click", () => {
 
     
 });
+
+
+const toggleThemebtn = document.querySelector(".theme")
+
+toggleThemebtn.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme == 'dark' ? 'light' : 'dark';
+
+    const lightIcon = document.querySelector(".light");
+    const darkIcon = document.querySelector(".dark");
+    
+    if(newTheme == 'light')
+    {
+        lightIcon.style.opacity = "0%";
+        darkIcon.style.opacity = "100%"
+    }
+    else
+    {
+        lightIcon.style.opacity = "100%";
+        darkIcon.style.opacity = "0%"
+    }
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+});
