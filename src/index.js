@@ -14,12 +14,14 @@ menuButton.addEventListener("click", () => {
     {
         main.children[0].remove();
         mainContent.style.width = "100%";
+        display.menuButtonSection(false);
 
     }
     else // sidebar close
     {
         display.navbar();
         mainContent.style.width = "calc(100% - var(--side-bar-width))";
+        display.menuButtonSection(true);
     }
 
     

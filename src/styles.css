@@ -70,6 +70,11 @@ small {font-size: 0.600rem; /* 9.6px */}
 :root {
   --side-bar-width: 300px;
   --header-height: 60.609px;
+  --text: hsl(245, 46%, 95%);
+  --background: hsl(249, 79%, 22%);
+  --primary: hsl(249, 79%, 29%);
+  --secondary: hsl(249, 80%, 34%);
+  --accent: hsl(249, 91%, 50%);
 }
 
 body {
@@ -79,7 +84,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(230, 225, 225);
+  background-color: var(--primary);
   gap: 8px;
   height: var(--header-height);
   width: max(calc(600px + 16px + 200px),100vw);
@@ -88,8 +93,6 @@ header {
 .menu-tab {
   width: var(--side-bar-width);
   height: parent;
-  background-color: rgb(28, 255, 21);
-  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   padding: 0px 16px;
@@ -106,7 +109,6 @@ header {
   gap: 16px;
   padding: 0px 16px;
   width: var(--side-bar-width);
-  background-color: aquamarine;
 
 }
 
@@ -133,7 +135,7 @@ main{
 }
 
 .sidebar {
-  background-color: rgb(28, 255, 21);
+  background-color: var(--secondary);
   width: var(--side-bar-width);
   height: 100%;
   display: flex;

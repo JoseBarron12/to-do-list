@@ -118,6 +118,10 @@ export const display = (function () {
         settingSection.appendChild(svgSetting);
 
     };
+    const menuButtonSection = (navbarOpened) => {
+        const menuTab = document.querySelector(".menu-tab");
+        menuTab.style.backgroundColor = (navbarOpened) ? "var(--secondary)" : "var(--primary)";
+    }
 
-    return {navbar};
+    return {navbar, menuButtonSection};
 })();
