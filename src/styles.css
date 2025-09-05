@@ -72,7 +72,6 @@ small {font-size: 0.600rem; /* 9.6px */}
   --header-height: 60.609px;
 }
 
-
 :root[data-theme="light"] {
   --text: hsl(245, 46%, 5%);
   --background: hsl(249, 79%, 78%);
@@ -87,8 +86,6 @@ small {font-size: 0.600rem; /* 9.6px */}
   --secondary: hsl(249, 80%, 34%);
   --accent: hsl(249, 91%, 50%);
 }
-
-
 
 body {
   font-family: "Noto Sans Osage";
