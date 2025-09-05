@@ -79,6 +79,11 @@ small {font-size: 0.600rem; /* 9.6px */}
 
 body {
   font-family: "Noto Sans Osage";
+  color: var(--text);
+}
+
+svg {
+  fill: var(--text)
 }
 
 header {
@@ -157,10 +162,11 @@ nav > button, .sidebar-options > button{
   align-items: center;
   gap: 8px;
   padding: 4px 0px;
+  color: var(--text);
 }
 
 nav > button {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text);
 }
 
 .sidebar-options {
@@ -191,7 +197,7 @@ nav > button {
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--text);
 }
 
 .add {
@@ -202,5 +208,5 @@ nav > button {
 .main-content{
   width: 100%;
   height: 100%;
-  background-color: purple;
+  background-color: var(--background);
 }
