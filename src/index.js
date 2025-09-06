@@ -7,7 +7,6 @@ functionality.addThemeBtn();
 
 display.mainPage("today");
 
-functionality.addDropdownMenuBtn();
 
 
 

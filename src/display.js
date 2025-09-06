@@ -244,6 +244,8 @@ export const display = (function () {
         mainPage.appendChild(tasksSection);
 
         displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false);
+
+        functionality.addDropdownMenuBtn();
     };
 
     return {navbar, menuButtonSection, dropDownMenu, mainPage};
