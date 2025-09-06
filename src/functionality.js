@@ -25,6 +25,7 @@ export const functionality = (function () {
             
         });
     };
+
     const addThemeBtn = () => {
         const toggleThemebtn = document.querySelector(".theme")
 
@@ -82,6 +83,9 @@ export const functionality = (function () {
         });
     };
 
+    const addNavbarBtn = () => {
+
+    };
     
     return {addMenuBtn, addThemeBtn, addDropdownMenuBtn};
 })();

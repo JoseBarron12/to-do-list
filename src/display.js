@@ -88,6 +88,7 @@ export const display = (function () {
 
         buttonTypes.forEach((buttonType) => {
             const button = document.createElement("button");
+            button.setAttribute("id", buttonType)
             sidebarOptions.appendChild(button);
 
             const buttonImg = document.createElement("img");
