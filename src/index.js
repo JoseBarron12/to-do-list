@@ -6,4 +6,5 @@ functionality.addMenuBtn();
 functionality.addThemeBtn();
 functionality.addDropdownMenuBtn();
 
+display.todayPage();
 

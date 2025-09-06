@@ -22,11 +22,58 @@ const images = {
 
 const buttonTypes = ["all", "today", "upcoming", "past"];
 
-const TodayHeaders = ["now", "morning", "afternoon", "evening"];
+const todayHeaders = ["now", "morning", "afternoon", "evening"];
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+const displayMainPageHeader = (parent, headerName) => {
+        const pageHeader = document.createElement("div");
+        pageHeader.classList.add("content-header");
+        parent.appendChild(pageHeader);
+
+        const contentImage = document.createElement("img");
+        contentImage.src = images[headerName];
+        contentImage.alt = `${headerName}-icon`;
+        contentImage.classList.add("header-icon");
+        pageHeader.appendChild(contentImage);
+
+        const contentHeader = document.createElement("h3");
+        contentHeader.textContent = toUpperCaseFirstChar(headerName);
+        pageHeader.appendChild(contentHeader);
+};
+
+const displaySectionHeaders = (parent, headerNames) => {
+    headerNames.forEach((headerName) => {
+
+        const section = document.createElement("div");
+        section.classList.add(`${headerName}`);
+        parent.appendChild(section);
+
+        const sectionHeader = document.createElement("div");
+        sectionHeader.classList.add("task-section-header");
+        section.appendChild(sectionHeader);
+
+        const sectionHeaderImg = document.createElement("img");
+        sectionHeaderImg.src = images[headerName];
+        sectionHeaderImg.alt = `${headerName}-icon`;
+        sectionHeaderImg.classList.add("emoji-icon");
+        sectionHeader.appendChild(sectionHeaderImg);
+
+        const header = document.createElement("h5");
+        const headerCurrentName = toUpperCaseFirstChar(headerName);
+        const headerText = (headerName == "now") ? headerCurrentName : "This " + headerCurrentName;
+        header.textContent = headerText;
+        sectionHeader.appendChild(header);
+
+        display.dropDownMenu(section, true);
+
+        const tasks = document.createElement("div");
+        tasks.classList.add("tasks");
+        section.appendChild(tasks);
+    });
+}
 
 
 export const display = (function () {
@@ -181,24 +228,6 @@ export const display = (function () {
 
     };
 
-    const displayMainPageHeader = (parent, headerName) => {
-        const pageHeader = document.createElement("div");
-        pageHeader.classList.add("content-header");
-        parent.appendChild(pageHeader);
-
-        const contentImage = document.createElement("img");
-        contentImage.src = images[headerName];
-        contentImage.alt = `${headerName}-icon`;
-        contentImage.classList.add("header-icon");
-        pageHeader.appendChild(contentImage);
-
-        const contentHeader = document.createElement("h3");
-        contentHeader.textContent = toUpperCaseFirstChar(headerName);
-        pageHeader.appendChild(contentHeader);
-
-
-    };
-
     const todayPage = () => {
         const content = document.querySelector("#content");
 
@@ -207,6 +236,12 @@ export const display = (function () {
         content.appendChild(page);
 
         displayMainPageHeader(page,"today");
+
+        const tasksSection = document.createElement("div");
+        tasksSection.classList.add("tasks-section");
+        page.appendChild(tasksSection);
+
+        displaySectionHeaders(tasksSection, todayHeaders);
 
     };
 
