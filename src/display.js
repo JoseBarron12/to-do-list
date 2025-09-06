@@ -121,7 +121,50 @@ export const display = (function () {
     const menuButtonSection = (navbarOpened) => {
         const menuTab = document.querySelector(".menu-tab");
         menuTab.style.backgroundColor = (navbarOpened) ? "var(--secondary)" : "var(--primary)";
-    }
+    };
+    const dropDownMenu = (parent, isOpen) => {
+        const dropDownMenuDiv = document.createElement("div");
+        dropDownMenuDiv.classList.add("dropdown-menu");
+        
+        if(isOpen) {
+            dropDownMenuDiv.classList.add("open");
+        }
 
-    return {navbar, menuButtonSection};
+        parent.appendChild(dropDownMenuDiv);
+
+        const menuDown = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        menuDown.setAttribute("class", "icon down");
+        menuDown.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        menuDown.setAttribute("viewBox", "0 0 24 24");
+
+        const titleDown = document.createElementNS("http://www.w3.org/2000/svg", "title");
+        titleDown.textContent = "menu-down";
+
+        const pathDown = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        pathDown.setAttribute("d", "M7,10L12,15L17,10H7Z");
+
+        menuDown.appendChild(titleDown);
+        menuDown.appendChild(pathDown);
+        dropDownMenuDiv.appendChild(menuDown);
+
+        // Create "menu-up" SVG
+        const menuUp = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        menuUp.setAttribute("class", "icon up");
+        menuUp.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        menuUp.setAttribute("viewBox", "0 0 24 24");
+
+        const titleUp = document.createElementNS("http://www.w3.org/2000/svg", "title");
+        titleUp.textContent = "menu-up";
+
+        const pathUp = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        pathUp.setAttribute("d", "M7,15L12,10L17,15H7Z");
+
+        menuUp.appendChild(titleUp);
+        menuUp.appendChild(pathUp);
+        dropDownMenuDiv.appendChild(menuUp);
+
+    };
+
+
+    return {navbar, menuButtonSection, dropDownMenu};
 })();
