@@ -10,8 +10,6 @@ import afternoonImage from "./images/afternoon.svg";
 import eveningImage from "./images/evening.svg";
 
 
-
-
 const images = {
     all: allImage,
     today: todayImage,
@@ -27,7 +25,7 @@ const buttonTypes = ["all", "today", "upcoming", "past"];
 
 const page = {
     today: ["now", "morning", "afternoon", "evening"],
-    upcoming: ["tommorow", "week", "month", "year"],
+    upcoming: ["all", "tommorow", "week", "month", "year"],
 }
 
 
@@ -85,6 +83,7 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
         section.appendChild(tasks);
     });
 }
+
 
 
 export const display = (function () {
@@ -252,7 +251,7 @@ export const display = (function () {
         tasksSection.classList.add("tasks-section");
         mainPage.appendChild(tasksSection);
 
-        displaySectionHeaders(tasksSection, page[name], true);
+        displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false);
     };
 
     return {navbar, menuButtonSection, dropDownMenu, mainPage};
