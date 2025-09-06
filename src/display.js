@@ -9,6 +9,9 @@ import morningImage from "./images/morning.svg";
 import afternoonImage from "./images/afternoon.svg";
 import eveningImage from "./images/evening.svg";
 
+
+
+
 const images = {
     all: allImage,
     today: todayImage,
@@ -22,7 +25,11 @@ const images = {
 
 const buttonTypes = ["all", "today", "upcoming", "past"];
 
-const todayHeaders = ["now", "morning", "afternoon", "evening"];
+const page = {
+    today: ["now", "morning", "afternoon", "evening"],
+    upcoming: ["tommorow", "week", "month", "year"],
+}
+
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -44,7 +51,7 @@ const displayMainPageHeader = (parent, headerName) => {
         pageHeader.appendChild(contentHeader);
 };
 
-const displaySectionHeaders = (parent, headerNames) => {
+const displaySectionHeaders = (parent, headerNames, iconOn) => {
     headerNames.forEach((headerName) => {
 
         const section = document.createElement("div");
@@ -55,11 +62,15 @@ const displaySectionHeaders = (parent, headerNames) => {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
-        const sectionHeaderImg = document.createElement("img");
-        sectionHeaderImg.src = images[headerName];
-        sectionHeaderImg.alt = `${headerName}-icon`;
-        sectionHeaderImg.classList.add("emoji-icon");
-        sectionHeader.appendChild(sectionHeaderImg);
+        if(iconOn)
+        {
+            const sectionHeaderImg = document.createElement("img");
+            sectionHeaderImg.src = images[headerName];
+            sectionHeaderImg.alt = `${headerName}-icon`;
+            sectionHeaderImg.classList.add("emoji-icon");
+            sectionHeader.appendChild(sectionHeaderImg);
+        }
+        
 
         const header = document.createElement("h5");
         const headerCurrentName = toUpperCaseFirstChar(headerName);
@@ -228,22 +239,21 @@ export const display = (function () {
 
     };
 
-    const todayPage = () => {
+    const mainPage = (name) => {
         const content = document.querySelector("#content");
 
-        const page = document.createElement("div");
-        page.classList.add("page");
-        content.appendChild(page);
+        const mainPage = document.createElement("div");
+        mainPage.classList.add("page");
+        content.appendChild(mainPage);
 
-        displayMainPageHeader(page,"today");
+        displayMainPageHeader(mainPage, name);
 
         const tasksSection = document.createElement("div");
         tasksSection.classList.add("tasks-section");
-        page.appendChild(tasksSection);
+        mainPage.appendChild(tasksSection);
 
-        displaySectionHeaders(tasksSection, todayHeaders);
-
+        displaySectionHeaders(tasksSection, page[name], true);
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, todayPage};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage};
 })();
