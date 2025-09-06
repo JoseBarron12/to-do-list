@@ -6,6 +6,4 @@ functionality.addMenuBtn();
 functionality.addThemeBtn();
 functionality.addDropdownMenuBtn();
 
-const headerButtons = document.querySelector(".header-buttons");
-
 

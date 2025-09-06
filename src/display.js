@@ -4,14 +4,27 @@ import todayImage from "./images/today.svg";
 import upcomingImage from "./images/upcoming.svg";
 import pastImage from "./images/past.svg";
 
+import NowImage from "./images/now.svg";
+import morningImage from "./images/morning.svg";
+import afternoonImage from "./images/afternoon.svg";
+import eveningImage from "./images/evening.svg";
+
 const images = {
     all: allImage,
     today: todayImage,
     upcoming: upcomingImage,
     past: pastImage,
+    now: NowImage,
+    morning: morningImage,
+    afternoon: afternoonImage,
+    evening: eveningImage,
 };
 
 const buttonTypes = ["all", "today", "upcoming", "past"];
+
+const TodayHeaders = ["now", "morning", "afternoon", "evening"];
+
+
 
 export const display = (function () {
     const navbar = () => {
@@ -164,6 +177,7 @@ export const display = (function () {
         dropDownMenuDiv.appendChild(menuUp);
 
     };
+
 
 
     return {navbar, menuButtonSection, dropDownMenu};
