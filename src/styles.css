@@ -287,6 +287,7 @@ nav > button {
   margin-left: auto;
   position: relative;
   align-self: center;
+  user-select: none;
 }
 
 .up {

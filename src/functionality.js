@@ -38,7 +38,7 @@ export const functionality = (function () {
             if(newTheme == 'light')
             {
                 lightIcon.style.opacity = "0%";
-                darkIcon.style.opacity = "100%"
+                darkIcon.style.opacity = "100%";
             }
             else
             {
@@ -47,6 +47,7 @@ export const functionality = (function () {
             }
             
             document.documentElement.setAttribute('data-theme', newTheme);
+
         });
     };
     
