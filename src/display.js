@@ -90,6 +90,9 @@ export const display = (function () {
         buttonTypes.forEach((buttonType) => {
             const button = document.createElement("button");
             button.setAttribute("id", buttonType)
+            if(buttonType == "today") {
+                button.classList.add("active-btn");
+            }
             sidebarOptions.appendChild(button);
 
             const buttonImg = document.createElement("img");

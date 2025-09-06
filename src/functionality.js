@@ -90,6 +90,12 @@ export const functionality = (function () {
                 //remove current page
                 const content = document.querySelector("#content");
                 content.replaceChildren();
+                
+                navButtons.forEach((btns) => {
+                    btns.classList.remove("active-btn");
+                })
+                
+                btn.classList.add("active-btn");
 
                 display.mainPage(btn.getAttribute("id"));
             });

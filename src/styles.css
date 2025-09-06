@@ -162,7 +162,7 @@ main{
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 16px;
+  padding: 16px 16px 16px 8px;
 }
 
 nav > button, .sidebar-options > button{
@@ -171,15 +171,20 @@ nav > button, .sidebar-options > button{
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 0px;
+  padding: 4px 8px;
   color: var(--text);
+}
+
+button.active-btn {
+  background-color: var(--primary);
+  border-radius: 8px;
 }
 
 nav > button {
   border-bottom: 1px solid var(--text);
   padding-bottom: 8px;
 }
-
+ 
 .sidebar-options {
   display: flex;
   flex-direction: column;
