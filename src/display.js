@@ -24,6 +24,9 @@ const buttonTypes = ["all", "today", "upcoming", "past"];
 
 const TodayHeaders = ["now", "morning", "afternoon", "evening"];
 
+const toUpperCaseFirstChar = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 
 export const display = (function () {
@@ -53,7 +56,7 @@ export const display = (function () {
             button.appendChild(buttonImg);
 
             const buttonHeader = document.createElement("h5");
-            buttonHeader.textContent = buttonType.charAt(0).toUpperCase() + buttonType.slice(1);
+            buttonHeader.textContent = toUpperCaseFirstChar(buttonType);
             button.appendChild(buttonHeader);
         });
 
@@ -177,7 +180,6 @@ export const display = (function () {
         dropDownMenuDiv.appendChild(menuUp);
 
     };
-
 
 
     return {navbar, menuButtonSection, dropDownMenu};
