@@ -28,7 +28,6 @@ const page = {
     upcoming: ["all", "tommorow", "week", "month", "year"],
 }
 
-
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
@@ -72,7 +71,9 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
 
         const header = document.createElement("h5");
         const headerCurrentName = toUpperCaseFirstChar(headerName);
-        const headerText = (headerName == "now") ? headerCurrentName : "This " + headerCurrentName;
+        console.log(headerCurrentName);
+        console.log(displayStringBefore(headerCurrentName));
+        const headerText = (displayStringBefore(headerCurrentName)) ?  "This " + headerCurrentName : headerCurrentName;
         header.textContent = headerText;
         sectionHeader.appendChild(header);
 
@@ -82,6 +83,19 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
         tasks.classList.add("tasks");
         section.appendChild(tasks);
     });
+}
+
+// Function to flag whether string should have a string beforehand
+const displayStringBefore = (string) => {
+    const nameFlags = ["All", "Tommorow", "Now"];
+    for(const nameFlag of nameFlags)
+    {
+        if(nameFlag == string)
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 
