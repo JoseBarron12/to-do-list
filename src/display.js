@@ -67,7 +67,7 @@ const displaySectionHeaders = (parent, headerNames) => {
         header.textContent = headerText;
         sectionHeader.appendChild(header);
 
-        display.dropDownMenu(section, true);
+        display.dropDownMenu(sectionHeader, true);
 
         const tasks = document.createElement("div");
         tasks.classList.add("tasks");
