@@ -25,7 +25,7 @@ const buttonTypes = ["all", "today", "upcoming", "past"];
 const page = {
     today: ["now", "morning", "afternoon", "evening"],
     upcoming: ["tommorow", "week", "month", "year"],
-    past: ["recent", "yesterday", "week", "month", "year"],
+    past: ["yesterday", "week", "month", "year"],
 }
 
 const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];

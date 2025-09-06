@@ -1,5 +1,6 @@
 import listImage from "./images/list.svg";
 import { images, buttonTypes, page, nameFlags} from "./default";
+import { functionality } from "./functionality";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -174,6 +175,8 @@ export const display = (function () {
         svgSetting.appendChild(pathSetting);
 
         settingSection.appendChild(svgSetting);
+
+        functionality.addNavbarBtn();
 
     };
     const menuButtonSection = (navbarOpened) => {

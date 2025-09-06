@@ -84,8 +84,19 @@ export const functionality = (function () {
     };
 
     const addNavbarBtn = () => {
+        const navButtons = document.querySelectorAll(".sidebar-options>button");
+        navButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                //remove current page
+                const content = document.querySelector("#content");
+                content.replaceChildren();
+
+                display.mainPage(btn.getAttribute("id"));
+            });
+        });
 
     };
     
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn};
+    
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn};
 })();
