@@ -181,6 +181,34 @@ export const display = (function () {
 
     };
 
+    const displayMainPageHeader = (parent, headerName) => {
+        const pageHeader = document.createElement("div");
+        pageHeader.classList.add("content-header");
+        parent.appendChild(pageHeader);
 
-    return {navbar, menuButtonSection, dropDownMenu};
+        const contentImage = document.createElement("img");
+        contentImage.src = images[headerName];
+        contentImage.alt = `${headerName}-icon`;
+        contentImage.classList.add("header-icon");
+        pageHeader.appendChild(contentImage);
+
+        const contentHeader = document.createElement("h3");
+        contentHeader.textContent = toUpperCaseFirstChar(headerName);
+        pageHeader.appendChild(contentHeader);
+
+
+    };
+
+    const todayPage = () => {
+        const content = document.querySelector("#content");
+
+        const page = document.createElement("div");
+        page.classList.add("page");
+        content.appendChild(page);
+
+        displayMainPageHeader(page,"today");
+
+    };
+
+    return {navbar, menuButtonSection, dropDownMenu, todayPage};
 })();
