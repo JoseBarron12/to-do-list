@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page} from "./default";
+import { images, buttonTypes, page, nameFlags} from "./default";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -60,7 +60,6 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
 
 // Function to flag whether string should have a string beforehand
 const displayStringBefore = (string) => {
-    const nameFlags = ["All", "Tommorow", "Now"];
     for(const nameFlag of nameFlags)
     {
         if(nameFlag == string)
@@ -70,8 +69,6 @@ const displayStringBefore = (string) => {
     }
     return true;
 }
-
-
 
 export const display = (function () {
     const navbar = () => {

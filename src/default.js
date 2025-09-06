@@ -25,6 +25,9 @@ const buttonTypes = ["all", "today", "upcoming", "past"];
 const page = {
     today: ["now", "morning", "afternoon", "evening"],
     upcoming: ["all", "tommorow", "week", "month", "year"],
+
 }
 
-export {images, buttonTypes, page};
+const nameFlags = ["All", "Tommorow", "Now"];
+
+export {images, buttonTypes, page, nameFlags};
