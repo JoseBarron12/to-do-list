@@ -283,6 +283,22 @@ nav > button {
   align-items: center;
 }
 
+.dropdown-menu {
+  margin-left: auto;
+  position: relative;
+  align-self: center;
+}
+
+.up {
+  opacity: 100%;
+}
+
+.down{
+  position: absolute;
+  top: 0;
+  opacity: 0%;
+}
+
 
 .emoji-icon {
   height: 16px;
