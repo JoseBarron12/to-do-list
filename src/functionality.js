@@ -1,4 +1,5 @@
 import { display } from "./display";
+import { currentPage } from "./default";
 
 export const functionality = (function () {
     const addMenuBtn = () => {
@@ -96,13 +97,14 @@ export const functionality = (function () {
                 })
                 
                 btn.classList.add("active-btn");
+                currentPage.page = btn.getAttribute("id");
 
                 display.mainPage(btn.getAttribute("id"));
             });
         });
-
     };
     
-    
+
+
     return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn};
 })();

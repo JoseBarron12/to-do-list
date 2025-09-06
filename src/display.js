@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage} from "./default";
 import { functionality } from "./functionality";
 
 const toUpperCaseFirstChar = (string) => {
@@ -90,7 +90,8 @@ export const display = (function () {
         buttonTypes.forEach((buttonType) => {
             const button = document.createElement("button");
             button.setAttribute("id", buttonType)
-            if(buttonType == "today") {
+            if(currentPage.page == buttonType)
+            {
                 button.classList.add("active-btn");
             }
             sidebarOptions.appendChild(button);

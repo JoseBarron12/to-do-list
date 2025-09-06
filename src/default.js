@@ -30,4 +30,20 @@ const page = {
 
 const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];
 
-export {images, buttonTypes, page, nameFlags};
+class Page {
+    constructor(currentPage)
+    {
+        this.currentPage = currentPage
+    };
+    get page() {
+        return this.currentPage;
+    }
+    set page(newPage) {
+        this.currentPage = newPage;
+    }
+
+}
+
+const currentPage = new Page("today");
+
+export {images, buttonTypes, page, nameFlags, currentPage};
