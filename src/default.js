@@ -24,10 +24,10 @@ const buttonTypes = ["all", "today", "upcoming", "past"];
 
 const page = {
     today: ["now", "morning", "afternoon", "evening"],
-    upcoming: ["all", "tommorow", "week", "month", "year"],
-
+    upcoming: ["tommorow", "week", "month", "year"],
+    past: ["recent", "yesterday", "week", "month", "year"],
 }
 
-const nameFlags = ["All", "Tommorow", "Now"];
+const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];
 
 export {images, buttonTypes, page, nameFlags};
