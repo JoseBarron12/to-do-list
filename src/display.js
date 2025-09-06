@@ -1,32 +1,5 @@
 import listImage from "./images/list.svg";
-import allImage from "./images/all.svg";
-import todayImage from "./images/today.svg";
-import upcomingImage from "./images/upcoming.svg";
-import pastImage from "./images/past.svg";
-
-import NowImage from "./images/now.svg";
-import morningImage from "./images/morning.svg";
-import afternoonImage from "./images/afternoon.svg";
-import eveningImage from "./images/evening.svg";
-
-
-const images = {
-    all: allImage,
-    today: todayImage,
-    upcoming: upcomingImage,
-    past: pastImage,
-    now: NowImage,
-    morning: morningImage,
-    afternoon: afternoonImage,
-    evening: eveningImage,
-};
-
-const buttonTypes = ["all", "today", "upcoming", "past"];
-
-const page = {
-    today: ["now", "morning", "afternoon", "evening"],
-    upcoming: ["all", "tommorow", "week", "month", "year"],
-}
+import { images, buttonTypes, page} from "./default";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
