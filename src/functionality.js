@@ -105,6 +105,5 @@ export const functionality = (function () {
     };
     
 
-
     return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn};
 })();

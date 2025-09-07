@@ -33,23 +33,29 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
-        if(iconOn)
+        if(headerName != "all")
         {
-            const sectionHeaderImg = document.createElement("img");
-            sectionHeaderImg.src = images[headerName];
-            sectionHeaderImg.alt = `${headerName}-icon`;
-            sectionHeaderImg.classList.add("emoji-icon");
-            sectionHeader.appendChild(sectionHeaderImg);
+            if(iconOn)
+            {
+                const sectionHeaderImg = document.createElement("img");
+                sectionHeaderImg.src = images[headerName];
+                sectionHeaderImg.alt = `${headerName}-icon`;
+                sectionHeaderImg.classList.add("emoji-icon");
+                sectionHeader.appendChild(sectionHeaderImg);
+            }
+            
+            const header = document.createElement("h5");
+            const headerCurrentName = toUpperCaseFirstChar(headerName);
+            console.log(headerCurrentName);
+            console.log(displayStringBefore(headerCurrentName));
+            const headerText = (displayStringBefore(headerCurrentName)) ?  "This " + headerCurrentName : headerCurrentName;
+            header.textContent = headerText;
+            sectionHeader.appendChild(header);
         }
-        
-
-        const header = document.createElement("h5");
-        const headerCurrentName = toUpperCaseFirstChar(headerName);
-        console.log(headerCurrentName);
-        console.log(displayStringBefore(headerCurrentName));
-        const headerText = (displayStringBefore(headerCurrentName)) ?  "This " + headerCurrentName : headerCurrentName;
-        header.textContent = headerText;
-        sectionHeader.appendChild(header);
+        else
+        {
+             sectionHeader.classList.add("border-off");
+        }
 
         display.dropDownMenu(sectionHeader, true);
 

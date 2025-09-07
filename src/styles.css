@@ -287,6 +287,9 @@ nav > button {
   border-bottom: 1px solid var(--text);
   align-items: center;
 }
+.border-off  {
+  border: none;
+}
 
 .dropdown-menu {
   margin-left: auto;

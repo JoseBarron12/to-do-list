@@ -23,6 +23,7 @@ const images = {
 const buttonTypes = ["all", "today", "upcoming", "past"];
 
 const page = {
+    all: ["all"],
     today: ["now", "morning", "afternoon", "evening"],
     upcoming: ["tommorow", "week", "month", "year"],
     past: ["yesterday", "week", "month", "year"],
