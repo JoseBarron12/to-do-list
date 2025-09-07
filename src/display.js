@@ -46,8 +46,6 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
             
             const header = document.createElement("h5");
             const headerCurrentName = toUpperCaseFirstChar(headerName);
-            console.log(headerCurrentName);
-            console.log(displayStringBefore(headerCurrentName));
             const headerText = (displayStringBefore(headerCurrentName)) ?  "This " + headerCurrentName : headerCurrentName;
             header.textContent = headerText;
             sectionHeader.appendChild(header);

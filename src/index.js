@@ -8,43 +8,6 @@ functionality.addThemeBtn();
 
 display.mainPage("today");
 
-const task = new Task("go for a walk", "ima go for a walk", "12:00pm", "today", "important");
-
-console.log(task.getId());
-console.log(task.name);
-console.log(task.desc);
-console.log(task.date);
-console.log(task.type);
-console.log(task.labels);
-console.log(task.projects);
-
-task.name = "no walk";
-task.desc = "nvm boring";
-task.date = "6:00 am";
-task.type = "upcoming";
-
-console.log(task.name);
-console.log(task.desc);
-console.log(task.date);
-console.log(task.type);
-
-task.addLabel("hype");
-console.log(task.labels);
-
-task.removeLabel("important");
-console.log(task.labels);
-
-task.removeLabel("important");
-console.log(task.labels);
-
-task.addProject("school");
-console.log(task.projects);
-
-task.removeProject("school");
-console.log(task.projects);
-
-task.removeProject("school");
-console.log(task.projects);
 
 
 
