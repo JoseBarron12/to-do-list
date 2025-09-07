@@ -1,3 +1,4 @@
+import { Page } from "./class";
 import allImage from "./images/all.svg";
 import todayImage from "./images/today.svg";
 import upcomingImage from "./images/upcoming.svg";
@@ -30,20 +31,6 @@ const page = {
 }
 
 const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];
-
-class Page {
-    constructor(currentPage)
-    {
-        this.currentPage = currentPage
-    };
-    get page() {
-        return this.currentPage;
-    }
-    set page(newPage) {
-        this.currentPage = newPage;
-    }
-
-}
 
 const currentPage = new Page("today");
 
