@@ -14,20 +14,37 @@ console.log(task.getId());
 console.log(task.name);
 console.log(task.desc);
 console.log(task.date);
-console.log(task.type);
-console.log(task.taskLabels);
+console.log(task.label);
+console.log(task.labels);
 console.log(task.projects);
 
 task.name = "no walk";
 task.desc = "nvm boring";
 task.date = "6:00 am";
-task.type = "upcoming";
+task.label = "upcoming";
 
 console.log(task.name);
 console.log(task.desc);
 console.log(task.date);
-console.log(task.type);
+console.log(task.label);
 
+task.addLabel("hype");
+console.log(task.labels);
+
+task.removeLabel("important");
+console.log(task.labels);
+
+task.removeLabel("important");
+console.log(task.labels);
+
+task.addProject("school");
+console.log(task.projects);
+
+task.removeProject("school");
+console.log(task.projects);
+
+task.removeProject("school");
+console.log(task.projects);
 
 
 

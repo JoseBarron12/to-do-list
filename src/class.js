@@ -57,33 +57,42 @@ class Task {
         return this.taskTypes;
     }
 
-    get labels() {
-        return this.taskLabels;
-    }
-
-    get type() {
+    get label() {
         return this._type;
     }
 
-    set type(newType) {
+    set label(newType) {
         this._type = newType;
     }
-
+    
+    get labels() {
+        return this.taskLabels;
+    }
+    
     get projects()
     {
         return this.taskProjects;
     }
-
-    /*
-    addType(newType) {
-        this.taskTypes.push(newType);
+    
+    addLabel(newLabel) {
+        this.taskLabels.push(newLabel);
     };
 
-    removeType(typeToRemove) {
-        
-        const isEqualTo = (element) => element == typeToRemove;
-        this.taskTypes.splice(this.taskTypes.findIndex(isEqualTo),1);
-    };*/ 
+    removeLabel(labelToRemove) {   
+        const isEqualTo = (element) => element == labelToRemove;
+        const result = this.taskLabels.findIndex(isEqualTo);
+        if(result != -1 ) this.taskLabels.splice(result,1);
+    };
+
+    addProject(newProject) {
+        this.taskProjects.push(newProject);
+    };
+
+    removeProject(projectToRemove) {
+        const isEqualTo = (element) => element == projectToRemove;
+        const result = this.taskProjects.findIndex(isEqualTo);
+        if(result != -1 ) this.taskProjects.splice(result,1);
+    }
 
 }
 
