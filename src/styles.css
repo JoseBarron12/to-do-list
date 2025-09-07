@@ -380,3 +380,9 @@ input[type="checkbox"] {
   border-top: 1px solid var(--text);
   height: 42.50px;
 }
+
+.add-task-window {
+  position: absolute;
+  justify-self: center;
+  top: var(--header-height);
+}

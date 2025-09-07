@@ -31,6 +31,33 @@
                 <svg class="icon" id="right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
             </div>
         </div>
+
     </main>
+    <dialog open close="any" class="add-task-window">
+            <form id="add-task-form">
+                <h4>Create Task</h4>
+                <div class="form-task-name">
+                    <label for="task-name">Title*</label>
+                    <input type="text" id="task-name" name="task-name" placeholder="Title...">
+                </div>
+                <div class="form-task-labels">
+                    <label for="task-labels">Labels</label>
+
+                </div>
+                <div class="form-task-date">
+                    <div class="date">
+                        <label for="task-date">Date*</label>
+                        <input type="date" name="task-date" id="task-date">
+                    </div>
+                    <div class="time">
+                        <label for="task-time">Time*</label>
+                        <input type="time" name="task-date" id="task-date">
+                    </div>
+                </div>
+                <div class="form-task-desc">
+                    
+                </div>
+            </form>
+        </dialog>
 </body>
 </html>
