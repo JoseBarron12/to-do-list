@@ -13,51 +13,51 @@ class Page {
 }
 
 class Task {
-    taskType = []; // type: different projects, or time assignment
-    taskDesc = []; // important, or other descriptors that distinguihs task
+    taskTypes = []; // type: different projects, or time assignment
+    taskLabels = []; // important, or other descriptors that distinguihs task
 
-    constructor (name, desc, dueDate, type, descriptor)
+    constructor (name, desc, dueDate, type, label)
     {
-        this.id = crypto.randomUUID();
-        this.name = name;
-        this.desc = desc;
-        this.date = dueDate;
-        this.taskType.push(type);
-        this.taskDesc.push(descriptor);
+        this._id = crypto.randomUUID();
+        this._name = name;
+        this._desc = desc;
+        this._date = dueDate;
+        this.taskTypes.push(type);
+        this.taskLabels.push(label);
     }
 
     getId() {
-        return this.id;
+        return this._id;
     }
 
-    get taskName() {
-        return this.name;
+    get name() {
+        return this._name;
     }
-    set taskName(newName) {
-        this.name = newName;
+    set name(newName) {
+        this._name = newName;
     }
     
-    get taskDescription() {
-        return this.desc;
+    get desc() {
+        return this._desc;
     }
-    set taskDescription(newDesc)
+    set desc(newDesc)
     {
-        this.desc = newDesc;
+        this._desc = newDesc;
     }
     
-    get taskDate() {
-        return this.date
+    get date() {
+        return this._date
     }
-    set taskDate(newDate) {
-        this.date = newDate;
-    }
-
-    get taskTypes() {
-        return this.taskType;
+    set date(newDate) {
+        this._date = newDate;
     }
 
-    get taskDescriptors() {
-        return this.taskDesc;
+    get types() {
+        return this.taskTypes;
+    }
+
+    get labels() {
+        return this.taskLabels;
     }
 
     /* 

@@ -11,19 +11,19 @@ display.mainPage("today");
 const task = new Task("go for a walk", "ima go for a walk", "12:00pm", "today", "important");
 
 console.log(task.getId());
-console.log(task.taskName);
-console.log(task.taskDescription);
-console.log(task.taskDate);
+console.log(task.name);
+console.log(task.desc);
+console.log(task.date);
 console.log(task.taskTypes);
-console.log(task.taskDescriptors);
+console.log(task.taskLabels);
 
-task.taskName = "no walk";
-task.taskDescription = "nvm boring";
-task.taskDate = "6:00 am";
+task.name = "no walk";
+task.desc = "nvm boring";
+task.date = "6:00 am";
 
-console.log(task.taskName);
-console.log(task.taskDescription);
-console.log(task.taskDate);
+console.log(task.name);
+console.log(task.desc);
+console.log(task.date);
 
 
 
