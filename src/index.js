@@ -16,6 +16,7 @@ console.log(task.desc);
 console.log(task.date);
 console.log(task.type);
 console.log(task.taskLabels);
+console.log(task.projects);
 
 task.name = "no walk";
 task.desc = "nvm boring";

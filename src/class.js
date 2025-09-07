@@ -16,7 +16,7 @@ class Task {
     taskProjects = [];
     taskLabels = []; // important, or other descriptors that distinguihs task
 
-    constructor (name, desc, dueDate, type, label)
+    constructor (name, desc, dueDate, type, label, project)
     {
         this._id = crypto.randomUUID();
         this._name = name;
@@ -24,6 +24,7 @@ class Task {
         this._date = dueDate;
         this._type = type; // today, upcoming, past
         this.taskLabels.push(label);
+        if(project !== undefined) this.taskProjects.push(project);
     }
 
     getId() {
@@ -66,6 +67,11 @@ class Task {
 
     set type(newType) {
         this._type = newType;
+    }
+
+    get projects()
+    {
+        return this.taskProjects;
     }
 
     /*
