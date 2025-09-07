@@ -14,16 +14,19 @@ console.log(task.getId());
 console.log(task.name);
 console.log(task.desc);
 console.log(task.date);
-console.log(task.taskTypes);
+console.log(task.type);
 console.log(task.taskLabels);
 
 task.name = "no walk";
 task.desc = "nvm boring";
 task.date = "6:00 am";
+task.type = "upcoming";
 
 console.log(task.name);
 console.log(task.desc);
 console.log(task.date);
+console.log(task.type);
+
 
 
 

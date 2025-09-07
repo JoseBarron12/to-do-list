@@ -13,7 +13,7 @@ class Page {
 }
 
 class Task {
-    taskTypes = []; // type: different projects, or time assignment
+    taskProjects = [];
     taskLabels = []; // important, or other descriptors that distinguihs task
 
     constructor (name, desc, dueDate, type, label)
@@ -22,7 +22,7 @@ class Task {
         this._name = name;
         this._desc = desc;
         this._date = dueDate;
-        this.taskTypes.push(type);
+        this._type = type; // today, upcoming, past
         this.taskLabels.push(label);
     }
 
@@ -60,16 +60,24 @@ class Task {
         return this.taskLabels;
     }
 
-    /* 
-    addType(newType) {
-        this.taskType.push(newType);
+    get type() {
+        return this._type;
     }
+
+    set type(newType) {
+        this._type = newType;
+    }
+
+    /*
+    addType(newType) {
+        this.taskTypes.push(newType);
+    };
 
     removeType(typeToRemove) {
         
         const isEqualTo = (element) => element == typeToRemove;
-        this.taskType.splice(this.taskType.findIndex(isEqualTo),1);
-    }*/
+        this.taskTypes.splice(this.taskTypes.findIndex(isEqualTo),1);
+    };*/ 
 
 }
 
