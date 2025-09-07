@@ -53,15 +53,11 @@ class Task {
         this._date = newDate;
     }
 
-    get types() {
-        return this.taskTypes;
-    }
-
-    get label() {
+    get type() {
         return this._type;
     }
 
-    set label(newType) {
+    set type(newType) {
         this._type = newType;
     }
     
