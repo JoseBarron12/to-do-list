@@ -316,7 +316,7 @@ export const display = (function () {
         labelOptions.classList.add("label-options");
         addLabelWindow.appendChild(labelOptions);
 
-        defaultLabels.forEach((label) => {
+        defaultLabels.defLabels.forEach((label) => {
             const labelOption = document.createElement("label");
             labelOption.classList.add("label");
             labelOptions.appendChild(labelOption);

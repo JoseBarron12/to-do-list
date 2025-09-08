@@ -1,4 +1,4 @@
-import { Page } from "./class";
+import { Page, Labels } from "./class";
 import allImage from "./images/all.svg";
 import todayImage from "./images/today.svg";
 import upcomingImage from "./images/upcoming.svg";
@@ -34,6 +34,6 @@ const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];
 
 const currentPage = new Page("today");
 
-const defaultLabels = ["important", "date", "time", "date-time"];
+const defaultLabels = new Labels();
 
 export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels};

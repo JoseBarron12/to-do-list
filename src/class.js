@@ -92,4 +92,31 @@ class Task {
 
 }
 
-export {Page,Task}
+class Labels {
+    defaultLabels = ["important", "date", "time", "date-time"];
+    currentLabels = [];
+    constructor() {
+
+    }
+
+    get defLabels() {
+        return this.defaultLabels;
+    }
+
+    get currLabels() {
+        return this.currentLabels;
+    }
+
+    addLabel(newLabel) {
+        this.currentLabels.push(newLabel);
+    }
+
+    removeLabel(labelToRemove) {   
+        const isEqualTo = (element) => element == labelToRemove;
+        const result = this.currentLabels.findIndex(isEqualTo);
+        if(result != -1 ) this.taskLabels.splice(result,1);
+    };
+
+}
+
+export {Page,Task, Labels}
