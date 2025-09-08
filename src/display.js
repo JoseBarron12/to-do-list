@@ -323,6 +323,7 @@ export const display = (function () {
             labelOptions.appendChild(labelOption);
 
             const input = document.createElement("input");
+            input.classList.add("window");
             input.setAttribute("type", "checkbox");
             input.setAttribute("name", `${label}`);
             input.setAttribute("id", `label-${label}`);
@@ -343,5 +344,43 @@ export const display = (function () {
         functionality.addLabelBtns();
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow};
+    const labels = (parent,labelName) => {
+        
+        const LabelFlag = parent.querySelector(`.label>input[id=${labelName}]`);
+        if(LabelFlag != null)
+        {
+            return;
+        }
+
+        const labelDiv = document.createElement("div");
+        labelDiv.classList.add("label");
+        parent.appendChild(labelDiv);
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("name", `${labelName}`);
+        input.setAttribute("id", `${labelName}`);
+        input.checked = true;
+        labelDiv.appendChild(input);
+
+        const checkBoxLabel = document.createElement("div");
+        checkBoxLabel.classList.add("label-checkbox");
+        labelDiv.appendChild(checkBoxLabel);
+
+        const checkBoxText = document.createElement("div");
+        checkBoxText.textContent = toUpperCaseFirstChar(labelName);
+        checkBoxLabel.appendChild(checkBoxText);
+
+        const closeSVG = displaySVG({
+        className: "",
+        viewBox: "0 0 24 24",
+        pathD: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z",
+        titleText: "close"
+        });
+
+        checkBoxLabel.appendChild(closeSVG);
+
+    }
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels};
 })();

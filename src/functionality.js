@@ -1,6 +1,7 @@
 import { display } from "./display";
 import { currentPage } from "./default";
 import { defaultLabels } from "./default";
+import { update } from "./update";
 
 export const functionality = (function () {
     const addMenuBtn = () => {
@@ -113,6 +114,7 @@ export const functionality = (function () {
             }
             else
             {
+                update.selectedFormLabels();
                 parentToClose.remove();
             }
         });

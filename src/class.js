@@ -96,7 +96,6 @@ class Labels {
     defaultLabels = ["important", "date", "time", "date-time"];
     currentLabels = [];
     constructor() {
-
     }
 
     get defLabels() {
