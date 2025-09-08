@@ -404,6 +404,13 @@ input[type="checkbox"] {
   gap: 32px;
 }
 
+.add-task-window > form > svg {
+  position: absolute;
+  fill: var(--background);
+  right: 16px;
+  top: 16px;
+}
+
 .add-task-window > form > h3 {
   text-align: center;
 }
