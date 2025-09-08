@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags, currentPage} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels} from "./default";
 import { functionality } from "./functionality";
 
 const toUpperCaseFirstChar = (string) => {
@@ -74,6 +74,28 @@ const displayStringBefore = (string) => {
     }
     return true;
 }
+
+const displaySVG = ({ className, viewBox, pathD, titleText }) => {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttribute("viewBox", viewBox);
+  if (className) svg.classList.add(...className.split(" "));
+
+  // Add <title> for accessibility
+  if (titleText) {
+    const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+    title.textContent = titleText;
+    svg.appendChild(title);
+  }
+
+  // Add <path>
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathD);
+  svg.appendChild(path);
+
+  return svg;
+}
+
 
 export const display = (function () {
     const navbar = () => {
@@ -252,5 +274,65 @@ export const display = (function () {
         functionality.addDropdownMenuBtn();
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage};
+    const addLabelsWindow = () => {
+        const taskLabels = document.querySelector("#task-labels");
+        const addLabelWindow = document.createElement("div");
+        addLabelWindow.classList.add("add-labels");
+        taskLabels.appendChild(addLabelWindow);
+
+        const windowHeader = document.createElement("div");
+        windowHeader.classList.add("add-labels-header");
+        addLabelWindow.appendChild(windowHeader);
+
+        const labelHeader = document.createElement("h5");
+        labelHeader.textContent = "Add Label";
+        windowHeader.appendChild(labelHeader);
+
+        const addNewLabelSVG = displaySVG({
+            className: "add-new-label",
+            viewBox: "0 0 24 24",
+            pathD: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
+            titleText: "plus"
+        });
+
+        const exitNewLabelSVG = displaySVG({
+            className: "exit-new-label",
+            viewBox: "0 0 24 24",
+            pathD: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z",
+            titleText: "close"
+        });
+
+        windowHeader.appendChild(addNewLabelSVG);
+        windowHeader.appendChild(exitNewLabelSVG);
+
+        const labelOptions = document.createElement("div");
+        labelOptions.classList.add("label-options");
+        addLabelWindow.appendChild(labelOptions);
+
+        defaultLabels.forEach((label) => {
+            const labelOption = document.createElement("label");
+            labelOption.classList.add("label");
+            labelOptions.appendChild(labelOption);
+
+            const input = document.createElement("input");
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("name", `label-${label}`);
+            input.setAttribute("id", `label-${label}`);
+            labelOption.appendChild(input);
+
+            const checkBoxLabel = document.createElement("div");
+            checkBoxLabel.classList.add("label-checkbox");
+            labelOption.appendChild(checkBoxLabel);
+
+            const checkBoxText = document.createElement("div");
+            checkBoxText.textContent = toUpperCaseFirstChar(label);
+            checkBoxLabel.appendChild(checkBoxText);
+        });
+
+        const closeLabelWindowBtn = document.querySelector(".exit-new-label");
+
+        functionality.addExitBtn(closeLabelWindowBtn, addLabelWindow);
+    };
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow};
 })();

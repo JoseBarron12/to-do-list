@@ -118,5 +118,17 @@ export const functionality = (function () {
         });
     };
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn};
+    const addOpenDialogWinBtn = (btn, parentToOpen) => {
+        btn.addEventListener("click", () => {
+            parentToOpen.open()
+        });
+    };
+
+    const addOpenLabelsWinBtn = (btn, parentToOpen) => {
+        btn.addEventListener("click", (event) => {
+            parentToOpen.style.display = "block";
+        });
+    };
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn};
 })();

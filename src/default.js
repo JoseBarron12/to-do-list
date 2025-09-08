@@ -34,4 +34,6 @@ const nameFlags = ["All", "Tommorow", "Now", "Recent", "Yesterday"];
 
 const currentPage = new Page("today");
 
-export {images, buttonTypes, page, nameFlags, currentPage};
+const defaultLabels = ["important", "date", "time", "date-time"];
+
+export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels};
