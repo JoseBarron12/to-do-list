@@ -104,6 +104,19 @@ export const functionality = (function () {
         });
     };
     
+    const addExitBtn = (btn,parentToClose) => {
+        btn.addEventListener("click", () => {
+            if(parentToClose instanceof HTMLDialogElement)
+            {
+                parentToClose.close();
+            }
+            else
+            {
+                parentToClose.style.display = "none";
+            }
+            
+        });
+    };
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn};
 })();

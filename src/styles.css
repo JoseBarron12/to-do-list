@@ -571,8 +571,8 @@ input:focus, textarea:focus
   background-color: var(--primary);
   color: var(--text);
   width: 275px;
+  right: 0;
   margin: 32px;
-  margin-left: auto;
 }
 
 .add-labels-header {
