@@ -271,7 +271,7 @@ nav > button {
   min-height: 0;
 }
 
-::-webkit-scrollbar
+.tasks-section::-webkit-scrollbar
 {
   display: none;
 }
@@ -436,6 +436,78 @@ input[type="checkbox"] {
   height: 100%;
   border: 1px solid var(--background);
   border-radius: 4px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding: 8px;
+  gap: 8px;
+}
+
+.label-inputs {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.label-inputs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.label-inputs::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.label-inputs::-webkit-scrollbar-thumb {
+  background-color: rgb(170, 170, 170); 
+  border-radius: 4px;
+}
+
+.label {
+  display: flex;
+  flex-shrink: 0;
+}
+
+[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+[type=checkbox] + div {
+  cursor: pointer;
+  font-size: small;
+  display: flex;
+  gap: 4px;
+  padding: 0px 4px;
+  border-radius: 4px;
+  color: var(--text);
+  align-items: center;
+}
+
+[type=checkbox] + div > svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--text);
+}
+
+[type=checkbox]:checked + div {
+  background-color: var(--accent);
+}
+
+
+.open-labels {
+  display: flex;
+  align-items: center;
+  font-size: small;
+  padding: 0px 8px;
+  gap: 4px;
+}
+
+.open-labels > svg {
+  width: 16px;
+  height: auto;
 }
 
 .form-task-date {
@@ -457,7 +529,7 @@ label {
   opacity: 80%;
 }
 
-button.submit-button {
+button.submit-button, button.open-labels {
   background-color: var(--background);
   color: var(--text);
   border: none;
