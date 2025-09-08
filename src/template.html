@@ -35,15 +35,15 @@
     </main>
     <dialog open close="any" class="add-task-window">
             <form id="add-task-form">
-                <h4>Create Task</h4>
+                <h3>Create Task</h3>
                 <div class="form-task-name">
                     <label for="task-name">Title*</label>
                     <input type="text" id="task-name" name="task-name" placeholder="Title...">
                 </div>
                 <div class="form-task-labels">
                     <label for="task-labels">Labels</label>
-                    <div id="task-date"> 
-                        
+                    <div id="task-labels"> 
+
                     </div>
                 </div>
                 <div class="form-task-date">
@@ -58,10 +58,11 @@
                 </div>
                 <div class="form-task-desc">
                     <label for="task-desc">Description</label>
-                    <textarea name="task-desc" id="task-desc"></textarea>
+                    <textarea name="task-desc" id="task-desc" placeholder="Type here..."></textarea>
                 </div>
                 <button class="submit-button">Create</button>
+
             </form>
-        </dialog>
+    </dialog>
 </body>
 </html>
