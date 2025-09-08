@@ -119,7 +119,12 @@ export const functionality = (function () {
 
     const addOpenDialogWinBtn = (btn, parentToOpen) => {
         btn.addEventListener("click", () => {
-            parentToOpen.open()
+            parentToOpen.show();
+            const exitBtn = document.querySelector(".exit-button");
+            addExitBtn(exitBtn,parentToOpen);
+
+            const openLabelsWinBtn = document.querySelector(".open-labels");
+            addOpenLabelsWinBtn(openLabelsWinBtn);
         });
     };
 

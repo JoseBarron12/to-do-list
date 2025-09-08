@@ -7,8 +7,12 @@ functionality.addThemeBtn();
 
 display.mainPage("today");
 
-const openLabelsWinBtn = document.querySelector(".open-labels");
-functionality.addOpenLabelsWinBtn(openLabelsWinBtn);
+const addTaskBtn = document.querySelector("#addTask");
+const addTaskWindow = document.querySelector(".add-task-window");
+
+functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow);
+
+
 
 
 
