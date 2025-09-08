@@ -404,7 +404,7 @@ input[type="checkbox"] {
   gap: 32px;
 }
 
-.add-task-window > #add-task-form> svg {
+.exit-button {
   position: absolute;
   fill: var(--background);
   right: 16px;
@@ -494,6 +494,7 @@ input[type="checkbox"] {
 
 [type=checkbox]:checked + div {
   background-color: var(--accent);
+  font-weight: bold;
 }
 
 
@@ -537,6 +538,7 @@ button.submit-button, button.open-labels {
   color: var(--text);
   border: none;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 ::placeholder {
@@ -558,12 +560,49 @@ input:focus, textarea:focus
 
 .add-labels {
   position: absolute;
-  justify-self: center;
   padding: 8px 16px ;
-  background-color: red;
+  background-color: var(--text);
   z-index: 999;
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--text);
+  width: 275px;
+  margin: 32px;
+  margin-left: auto;
+}
+
+.add-labels-header {
+  display: flex;
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 4px;
   gap: 4px;
 }
+
+.add-labels-header > svg {
+  width: 16px;
+}
+
+.add-labels-header > .exit-new-label {
+  margin-left: auto;
+}
+
+.label-options {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.label-options > label {
+  border: 1px solid var(--text);
+  border-radius: 4px;
+}
+.label-options > label:hover {
+  font-weight: bold;
+}
+
 
