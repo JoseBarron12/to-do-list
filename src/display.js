@@ -96,7 +96,6 @@ const displaySVG = ({ className, viewBox, pathD, titleText }) => {
   return svg;
 }
 
-
 export const display = (function () {
     const navbar = () => {
         const main = document.querySelector("main");
@@ -276,7 +275,15 @@ export const display = (function () {
 
     const addLabelsWindow = () => {
         const taskLabels = document.querySelector("#task-labels");
+        
+        const addLabelWindowFlag = document.querySelector(".add-labels");
+        if(addLabelWindowFlag != null)
+        {
+            return;
+        }
+
         const addLabelWindow = document.createElement("div");
+        
         addLabelWindow.classList.add("add-labels");
         taskLabels.appendChild(addLabelWindow);
 
@@ -329,7 +336,7 @@ export const display = (function () {
             checkBoxLabel.appendChild(checkBoxText);
         });
 
-        const closeLabelWindowBtn = document.querySelector(".exit-new-label");
+        const closeLabelWindowBtn = addLabelWindow.querySelector(".exit-new-label");
 
         functionality.addExitBtn(closeLabelWindowBtn, addLabelWindow);
     };

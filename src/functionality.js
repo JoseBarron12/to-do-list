@@ -105,16 +105,15 @@ export const functionality = (function () {
     };
     
     const addExitBtn = (btn,parentToClose) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
             if(parentToClose instanceof HTMLDialogElement)
             {
                 parentToClose.close();
             }
             else
             {
-                parentToClose.style.display = "none";
+                parentToClose.remove();
             }
-            
         });
     };
 
@@ -124,9 +123,10 @@ export const functionality = (function () {
         });
     };
 
-    const addOpenLabelsWinBtn = (btn, parentToOpen) => {
+    const addOpenLabelsWinBtn = (btn) => {
         btn.addEventListener("click", (event) => {
-            parentToOpen.style.display = "block";
+            event.preventDefault();
+            display.addLabelsWindow();
         });
     };
 

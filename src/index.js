@@ -7,7 +7,9 @@ functionality.addThemeBtn();
 
 display.mainPage("today");
 
-display.addLabelsWindow();
+const openLabelsWinBtn = document.querySelector(".open-labels");
+functionality.addOpenLabelsWinBtn(openLabelsWinBtn);
+
 
 
 
