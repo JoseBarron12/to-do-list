@@ -1,5 +1,6 @@
 import { display } from "./display";
 import { currentPage } from "./default";
+import { defaultLabels } from "./default";
 
 export const functionality = (function () {
     const addMenuBtn = () => {
@@ -135,5 +136,22 @@ export const functionality = (function () {
         });
     };
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn};
+    const addLabelBtns = () => {
+        const labelBtns = document.querySelectorAll(".labelinputs>label");
+        labelBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const selection = btn.querySelector('[name="gamemode"]');
+                if(selection.checked)
+                {
+                    defaultLabels.addLabel(selection.getAttribute("name"));
+                }
+                else
+                {
+                    defaultLabels.removeLabel(selection.getAttribute("name"));
+                }
+            })
+        });
+    }
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns};
 })();

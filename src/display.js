@@ -323,7 +323,7 @@ export const display = (function () {
 
             const input = document.createElement("input");
             input.setAttribute("type", "checkbox");
-            input.setAttribute("name", `label-${label}`);
+            input.setAttribute("name", `${label}`);
             input.setAttribute("id", `label-${label}`);
             labelOption.appendChild(input);
 

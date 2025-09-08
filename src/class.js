@@ -108,7 +108,9 @@ class Labels {
     }
 
     addLabel(newLabel) {
-        this.currentLabels.push(newLabel);
+        const isEqualTo = (element) => element == labelToRemove;
+        const result = this.currentLabels.findIndex(isEqualTo);
+        if(result == -1 ) this.currentLabels.push(newLabel);
     }
 
     removeLabel(labelToRemove) {   
