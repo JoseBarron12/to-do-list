@@ -137,17 +137,19 @@ export const functionality = (function () {
     };
 
     const addLabelBtns = () => {
-        const labelBtns = document.querySelectorAll(".labelinputs>label");
+        const labelBtns = document.querySelectorAll(".label-options>label");
         labelBtns.forEach(btn => {
             btn.addEventListener("click", () => {
-                const selection = btn.querySelector('[name="gamemode"]');
+                const selection = btn.querySelector('[type="checkbox"]');
                 if(selection.checked)
                 {
                     defaultLabels.addLabel(selection.getAttribute("name"));
+                    console.log(defaultLabels.currLabels);
                 }
                 else
                 {
                     defaultLabels.removeLabel(selection.getAttribute("name"));
+                    console.log(defaultLabels.currLabels);
                 }
             })
         });

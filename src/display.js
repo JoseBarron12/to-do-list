@@ -319,6 +319,7 @@ export const display = (function () {
         defaultLabels.defLabels.forEach((label) => {
             const labelOption = document.createElement("label");
             labelOption.classList.add("label");
+            labelOption.setAttribute("for", `label-${label}`)
             labelOptions.appendChild(labelOption);
 
             const input = document.createElement("input");
@@ -339,6 +340,7 @@ export const display = (function () {
         const closeLabelWindowBtn = addLabelWindow.querySelector(".exit-new-label");
 
         functionality.addExitBtn(closeLabelWindowBtn, addLabelWindow);
+        functionality.addLabelBtns();
     };
 
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow};

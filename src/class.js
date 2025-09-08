@@ -108,7 +108,7 @@ class Labels {
     }
 
     addLabel(newLabel) {
-        const isEqualTo = (element) => element == labelToRemove;
+        const isEqualTo = (element) => element == newLabel;
         const result = this.currentLabels.findIndex(isEqualTo);
         if(result == -1 ) this.currentLabels.push(newLabel);
     }
@@ -116,7 +116,7 @@ class Labels {
     removeLabel(labelToRemove) {   
         const isEqualTo = (element) => element == labelToRemove;
         const result = this.currentLabels.findIndex(isEqualTo);
-        if(result != -1 ) this.taskLabels.splice(result,1);
+        if(result != -1 ) this.currentLabels.splice(result,1);
     };
 
 }
