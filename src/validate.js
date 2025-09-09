@@ -9,6 +9,16 @@ export const isValid = (function() {
         const taskName = form.querySelector('input[id="task-name"]');
         console.log(taskName.value);
 
+        const labelOptions = form.querySelector(".label-inputs");
+       
+        if(labelOptions.children.length != 0)
+        {
+            const taskLabels = labelOptions.querySelectorAll('input[type="checkbox"]');
+            taskLabels.forEach(label => {
+                console.log(label.name);
+            });
+        }
+        
         const taskDate = form.querySelector('input[id="task-date"]');
         console.log(taskDate.value);
 
