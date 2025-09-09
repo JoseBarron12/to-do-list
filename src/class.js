@@ -23,7 +23,7 @@ class Task {
         this._desc = desc;
         this._date = dueDate;
         this._type = type; // today, upcoming, past
-        this.taskLabels.push(label);
+        if(label !== undefined) this.taskLabels.push(label);
         if(project !== undefined) this.taskProjects.push(project);
     }
 
