@@ -88,7 +88,8 @@ class Task {
         const isEqualTo = (element) => element == projectToRemove;
         const result = this.taskProjects.findIndex(isEqualTo);
         if(result != -1 ) this.taskProjects.splice(result,1);
-    }
+    };
+
 
 }
 
@@ -123,6 +124,9 @@ class Labels {
         const result = this.currentLabels.findIndex(isEqualTo);
         if(result == -1 ) return false;
         return true;
+    }
+    deleteAllCurrLabels() {
+        this.currentLabels = [];
     }
 
 }

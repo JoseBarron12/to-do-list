@@ -10,6 +10,10 @@ export const update = (function () {
         });
     };
 
+    const clearFormLabels = () => {
+        defaultLabels.deleteAllCurrLabels();
+    }
+
     const clearValidFlag = (elementToClear) => {
         elementToClear.classList.remove("user-invalid");
         elementToClear.classList.remove("user-valid");
@@ -41,5 +45,5 @@ export const update = (function () {
             });
         }
     }
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm};
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels};
 })();

@@ -112,6 +112,8 @@ export const functionality = (function () {
             if(parentToClose instanceof HTMLDialogElement)
             {
                 update.clearForm(parentToClose);
+                update.clearFormLabels();
+                update.selectedFormLabels();
                 parentToClose.close();
 
             }
@@ -189,6 +191,9 @@ export const functionality = (function () {
             if(isValid.addTaskForm())
             {
                 update.clearForm(window);
+                update.clearFormLabels();
+                update.clearFormLabels();
+                update.selectedFormLabels();
                 window.close();
             }
         });
