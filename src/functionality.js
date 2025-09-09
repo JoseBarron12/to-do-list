@@ -128,7 +128,7 @@ export const functionality = (function () {
             parentToOpen.showModal();
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
-            addSubmitTaskBtn();
+            addSubmitTaskBtn(parentToOpen);
 
             const textInputBox = parentToOpen.querySelector(".form-task-name");
             addClearText(textInputBox);
@@ -181,11 +181,16 @@ export const functionality = (function () {
         })
     };
 
-    const addSubmitTaskBtn = () => {
+    const addSubmitTaskBtn = (window) => {
         const btn = document.querySelector("button.submit-button");
         btn.addEventListener("click", (event) => {
             event.preventDefault();
-            isValid.addTaskForm();
+        
+            if(isValid.addTaskForm())
+            {
+                update.clearForm(window);
+                window.close();
+            }
         });
     };
 
