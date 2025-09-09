@@ -344,6 +344,7 @@ export const display = (function () {
 
         const closeLabelWindowBtn = addLabelWindow.querySelector(".exit-new-label");
 
+        functionality.closeAddLabelWin(addLabelWindow);
         functionality.addExitBtn(closeLabelWindowBtn, addLabelWindow);
         functionality.addLabelBtns();
     };

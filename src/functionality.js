@@ -123,7 +123,7 @@ export const functionality = (function () {
 
     const addOpenDialogWinBtn = (btn, parentToOpen) => {
         btn.addEventListener("click", () => {
-            parentToOpen.show();
+            parentToOpen.showModal();
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
             addSubmitTaskBtn();
@@ -224,6 +224,11 @@ export const functionality = (function () {
         })
     };
 
+    const closeAddLabelWin = (windowToClose) => {
+        windowToClose.addEventListener("mouseleave", () => {
+            windowToClose.remove();
+        });
+    }
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin};
 })();
