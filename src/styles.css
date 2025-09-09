@@ -393,7 +393,7 @@ input[type="checkbox"] {
   border: none;
   background-color: var(--text);
   color: var(--background);
-  /*box-shadow: 5px 5px 25px rgb(0, 0, 0);*/
+  box-shadow: 5px 5px 25px rgb(0, 0, 0);
 }
 
 .add-task-window > #add-task-form {
@@ -628,4 +628,14 @@ input:focus, textarea:focus
   width: 16px;
   height: 16px;
   fill: var(--background);
+}
+
+::backdrop {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px); 
 }
