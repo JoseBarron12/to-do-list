@@ -131,6 +131,15 @@ export const functionality = (function () {
             const textInputBox = parentToOpen.querySelector(".form-task-name");
             addClearText(textInputBox);
 
+            const dateInputBox = parentToOpen.querySelector(".date");
+            addClearInput(dateInputBox);
+            
+            const timeInputBox = parentToOpen.querySelector(".time");
+            addClearInput(timeInputBox);
+
+            const descInputBox = parentToOpen.querySelector(".form-task-desc");
+            addClearTextArea(descInputBox);
+
             const openLabelsWinBtn = document.querySelector(".open-labels");
             addOpenLabelsWinBtn(openLabelsWinBtn);
         });
@@ -185,13 +194,36 @@ export const functionality = (function () {
         });
     };
 
+    const addClearInput = (inputBox) => {
+        const input = inputBox.querySelector("input");
+        input.addEventListener("input", () => {
+            display.inputClearBtn(inputBox);
+        });
+    };
+
+    const addClearTextArea = (inputBox) => {
+        const input = inputBox.querySelector("textarea");
+        input.addEventListener("input", () => {
+            display.inputClearBtn(inputBox);
+        });
+    };
+
     const addClearTextBtn = (closeBtn, inputBox) => {
-        closeBtn.addEventListener("click", (event) => {
+        closeBtn.addEventListener("click", () => {
             const input = inputBox.querySelector("input");
-            input.value = "";
+            if(input != null)
+            {
+                input.value = "";
+            }
+            else
+            {
+                const textArea = inputBox.querySelector("textarea");
+                textArea.value = "";
+            }
             closeBtn.remove();
         })
-    }
+    };
+
 
     return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn};
 })();

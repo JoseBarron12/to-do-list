@@ -605,7 +605,7 @@ input:focus, textarea:focus
   font-weight: bold;
 }
 
-.form-task-name{
+.form-task-name, .form-task-desc > label{
   position: relative;
 }
 
@@ -615,5 +615,17 @@ input:focus, textarea:focus
   right: 8px;
   width: 16px;
   height: auto;
+  fill: var(--background);
+}
+
+.task-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reset-icon {
+  width: 16px;
+  height: 16px;
   fill: var(--background);
 }
