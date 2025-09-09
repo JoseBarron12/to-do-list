@@ -111,7 +111,9 @@ export const functionality = (function () {
         btn.addEventListener("click", (e) => {
             if(parentToClose instanceof HTMLDialogElement)
             {
+                update.clearForm(parentToClose);
                 parentToClose.close();
+
             }
             else
             {

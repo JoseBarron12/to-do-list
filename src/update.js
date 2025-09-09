@@ -22,5 +22,24 @@ export const update = (function () {
     const userValid = (validElement) => {
         validElement.classList.add("user-valid");
     };
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid};
+
+    const clearForm = (formToClear) => {
+        const inputs = formToClear.querySelectorAll("input");
+        if(inputs.length != 0)
+        {
+            inputs.forEach((input) => {
+                clearValidFlag(input);
+                input.value = "";
+            });
+        }
+        const textArea = formToClear.querySelectorAll("textarea");
+        if(textArea.length != 0)
+        {
+            textArea.forEach((input) => {
+                clearValidFlag(input);
+                input.value = "";
+            });
+        }
+    }
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm};
 })();
