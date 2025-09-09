@@ -20,4 +20,3 @@ functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow);
 
 
 
-

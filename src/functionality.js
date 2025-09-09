@@ -2,6 +2,7 @@ import { display } from "./display";
 import { currentPage } from "./default";
 import { defaultLabels } from "./default";
 import { update } from "./update";
+import { isValid } from "./validate";
 
 export const functionality = (function () {
     const addMenuBtn = () => {
@@ -125,6 +126,7 @@ export const functionality = (function () {
             parentToOpen.show();
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
+            addSubmitTaskBtn();
 
             const openLabelsWinBtn = document.querySelector(".open-labels");
             addOpenLabelsWinBtn(openLabelsWinBtn);
@@ -165,5 +167,14 @@ export const functionality = (function () {
         })
     }
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn};
+    const addSubmitTaskBtn = () => {
+        const btn = document.querySelector("button.submit-button");
+        btn.addEventListener("click", (event) => {
+            event.preventDefault();
+            isValid.addTaskForm();
+        });
+    }
+
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn};
 })();
