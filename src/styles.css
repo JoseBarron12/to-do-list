@@ -640,3 +640,11 @@ input:focus, textarea:focus
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px); 
 }
+
+.user-valid {
+  outline: 2px solid #00c896;
+}
+
+.user-invalid {
+  outline: 2px solid red;
+}

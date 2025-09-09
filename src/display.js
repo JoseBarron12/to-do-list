@@ -425,5 +425,7 @@ export const display = (function () {
         }
     }
 
+    
+
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn};
 })();

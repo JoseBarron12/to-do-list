@@ -1,6 +1,5 @@
 import { defaultLabels } from "./default";
 import { display } from "./display";
-import { functionality } from "./functionality";
 
 export const update = (function () {
     const selectedFormLabels = () => {
@@ -9,6 +8,19 @@ export const update = (function () {
         defaultLabels.currLabels.forEach(label => {
             display.labels(labelFormInput, label);
         });
-    }
-    return {selectedFormLabels};
+    };
+
+    const clearValidFlag = (elementToClear) => {
+        elementToClear.classList.remove("user-invalid");
+        elementToClear.classList.remove("user-valid");
+    };
+
+    const userInvalid = (invalidElement) => {
+        invalidElement.classList.add("user-invalid");
+    };
+
+    const userValid = (validElement) => {
+        validElement.classList.add("user-valid");
+    };
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid};
 })();

@@ -1,5 +1,6 @@
 import { Task } from "./class";
 import { isToday, isFuture} from "date-fns";
+import { update } from "./update";
 
 const setType = (date) => {
     if(isToday(date))
@@ -22,17 +23,56 @@ export const isValid = (function() {
         return (inputName.replace(/^\s+|\s+$/gm,'').length != 0) ? true : false;
     }
 
+    const date = (date) => {
+        return (date.length != 0);
+    }
+
     const addTaskForm = () => {
         const form = document.querySelector("#add-task-form");
-        
+        let validForm = true;
         const taskName = form.querySelector('input[id="task-name"]');
+        update.clearValidFlag(taskName);
+        
         if( ! isValid.name(taskName.value))
+        {
+            validForm = false
+            update.userInvalid(taskName);
+        }
+        else
+        {
+            update.userValid(taskName);
+        }
+        
+        const taskDate = form.querySelector('input[id="task-date"]');
+        update.clearValidFlag(taskDate);
+
+        if(! isValid.date(taskDate.value)) 
+        {
+            validForm = false
+            update.userInvalid(taskDate);
+        }
+        else
+        {
+            update.userValid(taskDate);
+        }
+        
+        const taskTime = form.querySelector('input[id="task-time"]');
+        update.clearValidFlag(taskTime);
+
+        if(! isValid.date(taskTime.value)) 
+        {
+            validForm = false
+            update.userInvalid(taskTime);
+        }
+        else
+        {
+            update.userValid(taskTime);
+        }
+        if(validForm == false)
         {
             return false;
         }
 
-        const taskDate = form.querySelector('input[id="task-date"]');
-        const taskTime = form.querySelector('input[id="task-time"]');
         const dateTime = taskDate.value + 'T' + taskTime.value;
         
         const taskDesc = form.querySelector('textarea[id="task-desc"]');
@@ -53,5 +93,5 @@ export const isValid = (function() {
 
         return true;
     }
-    return {name, addTaskForm};
+    return {name, addTaskForm, date};
 })();
