@@ -605,4 +605,15 @@ input:focus, textarea:focus
   font-weight: bold;
 }
 
+.form-task-name{
+  position: relative;
+}
 
+.input-icon {
+  position: absolute;
+  bottom: 16px;
+  right: 8px;
+  width: 16px;
+  height: auto;
+  fill: var(--background);
+}

@@ -128,6 +128,9 @@ export const functionality = (function () {
             addExitBtn(exitBtn,parentToOpen);
             addSubmitTaskBtn();
 
+            const textInputBox = parentToOpen.querySelector(".form-task-name");
+            addClearText(textInputBox);
+
             const openLabelsWinBtn = document.querySelector(".open-labels");
             addOpenLabelsWinBtn(openLabelsWinBtn);
         });
@@ -165,7 +168,7 @@ export const functionality = (function () {
             defaultLabels.removeLabel(labelName);
             elementToDelete.remove();
         })
-    }
+    };
 
     const addSubmitTaskBtn = () => {
         const btn = document.querySelector("button.submit-button");
@@ -173,8 +176,22 @@ export const functionality = (function () {
             event.preventDefault();
             isValid.addTaskForm();
         });
+    };
+
+    const addClearText = (inputBox) => {
+        const input = inputBox.querySelector("input");
+        input.addEventListener("input", () => {
+            display.textClearBtn(inputBox);
+        });
+    };
+
+    const addClearTextBtn = (closeBtn, inputBox) => {
+        closeBtn.addEventListener("click", (event) => {
+            const input = inputBox.querySelector("input");
+            input.value = "";
+            closeBtn.remove();
+        })
     }
 
-
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn};
 })();
