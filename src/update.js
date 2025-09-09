@@ -1,5 +1,6 @@
 import { defaultLabels } from "./default";
 import { display } from "./display";
+import { functionality } from "./functionality";
 
 export const update = (function () {
     const selectedFormLabels = () => {

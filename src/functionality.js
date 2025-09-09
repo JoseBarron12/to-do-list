@@ -155,7 +155,14 @@ export const functionality = (function () {
                 }
             })
         });
+    };
+
+    const addDeleteLabelBtn = (btn, elementToDelete, labelName) => {
+        btn.addEventListener("click", () => {
+            defaultLabels.removeLabel(labelName);
+            elementToDelete.remove();
+        })
     }
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn};
 })();

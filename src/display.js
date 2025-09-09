@@ -384,6 +384,8 @@ export const display = (function () {
 
         checkBoxLabel.appendChild(closeSVG);
 
+        functionality.addDeleteLabelBtn(closeSVG, labelDiv, labelName);
+
     }
 
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels};
