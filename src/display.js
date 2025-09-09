@@ -327,6 +327,10 @@ export const display = (function () {
             input.setAttribute("type", "checkbox");
             input.setAttribute("name", `${label}`);
             input.setAttribute("id", `label-${label}`);
+            if(defaultLabels.isCurrentLabel(label))
+            {
+                input.checked = true;
+            }
             labelOption.appendChild(input);
 
             const checkBoxLabel = document.createElement("div");

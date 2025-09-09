@@ -118,6 +118,13 @@ class Labels {
         if(result != -1 ) this.currentLabels.splice(result,1);
     };
 
+    isCurrentLabel(labelToCheck){   
+        const isEqualTo = (element) => element == labelToCheck;
+        const result = this.currentLabels.findIndex(isEqualTo);
+        if(result == -1 ) return false;
+        return true;
+    }
+
 }
 
 export {Page,Task, Labels}
