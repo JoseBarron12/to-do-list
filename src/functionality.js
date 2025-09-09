@@ -146,12 +146,13 @@ export const functionality = (function () {
                 if(selection.checked)
                 {
                     defaultLabels.addLabel(selection.getAttribute("name"));
-                    console.log(defaultLabels.currLabels);
+                    update.selectedFormLabels();
                 }
                 else
                 {
                     defaultLabels.removeLabel(selection.getAttribute("name"));
-                    console.log(defaultLabels.currLabels);
+                    update.selectedFormLabels();
+                    
                 }
             })
         });
