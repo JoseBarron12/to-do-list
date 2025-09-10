@@ -159,7 +159,18 @@ class AllTasks {
     }
 
 
-
+    getTasksFromName(name) {
+        switch (name) {
+            case "all":
+                return this.allTasks;
+            case "today":
+                return this.getTodayTasks();
+            case "upcoming":
+                return this.getUpcomingTasks()
+            default:
+                return this.getPastTasks();
+        }
+    }
 }
 
 

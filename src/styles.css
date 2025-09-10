@@ -468,14 +468,14 @@ input[type="checkbox"] {
   flex-shrink: 0;
 }
 
-[type=checkbox] {
+.label > [type=checkbox] {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-[type=checkbox] + div {
+.label > [type=checkbox] + div {
   cursor: pointer;
   font-size: small;
   display: flex;
@@ -486,16 +486,17 @@ input[type="checkbox"] {
   align-items: center;
 }
 
-[type=checkbox] + div > svg {
+.label > [type=checkbox] + div > svg {
   width: 12px;
   height: 12px;
   fill: var(--text);
 }
 
-[type=checkbox]:checked + div {
+.label > [type=checkbox]:checked + div {
   background-color: var(--accent);
   font-weight: bold;
 }
+
 
 
 .open-labels {

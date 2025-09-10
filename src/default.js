@@ -38,4 +38,5 @@ const defaultLabels = new Labels();
 
 const allTasksOfUser = new AllTasks();
 
+
 export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser};

@@ -1,6 +1,7 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser} from "./default";
 import { functionality } from "./functionality";
+import { format } from "date-fns";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -62,6 +63,58 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
         section.appendChild(tasks);
     });
 }
+
+const displayTasks = (parent, arrayOfTasks) => {
+    const arr = Array.from(arrayOfTasks);
+    arr.forEach(task => {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+        parent.appendChild(taskDiv);
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("id", `${task.getId()}`);
+        taskDiv.appendChild(input);
+
+        const label = document.createElement("label");
+        label.setAttribute("for", `${task.getId()}`);
+        taskDiv.appendChild(label);
+
+        const taskHeader = document.createElement("div");
+        taskHeader.classList.add("task-header");
+        label.appendChild(taskHeader);
+
+        const taskName = document.createElement("p");
+        taskName.textContent = `${task.name}`;
+        taskHeader.appendChild(taskName);
+
+        task.labels.forEach((label) => {
+            const button = document.createElement("button");
+            if(label == "important")
+            {
+                button.textContent = toUpperCaseFirstChar(label);
+                button.classList.add("important-btn");
+            }
+            else
+            {
+                button.textContent = format(task.date, 'MMM d');
+                button.classList.add("date-btn");
+            }
+            taskHeader.appendChild(button);
+        });
+
+        const descDiv = document.createElement("div");
+        descDiv.classList.add("task-description");
+        label.appendChild(descDiv);
+
+        const desc = document.createElement("p");
+        desc.textContent = task.desc;
+        descDiv.appendChild(desc);
+
+    });
+}   
+
+
 
 // Function to flag whether string should have a string beforehand
 const displayStringBefore = (string) => {
@@ -270,6 +323,10 @@ export const display = (function () {
 
         displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false);
 
+        const tasks = document.querySelector(".tasks");
+        
+        displayTasks(tasks, allTasksOfUser.getTasksFromName(name));
+
         functionality.addDropdownMenuBtn();
     };
 
@@ -424,8 +481,6 @@ export const display = (function () {
            
         }
     }
-
-    
 
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn};
 })();
