@@ -91,7 +91,6 @@ export const isValid = (function() {
         }
         
         allTasksOfUser.addTask(newTask);
-        console.log(allTasksOfUser.allCurrentTask);
 
         return true;
     }

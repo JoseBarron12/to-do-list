@@ -189,7 +189,6 @@ export const functionality = (function () {
         const btn = document.querySelector("button.submit-button");
         btn.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log("clikcked");
             if(isValid.addTaskForm())
             {
                 update.clearForm(window);

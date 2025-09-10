@@ -1,3 +1,5 @@
+import { isToday, isPast, isFuture } from "date-fns";
+
 class Page {
     constructor(currentPage)
     {
@@ -49,6 +51,7 @@ class Task {
     get date() {
         return this._date
     }
+    
     set date(newDate) {
         this._date = newDate;
     }
@@ -137,11 +140,25 @@ class AllTasks {
 
     get allCurrentTask() {
         return this.allTasks;
-    }
+    };
 
     addTask(newTask) {
         this.allTasks.push(newTask);
+    };
+
+    getTodayTasks() {
+        return this.allCurrentTask.filter((task) => isToday(task.date));
+    };
+
+    getPastTasks() {
+        return this.allCurrentTask.filter((task) => isPast(task.date));
+    };
+
+    getUpcomingTasks() {
+        return this.allCurrentTask.filter((task) => isFuture(task.date) && !isToday(task.date));
     }
+
+
 
 }
 
