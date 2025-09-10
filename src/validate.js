@@ -1,6 +1,7 @@
 import { Task } from "./class";
 import { isToday, isFuture} from "date-fns";
 import { update } from "./update";
+import { allTasksOfUser } from "./default";
 
 const setType = (date) => {
     if(isToday(date))
@@ -89,7 +90,8 @@ export const isValid = (function() {
             });
         }
         
-        console.log(newTask);
+        allTasksOfUser.addTask(newTask);
+        console.log(allTasksOfUser.allCurrentTask);
 
         return true;
     }

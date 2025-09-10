@@ -1,4 +1,4 @@
-import { Page, Labels } from "./class";
+import { Page, Labels, AllTasks } from "./class";
 import allImage from "./images/all.svg";
 import todayImage from "./images/today.svg";
 import upcomingImage from "./images/upcoming.svg";
@@ -36,4 +36,6 @@ const currentPage = new Page("today");
 
 const defaultLabels = new Labels();
 
-export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels};
+const allTasksOfUser = new AllTasks();
+
+export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser};

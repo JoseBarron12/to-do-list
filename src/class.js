@@ -96,8 +96,7 @@ class Task {
 class Labels {
     defaultLabels = ["important", "date", "time", "date-time"];
     currentLabels = [];
-    constructor() {
-    }
+    constructor() {}
 
     get defLabels() {
         return this.defaultLabels;
@@ -131,4 +130,20 @@ class Labels {
 
 }
 
-export {Page,Task, Labels}
+class AllTasks {
+    allTasks = [];
+    
+    constructor () {};
+
+    get allCurrentTask() {
+        return this.allTasks;
+    }
+
+    addTask(newTask) {
+        this.allTasks.push(newTask);
+    }
+
+}
+
+
+export {Page,Task, Labels, AllTasks}
