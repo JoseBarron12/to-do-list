@@ -130,6 +130,8 @@ export const functionality = (function () {
             parentToOpen.showModal();
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
+
+            update.clearForm(parentToOpen);
             addSubmitTaskBtn(parentToOpen);
 
             const textInputBox = parentToOpen.querySelector(".form-task-name");
@@ -187,11 +189,10 @@ export const functionality = (function () {
         const btn = document.querySelector("button.submit-button");
         btn.addEventListener("click", (event) => {
             event.preventDefault();
-        
+            console.log("clikcked");
             if(isValid.addTaskForm())
             {
                 update.clearForm(window);
-                update.clearFormLabels();
                 update.clearFormLabels();
                 update.selectedFormLabels();
                 window.close();
