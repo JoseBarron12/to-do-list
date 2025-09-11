@@ -321,8 +321,8 @@ nav > button {
 }
 
 .tasks {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: 43.5px;
   gap: 8px;
 }
 
@@ -330,6 +330,8 @@ nav > button {
   display: flex;
   align-items: center;
   gap: 8px;
+  height: calc(100%);
+  width: calc(100%);
 }
 
 div.task > input[type="checkbox"] {
@@ -338,13 +340,25 @@ div.task > input[type="checkbox"] {
 }
 
 .task > label {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: calc(100%);
+  height: calc(100%);
 }
 
 .task-header {
   display: flex;
   gap: 8px;
+  width: calc(50%);
+  height: calc(100%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.task-header > p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-header > button {
@@ -369,7 +383,17 @@ div.task > input[type="checkbox"] {
 
 .task-description {
   font-size: small;
+  width: calc(100%);
+  height: calc(100%);
   opacity: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.task-description > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content-setting {
