@@ -328,13 +328,13 @@ nav > button {
 
 .task {
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
-input[type="checkbox"] {
+div.task > input[type="checkbox"] {
   width: 16px;
-  height: auto;
-  background-color: red;
+  height: 16px;
 }
 
 .task > label {

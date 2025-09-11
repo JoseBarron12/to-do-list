@@ -44,6 +44,21 @@ export const update = (function () {
                 input.value = "";
             });
         }
+
+        const resetIcons = formToClear.querySelectorAll(".reset-icon");
+        if(resetIcons != 0)
+        {
+            resetIcons.forEach((icon) => {
+                icon.remove();
+            });
+        }
+
+        const inputIcon = formToClear.querySelector(".input-icon");
+        if(inputIcon != null)
+        {
+            inputIcon.remove();
+        }
+
     }
     return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels};
 })();
