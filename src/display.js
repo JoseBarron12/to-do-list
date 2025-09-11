@@ -77,7 +77,6 @@ const displayTasks = (parent, arrayOfTasks) => {
         taskDiv.appendChild(input);
 
         const label = document.createElement("label");
-        label.setAttribute("for", `${task.getId()}`);
         taskDiv.appendChild(label);
 
         const taskHeader = document.createElement("div");
@@ -102,6 +101,15 @@ const displayTasks = (parent, arrayOfTasks) => {
             }
             taskHeader.appendChild(button);
         });
+
+        const editTaskIcon = displaySVG({
+        className: "edit-task",
+        viewBox: "0 0 24 24",
+        titleText: "dots-horizontal",
+        pathD:
+            "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z",
+        });
+        taskHeader.appendChild(editTaskIcon);
 
         const descDiv = document.createElement("div");
         descDiv.classList.add("task-description");
@@ -129,24 +137,24 @@ const displayStringBefore = (string) => {
 }
 
 const displaySVG = ({ className, viewBox, pathD, titleText }) => {
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  svg.setAttribute("viewBox", viewBox);
-  if (className) svg.classList.add(...className.split(" "));
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("viewBox", viewBox);
+    if (className) svg.classList.add(...className.split(" "));
 
-  // Add <title> for accessibility
-  if (titleText) {
-    const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-    title.textContent = titleText;
-    svg.appendChild(title);
-  }
+    // Add <title> for accessibility
+    if (titleText) {
+        const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+        title.textContent = titleText;
+        svg.appendChild(title);
+    }
 
-  // Add <path>
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", pathD);
-  svg.appendChild(path);
+    // Add <path>
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", pathD);
+    svg.appendChild(path);
 
-  return svg;
+    return svg;
 }
 
 export const display = (function () {
