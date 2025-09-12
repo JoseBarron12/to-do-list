@@ -340,9 +340,13 @@ export const display = (function () {
             const taskDesc = form.querySelector('textarea[id="task-desc"]');
 
             taskName.value = currTask.name;
-            console.log(taskName.value);
             
-            update.selectedFormLabels();
+            const labelOptions = form.querySelector(".label-inputs");
+
+            const currLabels = currTask.labels;
+            currLabels.forEach((label) => {
+                labels(labelOptions, label);
+            });
 
             taskDate.value = format(currTask.date, "yyyy-MM-dd");
             taskTime.value = format(currTask.date, "HH:mm");

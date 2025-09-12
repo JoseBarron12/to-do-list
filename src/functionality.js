@@ -134,7 +134,6 @@ export const functionality = (function () {
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
 
-            
             addSubmitTaskBtn(parentToOpen, id);
 
             const textInputBox = parentToOpen.querySelector(".form-task-name");
