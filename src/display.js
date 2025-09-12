@@ -119,7 +119,7 @@ const displayTasks = (parent, arrayOfTasks) => {
         desc.textContent = task.desc;
         descDiv.appendChild(desc);
 
-        functionality.editTaskIcons(label);
+        functionality.editTaskIcons(taskDiv);
     });
 }   
 
@@ -489,7 +489,7 @@ export const display = (function () {
         }
     };
 
-    const taskIcons = (parent) => {
+    const taskIcons = (parent, id) => {
         
         if(parent.children.length == 0)
         {
@@ -500,7 +500,10 @@ export const display = (function () {
                 titleText: "square-edit-outline"
             });
             parent.appendChild(pencilIcon);
-
+            
+            const addTaskWindow = document.querySelector(".add-task-window");
+            functionality.addOpenDialogWinBtn(pencilIcon, addTaskWindow);
+            
             const deleteIcon = displaySVG({
                 className: "icon-delete", // optional
                 viewBox: "0 0 24 24",
@@ -508,6 +511,8 @@ export const display = (function () {
                 titleText: "delete"
             });
             parent.appendChild(deleteIcon);
+            functionality.deleteTaskIcon(deleteIcon,id);
+ 
         };
         
     };

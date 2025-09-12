@@ -1,5 +1,5 @@
 import { display } from "./display";
-import { currentPage } from "./default";
+import { allTasksOfUser, currentPage } from "./default";
 import { defaultLabels } from "./default";
 import { update } from "./update";
 import { isValid } from "./validate";
@@ -245,7 +245,8 @@ export const functionality = (function () {
     const editTaskIcons = (parent) => {
         parent.addEventListener("mouseenter", () => {
             const editTask = parent.querySelector(".edit-task");
-            display.taskIcons(editTask);
+            const input = parent.querySelector("input");
+            display.taskIcons(editTask,input.getAttribute("id"));
             parent.addEventListener("mouseleave", () => {
                 const icons = editTask.querySelectorAll("svg");
                 icons.forEach((icon) => {
@@ -253,8 +254,16 @@ export const functionality = (function () {
                 });
             });
         });
+    };
+
+    const deleteTaskIcon = (btn, id) => {
+        btn.addEventListener("click", () => {
+            allTasksOfUser.removeTaskfromID(id);
+            update.savedTasks();
+            update.refreshCurrentPage();
+        });
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon};
 })();

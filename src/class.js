@@ -187,6 +187,12 @@ class AllTasks {
                 return this.getPastTasks();
         }
     }
+
+    removeTaskfromID(id) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allTasks.findIndex(isEqualTo);
+        if(result != -1 ) this.allTasks.splice(result,1);
+    }   
 }
 
 
