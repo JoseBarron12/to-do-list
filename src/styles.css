@@ -334,7 +334,6 @@ nav > button {
   height: calc(100%);
   width: calc(100%);
   padding-right: 16px;
-  border-bottom: 1px solid var(--primary);
 }
 
 div.task > input[type="checkbox"] {

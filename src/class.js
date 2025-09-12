@@ -83,8 +83,7 @@ class Task {
     set projects(newProject) {
         this.taskProjects = newProject;
     }
-
-    
+ 
     addLabel(newLabel) {
         this.taskLabels.push(newLabel);
     };
@@ -105,6 +104,15 @@ class Task {
         if(result != -1 ) this.taskProjects.splice(result,1);
     };
 
+    editAllOfTask(name, desc, date, type, labels, projects)
+    {
+        this._name = name;
+        this._desc = desc;
+        this._date = date;
+        this._type = type;
+        if(labels !== undefined) this.taskLabels = labels;
+        if(projects !== undefined) this.taskProjects = projects;
+    };
 
 }
 
@@ -193,6 +201,22 @@ class AllTasks {
         const result = this.allTasks.findIndex(isEqualTo);
         if(result != -1 ) this.allTasks.splice(result,1);
     }   
+
+    getTaskFromId(id) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allTasks.findIndex(isEqualTo);
+        if(result != -1 ) return this.allTasks[result];
+    }
+
+    editTaskformID(id, name, desc, date, type, labels, projects) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allTasks.findIndex(isEqualTo);
+        if(result != -1 ) 
+        {
+            this.allTasks[result].editAllOfTask(name, desc, date, type, labels, projects)
+        }
+        
+    }
 }
 
 

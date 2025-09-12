@@ -124,16 +124,18 @@ export const functionality = (function () {
         });
     };
 
-    const addOpenDialogWinBtn = (btn, parentToOpen, isAddTaskWin) => {
+    const addOpenDialogWinBtn = (btn, parentToOpen, isAddTaskWin, id) => {
         btn.addEventListener("click", () => {
-            display.dialogWindowText(parentToOpen, isAddTaskWin);
-            
+            update.clearForm(parentToOpen);
+            display.dialogWindowText(parentToOpen, isAddTaskWin, id);
+        
             parentToOpen.showModal();
+            
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
 
-            update.clearForm(parentToOpen);
-            addSubmitTaskBtn(parentToOpen);
+            
+            addSubmitTaskBtn(parentToOpen, id);
 
             const textInputBox = parentToOpen.querySelector(".form-task-name");
             addClearText(textInputBox);
@@ -186,11 +188,11 @@ export const functionality = (function () {
         })
     };
 
-    const addSubmitTaskBtn = (window) => {
+    const addSubmitTaskBtn = (window, id) => {
         const btn = document.querySelector("button.submit-button");
         btn.addEventListener("click", (event) => {
             event.preventDefault();
-            if(isValid.addTaskForm())
+            if(isValid.taskForm(id))
             {
                 update.clearForm(window);
                 update.clearFormLabels();

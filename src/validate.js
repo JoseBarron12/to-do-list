@@ -28,9 +28,10 @@ export const isValid = (function() {
         return (date.length != 0);
     }
 
-    const addTaskForm = () => {
+    const taskForm = (id) => {
         const form = document.querySelector("#add-task-form");
         let validForm = true;
+        
         const taskName = form.querySelector('input[id="task-name"]');
         update.clearValidFlag(taskName);
         
@@ -69,6 +70,7 @@ export const isValid = (function() {
         {
             update.userValid(taskTime);
         }
+        
         if(validForm == false)
         {
             return false;
@@ -78,22 +80,31 @@ export const isValid = (function() {
         
         const taskDesc = form.querySelector('textarea[id="task-desc"]');
 
-        const newTask = new Task(taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime));
-        
+        let labels = [];
         const labelOptions = form.querySelector(".label-inputs");
-
+        
         if(labelOptions.children.length != 0)
         {
             const taskLabels = labelOptions.querySelectorAll('input[type="checkbox"]');
             taskLabels.forEach(label => {
-                newTask.addLabel(label.name);
+                labels.push(label.name);
             });
         }
+
+        if(id == undefined)
+        {
+            const newTask = new Task(taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime));
+            newTask.labels = labels
+            allTasksOfUser.addTask(newTask);
+        }
+        else
+        {
+            allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels);
+        }
         
-        allTasksOfUser.addTask(newTask);
         update.savedTasks();
 
         return true;
     }
-    return {name, addTaskForm, date};
+    return {name, taskForm, date};
 })();

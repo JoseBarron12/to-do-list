@@ -2,6 +2,7 @@ import listImage from "./images/list.svg";
 import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser} from "./default";
 import { functionality } from "./functionality";
 import { format } from "date-fns";
+import { update } from "./update";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -315,7 +316,7 @@ export const display = (function () {
 
     };
 
-    const dialogWindowText = (parent, isAddTaskWin) => {
+    const dialogWindowText = (parent, isAddTaskWin, id) => {
         const header = parent.querySelector("h3");
         const button = parent.querySelector("button.submit-button");
         if(isAddTaskWin)
@@ -327,6 +328,26 @@ export const display = (function () {
         {
             header.textContent = "Edit Task";
             button.textContent = "Confirm";
+            
+            const currTask = allTasksOfUser.getTaskFromId(id);
+            
+            console.log(currTask);
+
+            const form = parent.querySelector("form");
+            const taskName = form.querySelector('input[id="task-name"]');
+            const taskDate = form.querySelector('input[id="task-date"]');
+            const taskTime = form.querySelector('input[id="task-time"]');
+            const taskDesc = form.querySelector('textarea[id="task-desc"]');
+
+            taskName.value = currTask.name;
+            console.log(taskName.value);
+            
+            update.selectedFormLabels();
+
+            taskDate.value = format(currTask.date, "yyyy-MM-dd");
+            taskTime.value = format(currTask.date, "HH:mm");
+
+            taskDesc.value = currTask.desc;
         }
     };
 
@@ -517,7 +538,7 @@ export const display = (function () {
             parent.appendChild(pencilIcon);
             
             const addTaskWindow = document.querySelector(".add-task-window");
-            functionality.addOpenDialogWinBtn(pencilIcon, addTaskWindow,false);
+            functionality.addOpenDialogWinBtn(pencilIcon, addTaskWindow, false, id);
             
             const deleteIcon = displaySVG({
                 className: "icon-delete", // optional
