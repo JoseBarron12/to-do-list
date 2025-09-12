@@ -74,7 +74,7 @@ export const functionality = (function () {
                 {
                     upIcon.style.opacity = "100%";
                     downIcon.style.opacity = "0%"
-                    elementToHide.style.display = "flex";
+                    elementToHide.style.display = "grid";
                 }
                 else
                 {
