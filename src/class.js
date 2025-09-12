@@ -32,6 +32,9 @@ class Task {
     getId() {
         return this._id;
     }
+    setId(newId) {
+        this._id = newId;
+    }
 
     get name() {
         return this._name;
@@ -68,10 +71,19 @@ class Task {
         return this.taskLabels;
     }
     
+    set labels(newLabel) {
+        this.taskLabels = newLabel;
+    }
+
     get projects()
     {
         return this.taskProjects;
     }
+
+    set projects(newProject) {
+        this.taskProjects = newProject;
+    }
+
     
     addLabel(newLabel) {
         this.taskLabels.push(newLabel);
@@ -141,6 +153,10 @@ class AllTasks {
     get allCurrentTask() {
         return this.allTasks;
     };
+
+    set allCurrentTask(replacementTasks) {
+        this.allTasks = replacementTasks;
+    }
 
     addTask(newTask) {
         this.allTasks.push(newTask);

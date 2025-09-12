@@ -1,5 +1,6 @@
-import { defaultLabels } from "./default";
+import { allTasksOfUser, defaultLabels } from "./default";
 import { display } from "./display";
+import { AllTasks, Task } from "./class";
 
 export const update = (function () {
     const selectedFormLabels = () => {
@@ -57,8 +58,39 @@ export const update = (function () {
         if(inputIcon != null)
         {
             inputIcon.remove();
-        }
+        };
+    };
 
+    const savedTasks = () => {
+        const currentTasks = JSON.stringify(allTasksOfUser.allCurrentTask);
+        localStorage.setItem("userTasks", currentTasks);
+    };
+
+
+    const currentUserTasks = () => {
+        const savedTasksData = localStorage.getItem("userTasks");
+        const userTasks = new AllTasks();
+        if( savedTasksData != null)
+        {
+            const dataObjs = JSON.parse(localStorage.getItem("userTasks"));
+            for (const dataObj of dataObjs)
+            {
+                const name = dataObj._name;
+                const desc = dataObj._desc;
+                const type = dataObj._type;
+                const date = new Date(dataObj._date);
+                const task = new Task(name, desc, date, type);
+                
+                task.setId(dataObj._id);
+                task.labels = dataObj.taskLabels;
+                task.projects= dataObj.taskProjects;
+
+                userTasks.addTask(task);
+            }
+            return userTasks;
+        }
+        return userTasks;
     }
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels};
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks};
 })();

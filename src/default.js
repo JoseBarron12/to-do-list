@@ -1,4 +1,5 @@
 import { Page, Labels, AllTasks } from "./class";
+import { update } from "./update";
 import allImage from "./images/all.svg";
 import todayImage from "./images/today.svg";
 import upcomingImage from "./images/upcoming.svg";
@@ -36,7 +37,6 @@ const currentPage = new Page("today");
 
 const defaultLabels = new Labels();
 
-const allTasksOfUser = new AllTasks();
-
+const allTasksOfUser = update.currentUserTasks();
 
 export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser};
