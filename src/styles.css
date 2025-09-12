@@ -347,6 +347,7 @@ div.task > input[type="checkbox"] {
   grid-template-rows: max-content 1fr;
   width: calc(100%);
   height: calc(100%);
+  position: relative;
 }
 
 .task-header {
@@ -356,7 +357,6 @@ div.task > input[type="checkbox"] {
   height: calc(100%);
   white-space: nowrap;
   overflow: hidden;
-  position: relative;
 }
 
 .task-header > p{
@@ -389,13 +389,17 @@ div.task > input[type="checkbox"] {
   height: 100%;
   display: flex;
   gap: 8px;
-  margin-left: auto;
 }
 
 .edit-task>svg {
-  height: 100%;
-  width: 24px;
+  height: 90%;
+  width: auto;
   fill: var(--text);
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+}
+
+svg.icon-delete {
+  fill: red;
 }
 
 
