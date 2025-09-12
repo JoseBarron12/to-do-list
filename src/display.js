@@ -107,14 +107,9 @@ const displayTasks = (parent, arrayOfTasks) => {
             taskHeader.appendChild(button);
         });
 
-        const editTaskIcon = displaySVG({
-        className: "edit-task",
-        viewBox: "0 0 24 24",
-        titleText: "dots-horizontal",
-        pathD:
-            "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z",
-        });
-        taskHeader.appendChild(editTaskIcon);
+        const editTask = document.createElement("div");
+        editTask.classList.add("edit-task");
+        taskHeader.appendChild(editTask);
 
         const descDiv = document.createElement("div");
         descDiv.classList.add("task-description");
@@ -124,6 +119,7 @@ const displayTasks = (parent, arrayOfTasks) => {
         desc.textContent = task.desc;
         descDiv.appendChild(desc);
 
+        functionality.editTaskIcons(label);
     });
 }   
 
@@ -455,7 +451,7 @@ export const display = (function () {
 
         functionality.addDeleteLabelBtn(closeSVG, labelDiv, labelName);
 
-    }
+    };
 
     const textClearBtn = (inputBox) => {
         const isIconDisplayed = inputBox.querySelector("svg");
@@ -472,7 +468,7 @@ export const display = (function () {
             functionality.addClearTextBtn(closeIcon,inputBox);
         }
         
-    }
+    };
 
     const inputClearBtn = (inputBox) => {
         const isIconDisplayed = inputBox.querySelector("svg");
@@ -491,7 +487,30 @@ export const display = (function () {
             functionality.addClearTextBtn(resetIcon,inputBox);
            
         }
-    }
+    };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn};
+    const taskIcons = (parent) => {
+        
+        if(parent.children.length == 0)
+        {
+            const pencilIcon = displaySVG({
+            className: "icon-pencil", // optional
+            viewBox: "0 0 24 24",
+            pathD: "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z",
+            titleText: "pencil"
+            });
+            parent.appendChild(pencilIcon);
+
+            const deleteIcon = displaySVG({
+                className: "icon-delete", // optional
+                viewBox: "0 0 24 24",
+                pathD: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z",
+                titleText: "delete"
+            });
+            parent.appendChild(deleteIcon);
+        };
+        
+    };
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons};
 })();

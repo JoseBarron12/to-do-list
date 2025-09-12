@@ -240,7 +240,21 @@ export const functionality = (function () {
         windowToClose.addEventListener("mouseleave", () => {
             windowToClose.remove();
         });
+    };
+
+    const editTaskIcons = (parent) => {
+        parent.addEventListener("mouseenter", () => {
+            const editTask = parent.querySelector(".edit-task");
+            display.taskIcons(editTask);
+            parent.addEventListener("mouseleave", () => {
+                const icons = editTask.querySelectorAll("svg");
+                icons.forEach((icon) => {
+                    icon.remove();
+                });
+            });
+        });
     }
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin};
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons};
 })();
