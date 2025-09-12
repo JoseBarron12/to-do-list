@@ -92,8 +92,7 @@ export const functionality = (function () {
         navButtons.forEach((btn) => {
             btn.addEventListener("click", () => {
                 //remove current page
-                const content = document.querySelector("#content");
-                content.replaceChildren();
+                update.clearCurrentPage();
                 
                 navButtons.forEach((btns) => {
                     btns.classList.remove("active-btn");
@@ -194,6 +193,7 @@ export const functionality = (function () {
                 update.clearForm(window);
                 update.clearFormLabels();
                 update.selectedFormLabels();
+                update.refreshCurrentPage();
                 window.close();
             }
         });

@@ -1,4 +1,4 @@
-import { allTasksOfUser, defaultLabels } from "./default";
+import { allTasksOfUser, currentPage, defaultLabels } from "./default";
 import { display } from "./display";
 import { AllTasks, Task } from "./class";
 
@@ -66,7 +66,6 @@ export const update = (function () {
         localStorage.setItem("userTasks", currentTasks);
     };
 
-
     const currentUserTasks = () => {
         const savedTasksData = localStorage.getItem("userTasks");
         const userTasks = new AllTasks();
@@ -92,5 +91,15 @@ export const update = (function () {
         return userTasks;
     }
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks};
+    const clearCurrentPage = () => {
+        const content = document.querySelector("#content");
+        content.replaceChildren();
+    };
+
+    const refreshCurrentPage = () => {
+        clearCurrentPage();
+        display.mainPage(currentPage.page);
+    }
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage };
 })();

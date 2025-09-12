@@ -122,8 +122,6 @@ const displayTasks = (parent, arrayOfTasks) => {
     });
 }   
 
-
-
 // Function to flag whether string should have a string beforehand
 const displayStringBefore = (string) => {
     for(const nameFlag of nameFlags)
