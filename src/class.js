@@ -109,7 +109,7 @@ class Task {
 }
 
 class Labels {
-    defaultLabels = ["important", "date", "time", "date-time"];
+    defaultLabels = ["important", "date", "time"];
     currentLabels = [];
     constructor() {}
 

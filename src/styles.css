@@ -374,8 +374,8 @@ div.task > input[type="checkbox"] {
 
 .task-header > button.date-btn
 {
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  color: var(--text);
+  background-color: var(--secondary);
 }
 
 .task-header > button.important-btn{

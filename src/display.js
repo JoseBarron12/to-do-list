@@ -94,9 +94,14 @@ const displayTasks = (parent, arrayOfTasks) => {
                 button.textContent = toUpperCaseFirstChar(label);
                 button.classList.add("important-btn");
             }
-            else
+            else if(label == "date")
             {
                 button.textContent = format(task.date, 'MMM d');
+                button.classList.add("date-btn");
+            }
+            else   
+            {
+                button.textContent = format(task.date, 'h:mm aa');
                 button.classList.add("date-btn");
             }
             taskHeader.appendChild(button);
