@@ -124,8 +124,10 @@ export const functionality = (function () {
         });
     };
 
-    const addOpenDialogWinBtn = (btn, parentToOpen) => {
+    const addOpenDialogWinBtn = (btn, parentToOpen, isAddTaskWin) => {
         btn.addEventListener("click", () => {
+            display.dialogWindowText(parentToOpen, isAddTaskWin);
+            
             parentToOpen.showModal();
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);

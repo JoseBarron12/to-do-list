@@ -3,6 +3,7 @@ import { display } from "./display";
 import { AllTasks, Task } from "./class";
 
 export const update = (function () {
+    
     const selectedFormLabels = () => {
         const labelFormInput = document.querySelector(".label-inputs");
         labelFormInput.replaceChildren();

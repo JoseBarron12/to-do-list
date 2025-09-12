@@ -388,12 +388,13 @@ div.task > input[type="checkbox"] {
 .edit-task {
   height: 100%;
   display: flex;
+  flex-shrink: 0;
   gap: 8px;
 }
 
 .edit-task>svg {
   height: 90%;
-  width: auto;
+  width: 22px;
   fill: var(--text);
   filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
 }

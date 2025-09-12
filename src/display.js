@@ -315,6 +315,21 @@ export const display = (function () {
 
     };
 
+    const dialogWindowText = (parent, isAddTaskWin) => {
+        const header = parent.querySelector("h3");
+        const button = parent.querySelector("button.submit-button");
+        if(isAddTaskWin)
+        {
+            header.textContent = "Create New Task";
+            button.textContent = "Create";
+        }
+        else
+        {
+            header.textContent = "Edit Task";
+            button.textContent = "Confirm";
+        }
+    };
+
     const mainPage = (name) => {
         const content = document.querySelector("#content");
 
@@ -502,7 +517,7 @@ export const display = (function () {
             parent.appendChild(pencilIcon);
             
             const addTaskWindow = document.querySelector(".add-task-window");
-            functionality.addOpenDialogWinBtn(pencilIcon, addTaskWindow);
+            functionality.addOpenDialogWinBtn(pencilIcon, addTaskWindow,false);
             
             const deleteIcon = displaySVG({
                 className: "icon-delete", // optional
@@ -517,5 +532,5 @@ export const display = (function () {
         
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText};
 })();
