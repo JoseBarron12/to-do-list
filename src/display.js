@@ -66,65 +66,6 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
     });
 }
 
-const displayTasks = (parent, arrayOfTasks) => {
-    const arr = Array.from(arrayOfTasks);
-    arr.forEach(task => {
-        const taskDiv = document.createElement("div");
-        taskDiv.classList.add("task");
-        parent.appendChild(taskDiv);
-
-        const input = document.createElement("input");
-        input.setAttribute("type", "checkbox");
-        input.setAttribute("id", `${task.getId()}`);
-        taskDiv.appendChild(input);
-
-        const label = document.createElement("label");
-        taskDiv.appendChild(label);
-
-        const taskHeader = document.createElement("div");
-        taskHeader.classList.add("task-header");
-        label.appendChild(taskHeader);
-
-        const taskName = document.createElement("p");
-        taskName.textContent = `${task.name}`;
-        taskHeader.appendChild(taskName);
-
-        task.labels.forEach((label) => {
-            const button = document.createElement("button");
-            if(label == "important")
-            {
-                button.textContent = toUpperCaseFirstChar(label);
-                button.classList.add("important-btn");
-            }
-            else if(label == "date")
-            {
-                button.textContent = format(task.date, 'MMM d');
-                button.classList.add("date-btn");
-            }
-            else   
-            {
-                button.textContent = format(task.date, 'h:mm aa');
-                button.classList.add("date-btn");
-            }
-            taskHeader.appendChild(button);
-        });
-
-        const editTask = document.createElement("div");
-        editTask.classList.add("edit-task");
-        taskHeader.appendChild(editTask);
-
-        const descDiv = document.createElement("div");
-        descDiv.classList.add("task-description");
-        label.appendChild(descDiv);
-
-        const desc = document.createElement("p");
-        desc.textContent = task.desc;
-        descDiv.appendChild(desc);
-
-        functionality.editTaskIcons(taskDiv);
-    });
-};
-
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
     btnDiv.classList.add("content-btns");
@@ -135,7 +76,7 @@ const displaySectionBtns = (parent, pageName) => {
             const contentbtn = document.createElement("button");
             const strBfr = (pageName == "past") ? "Last " : "This ";
             contentbtn.textContent = (displayStringBefore(toUpperCaseFirstChar(btn))) ?  strBfr + toUpperCaseFirstChar(btn) : toUpperCaseFirstChar(btn);
-            contentbtn.classList.add("content-btn");
+            contentbtn.classList.add(`${btn}`);
             btnDiv.appendChild(contentbtn);
         });
     }
@@ -143,7 +84,7 @@ const displaySectionBtns = (parent, pageName) => {
         buttonTypes.forEach((btn) => {
             const contentbtn = document.createElement("button");
             contentbtn.textContent = toUpperCaseFirstChar(btn);
-            contentbtn.classList.add("content-btn");
+            contentbtn.classList.add(`${btn}`);
             btnDiv.appendChild(contentbtn);
         });
     }
@@ -401,6 +342,7 @@ export const display = (function () {
         displayTasks(tasks, allTasksOfUser.getTasksFromName(name));
 
         functionality.addDropdownMenuBtn();
+        functionality.updateTaskDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksFromName(name));
     };
 
     const addLabelsWindow = () => {
@@ -582,6 +524,65 @@ export const display = (function () {
         };
         
     };
+    
+    const displayTasks = (parent, arrayOfTasks) => {
+        const arr = Array.from(arrayOfTasks);
+        arr.forEach(task => {
+            const taskDiv = document.createElement("div");
+            taskDiv.classList.add("task");
+            parent.appendChild(taskDiv);
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText};
+            const input = document.createElement("input");
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("id", `${task.getId()}`);
+            taskDiv.appendChild(input);
+
+            const label = document.createElement("label");
+            taskDiv.appendChild(label);
+
+            const taskHeader = document.createElement("div");
+            taskHeader.classList.add("task-header");
+            label.appendChild(taskHeader);
+
+            const taskName = document.createElement("p");
+            taskName.textContent = `${task.name}`;
+            taskHeader.appendChild(taskName);
+
+            task.labels.forEach((label) => {
+                const button = document.createElement("button");
+                if(label == "important")
+                {
+                    button.textContent = toUpperCaseFirstChar(label);
+                    button.classList.add("important-btn");
+                }
+                else if(label == "date")
+                {
+                    button.textContent = format(task.date, 'MMM d');
+                    button.classList.add("date-btn");
+                }
+                else   
+                {
+                    button.textContent = format(task.date, 'h:mm aa');
+                    button.classList.add("date-btn");
+                }
+                taskHeader.appendChild(button);
+            });
+
+            const editTask = document.createElement("div");
+            editTask.classList.add("edit-task");
+            taskHeader.appendChild(editTask);
+
+            const descDiv = document.createElement("div");
+            descDiv.classList.add("task-description");
+            label.appendChild(descDiv);
+
+            const desc = document.createElement("p");
+            desc.textContent = task.desc;
+            descDiv.appendChild(desc);
+
+            functionality.editTaskIcons(taskDiv);
+        });
+    };
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks};
 })();

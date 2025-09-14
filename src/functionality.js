@@ -265,8 +265,18 @@ export const functionality = (function () {
             update.savedTasks();
             update.refreshCurrentPage();
         });
-    }
+    };
+
+    const updateTaskDisplayBtn = (btns, parent, array) =>
+    {
+        btns.forEach(btn => { 
+            btn.addEventListener("click", () => {
+                console.log(btn.getAttribute("class"));
+                update.refreshTasksFromType(parent, btn.getAttribute("class"), array);
+            });
+        });   
+    };
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn};
 })();

@@ -1,6 +1,8 @@
 import { allTasksOfUser, currentPage, defaultLabels } from "./default";
 import { display } from "./display";
 import { AllTasks, Task } from "./class";
+import { constructFrom } from "date-fns";
+import { constructFromSymbol } from "date-fns/constants";
 
 export const update = (function () {
     
@@ -14,7 +16,7 @@ export const update = (function () {
 
     const clearFormLabels = () => {
         defaultLabels.deleteAllCurrLabels();
-    }
+    };
 
     const clearValidFlag = (elementToClear) => {
         elementToClear.classList.remove("user-invalid");
@@ -90,7 +92,7 @@ export const update = (function () {
             return userTasks;
         }
         return userTasks;
-    }
+    };
 
     const clearCurrentPage = () => {
         const content = document.querySelector("#content");
@@ -100,7 +102,34 @@ export const update = (function () {
     const refreshCurrentPage = () => {
         clearCurrentPage();
         display.mainPage(currentPage.page);
-    }
+    };
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage };
+    const clearTasks = (parent) => {
+        parent.replaceChildren();
+    };
+
+    const refreshTasksFromType = (parent, type, currentArray) => {
+        switch (type) {
+            case "all":
+                refreshCurrentPage();
+                return;
+            case "today":
+                clearTasks(parent);
+                console.log(AllTasks.getTdyTasks(currentArray));
+                display.displayTasks(parent, AllTasks.getTdyTasks(currentArray));
+                return;
+            case "upcoming":
+                clearTasks(parent);
+                console.log(AllTasks.getFutureTasks(currentArray));
+                display.displayTasks(parent, AllTasks.getFutureTasks(currentArray));
+                return;
+            case "past":
+                clearTasks(parent);
+                console.log(AllTasks.getPastTasks(currentArray));
+                display.displayTasks(parent, AllTasks.getPastTasks(currentArray));
+                return;
+        }
+    };
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType };
 })();

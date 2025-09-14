@@ -16,6 +16,7 @@ const addTaskWindow = document.querySelector(".add-task-window");
 
 functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow, true);
 
+const test = document.querySelector("#add-task-form>svg");
 
 
 

@@ -114,7 +114,8 @@ class Task {
         if(projects !== undefined) this.taskProjects = projects;
     };
 
-}
+
+};
 
 class Labels {
     defaultLabels = ["important", "date", "time"];
@@ -151,7 +152,7 @@ class Labels {
         this.currentLabels = [];
     }
 
-}
+};
 
 class AllTasks {
     allTasks = [];
@@ -164,7 +165,7 @@ class AllTasks {
 
     set allCurrentTask(replacementTasks) {
         this.allTasks = replacementTasks;
-    }
+    };
 
     addTask(newTask) {
         this.allTasks.push(newTask);
@@ -175,12 +176,12 @@ class AllTasks {
     };
 
     getPastTasks() {
-        return this.allCurrentTask.filter((task) => isPast(task.date));
+        return this.allCurrentTask.filter((task) => isPast(task.date) && !isToday(task.date));
     };
 
     getUpcomingTasks() {
         return this.allCurrentTask.filter((task) => isFuture(task.date) && !isToday(task.date));
-    }
+    };
 
 
     getTasksFromName(name) {
@@ -194,19 +195,19 @@ class AllTasks {
             default:
                 return this.getPastTasks();
         }
-    }
+    };
 
     removeTaskfromID(id) {
         const isEqualTo = (element) => element.getId() == id;
         const result = this.allTasks.findIndex(isEqualTo);
         if(result != -1 ) this.allTasks.splice(result,1);
-    }   
+    }; 
 
     getTaskFromId(id) {
         const isEqualTo = (element) => element.getId() == id;
         const result = this.allTasks.findIndex(isEqualTo);
         if(result != -1 ) return this.allTasks[result];
-    }
+    };
 
     editTaskformID(id, name, desc, date, type, labels, projects) {
         const isEqualTo = (element) => element.getId() == id;
@@ -215,9 +216,23 @@ class AllTasks {
         {
             this.allTasks[result].editAllOfTask(name, desc, date, type, labels, projects)
         }
-        
+    };
+
+    static getTdyTasks(array)
+    {
+        return array.filter((task) => isToday(task.date));
+    };
+
+    static getPastTasks(array)
+    {
+        return array.filter((task) => isPast(task.date) && !isToday(task.date));
+    };
+
+    static getFutureTasks(array)
+    {
+        return array.filter((task) => isFuture(task.date) && !isToday(task.date));
     }
-}
+};
 
 
 export {Page,Task, Labels, AllTasks}
