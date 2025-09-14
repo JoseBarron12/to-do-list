@@ -310,9 +310,9 @@ export const display = (function () {
             header.textContent = "Edit Task";
             button.textContent = "Confirm";
             
+            update.inputMinMax(parent);
+
             const currTask = allTasksOfUser.getTaskFromId(id);
-            
-            console.log(currTask);
 
             const form = parent.querySelector("form");
             const taskName = form.querySelector('input[id="task-name"]');
