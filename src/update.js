@@ -128,5 +128,6 @@ export const update = (function () {
         }
     };
 
+
     return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType };
 })();

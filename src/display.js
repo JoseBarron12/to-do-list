@@ -77,6 +77,12 @@ const displaySectionBtns = (parent, pageName) => {
     parent.appendChild(btnDiv);
 
     if(pageName != "all") {
+        const allBtn = document.createElement("button");
+        allBtn.textContent = "All";
+        allBtn.classList.add("all");
+        allBtn.setAttribute("id", "active-btn");
+        btnDiv.appendChild(allBtn);
+        
         page[pageName].forEach((btn) => {
             const contentbtn = document.createElement("button");
             const strBfr = (pageName == "past") ? "Last " : "This ";
@@ -90,6 +96,10 @@ const displaySectionBtns = (parent, pageName) => {
             const contentbtn = document.createElement("button");
             contentbtn.textContent = toUpperCaseFirstChar(btn);
             contentbtn.classList.add(`${btn}`);
+            if(btn == "all")
+            {
+                contentbtn.setAttribute("id", "active-btn");
+            }
             btnDiv.appendChild(contentbtn);
         });
     }

@@ -725,3 +725,7 @@ input:focus, textarea:focus
 .user-invalid {
   outline: 2px solid red;
 }
+
+#active-btn {
+  background-color: var(--primary);
+}

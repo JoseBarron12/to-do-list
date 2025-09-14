@@ -41,7 +41,6 @@ const isEvening = (date) => {
     return hours >= 17 || hours < 4;
 };
 
-
 class Page {
     constructor(currentPage)
     {
@@ -319,7 +318,7 @@ class AllTasks {
     static getYearTasks(array)
     {
         return array.filter((task) => isWithinAYear(task.date));
-    }
+    };
 
     static getTaskFromHdrName(array,name)
     {
@@ -345,7 +344,9 @@ class AllTasks {
             default:
                 return array;
         }
-    }
+    };
+
+    
 
 };
 

@@ -271,7 +271,11 @@ export const functionality = (function () {
     {
         btns.forEach(btn => { 
             btn.addEventListener("click", () => {
-                console.log(btn.getAttribute("class"));
+                
+                btns.forEach(btn => {
+                    btn.removeAttribute("id");
+                })
+                btn.setAttribute("id","active-btn")
                 update.refreshTasksFromType(parent, btn.getAttribute("class"), array);
             });
         });   
