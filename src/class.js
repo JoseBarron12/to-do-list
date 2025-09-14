@@ -1,4 +1,5 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
+import { getHours } from "date-fns/fp";
 
 const isWithinAWeek = (date) => {
     const hrsApart = Math.abs(differenceInHours(date, new Date()));
@@ -18,6 +19,26 @@ const isWithinAMonth = (date) => {
 const isWithinAYear = (date) => {
     const daysApart = Math.abs(differenceInDays(date, new Date()));
     return isSameYear(date, new Date()) && daysApart >= 30;
+};
+
+const isWithinHour = (date) => {
+    const minsApart = Math.abs(differenceInMinutes(date, new Date()));
+    return minsApart <= 60;
+};
+
+const isMorning = (date) => {
+    const hours = getHours(date);
+    return hours >= 4 && hours < 12;
+};
+
+const isAfternoon = (date) => {
+    const hours = getHours(date);
+    return hours >= 12 && hours < 17;
+};
+
+const isEvening = (date) => {
+    const hours = getHours(date);
+    return hours >= 17 || hours < 4;
 };
 
 
@@ -245,6 +266,26 @@ class AllTasks {
         return array.filter((task) => isToday(task.date));
     };
 
+    static getNowTasks(array)
+    {
+        return array.filter((task) => isWithinHour(task.date));
+    };
+
+    static getMorningTasks(array)
+    {
+        return array.filter((task) => isMorning(task.date));
+    };
+
+    static getAfternoonTasks(array)
+    {
+        return array.filter((task) => isAfternoon(task.date));
+    };
+
+    static getEveningTasks(array)
+    {
+        return array.filter((task) => isEvening(task.date));
+    };
+
     static getPastTasks(array)
     {
         return array.filter((task) => isPast(task.date) && !isToday(task.date));
@@ -283,11 +324,17 @@ class AllTasks {
     static getTaskFromHdrName(array,name)
     {
         switch (name) {
+            case "now":
+                return this.getNowTasks(array);
+            case "morning":
+                return this.getMorningTasks(array);
+            case "afternoon":
+                return this.getAfternoonTasks(array);
+            case "evening":
+                return this.getEveningTasks(array);
             case "tommorow":
-                console.log(this.getTmrTasks(array));
                 return this.getTmrTasks(array);
             case "yesterday":
-                console.log(this.getYesterdayTasks(array));
                 return this.getYesterdayTasks(array);
             case "week":
                 return this.getWeekTasks(array);
@@ -295,6 +342,8 @@ class AllTasks {
                 return this.getMonthTasks(array);
             case "year":
                 return this.getYearTasks(array);
+            default:
+                return array;
         }
     }
 
