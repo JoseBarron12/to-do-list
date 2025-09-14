@@ -3,6 +3,7 @@ import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTa
 import { functionality } from "./functionality";
 import { format } from "date-fns";
 import { update } from "./update";
+import { AllTasks } from "./class";
 
 const toUpperCaseFirstChar = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -63,6 +64,10 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
         const tasks = document.createElement("div");
         tasks.classList.add("tasks");
         section.appendChild(tasks);
+
+        const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
+        display.displayTasks(tasks, tasksInHdr);
+
     });
 }
 
@@ -339,8 +344,6 @@ export const display = (function () {
 
         const tasks = document.querySelector(".tasks");
         
-        displayTasks(tasks, allTasksOfUser.getTasksFromName(name));
-
         functionality.addDropdownMenuBtn();
         functionality.updateTaskDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksFromName(name));
     };
