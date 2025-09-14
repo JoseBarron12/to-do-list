@@ -128,6 +128,19 @@ export const update = (function () {
         }
     };
 
+    const inputMinMax = (parent) => {
+        const dateInput = parent.querySelector('input[type="date"]');
+        const dateMin = AllTasks.getDateMin(currentPage.page);
+        const dateMax = AllTasks.getDateMax(currentPage.page);
+        dateInput.setAttribute("min", dateMin);
+        dateInput.setAttribute("max", dateMax);
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType };
+        const timeInput = parent.querySelector('input[type="time"]');
+        const timeMin = AllTasks.getTimeMin(currentPage.page);
+        const timeMax = AllTasks.getTimeMax(currentPage.page);
+        timeInput.setAttribute("min", timeMin);
+        timeInput.setAttribute("max", timeMax);
+    };
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax };
 })();

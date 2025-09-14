@@ -1,4 +1,4 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday } from "date-fns";
 import { getHours } from "date-fns/fp";
 
 const isWithinAWeek = (date) => {
@@ -346,7 +346,61 @@ class AllTasks {
         }
     };
 
-    
+    static getDateMin(name)
+    {
+        switch (name) {
+            case "all":
+                return "";
+            case "today":
+                return format(startOfDay(new Date()), "yyyy-MM-dd");
+            case "past":
+                return "";
+            case "upcoming":
+                return format(startOfTomorrow(new Date()), "yyyy-MM-dd");
+        }
+    };
+
+    static getDateMax(name)
+    {
+        switch (name) {
+            case "all":
+                return "";
+            case "today":
+                return format(endOfToday(new Date()), "yyyy-MM-dd");
+            case "past":
+                return format(endOfYesterday(new Date()), "yyyy-MM-dd");
+            case "upcoming":
+                return "";
+        }
+    };
+
+    static getTimeMin(name)
+    {
+        switch (name) {
+            case "all":
+                return "";
+            case "today":
+                return format(startOfDay(new Date()), "HH:mm");
+            case "past":
+                return "";
+            case "upcoming":
+                return format(startOfTomorrow(new Date()), "HH:mm");
+        }
+    };
+
+    static getTimeMax(name)
+    {
+        switch (name) {
+            case "all":
+                return "";
+            case "today":
+                return format(endOfToday(new Date()), "HH:mm");
+            case "past":
+                return format(endOfYesterday(new Date()), "HH:mm");
+            case "upcoming":
+                return "";
+        }
+    };
 
 };
 

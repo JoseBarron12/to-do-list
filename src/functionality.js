@@ -131,6 +131,8 @@ export const functionality = (function () {
         
             parentToOpen.showModal();
             
+            update.inputMinMax(parentToOpen);
+            
             const exitBtn = document.querySelector(".exit-button");
             addExitBtn(exitBtn,parentToOpen);
 
