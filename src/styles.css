@@ -257,6 +257,21 @@ nav > button {
   align-items: center;
 }
 
+.content-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.content-btn {
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--accent);
+  font-weight: bold;
+  padding: 0px 12px;
+  border-radius: 8px;
+  font-size: smaller;
+}
+
 .header-icon {
   height: 32px;
   width: auto;

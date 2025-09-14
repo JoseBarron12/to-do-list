@@ -24,7 +24,7 @@ const displayMainPageHeader = (parent, headerName) => {
         pageHeader.appendChild(contentHeader);
 };
 
-const displaySectionHeaders = (parent, headerNames, iconOn) => {
+const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
     headerNames.forEach((headerName) => {
 
         const section = document.createElement("div");
@@ -47,8 +47,9 @@ const displaySectionHeaders = (parent, headerNames, iconOn) => {
             }
             
             const header = document.createElement("h5");
+            const strBfr = (pageName == "past") ? "Last " : "This ";
             const headerCurrentName = toUpperCaseFirstChar(headerName);
-            const headerText = (displayStringBefore(headerCurrentName)) ?  "This " + headerCurrentName : headerCurrentName;
+            const headerText = (displayStringBefore(headerCurrentName)) ?  strBfr + headerCurrentName : headerCurrentName;
             header.textContent = headerText;
             sectionHeader.appendChild(header);
         }
@@ -122,7 +123,31 @@ const displayTasks = (parent, arrayOfTasks) => {
 
         functionality.editTaskIcons(taskDiv);
     });
-}   
+};
+
+const displaySectionBtns = (parent, pageName) => {
+    const btnDiv = document.createElement("div");
+    btnDiv.classList.add("content-btns");
+    parent.appendChild(btnDiv);
+
+    if(pageName != "all") {
+        page[pageName].forEach((btn) => {
+            const contentbtn = document.createElement("button");
+            const strBfr = (pageName == "past") ? "Last " : "This ";
+            contentbtn.textContent = (displayStringBefore(toUpperCaseFirstChar(btn))) ?  strBfr + toUpperCaseFirstChar(btn) : toUpperCaseFirstChar(btn);
+            contentbtn.classList.add("content-btn");
+            btnDiv.appendChild(contentbtn);
+        });
+    }
+    else {
+        buttonTypes.forEach((btn) => {
+            const contentbtn = document.createElement("button");
+            contentbtn.textContent = toUpperCaseFirstChar(btn);
+            contentbtn.classList.add("content-btn");
+            btnDiv.appendChild(contentbtn);
+        });
+    }
+};
 
 // Function to flag whether string should have a string beforehand
 const displayStringBefore = (string) => {
@@ -363,12 +388,13 @@ export const display = (function () {
         content.appendChild(mainPage);
 
         displayMainPageHeader(mainPage, name);
+        displaySectionBtns(mainPage,name);
 
         const tasksSection = document.createElement("div");
         tasksSection.classList.add("tasks-section");
         mainPage.appendChild(tasksSection);
 
-        displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false);
+        displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false, name);
 
         const tasks = document.querySelector(".tasks");
         
