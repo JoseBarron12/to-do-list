@@ -196,7 +196,6 @@ export const functionality = (function () {
 
         newBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log(id);
             if(isValid.taskForm(id))
             {
                 update.clearForm(window);

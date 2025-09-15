@@ -2,6 +2,8 @@ import "./styles.css";
 import { functionality } from "./functionality";
 import { display } from "./display";
 import { allTasksOfUser } from "./default";
+import { AllTasks } from "./class";
+import { differenceInSeconds } from "date-fns";
 
 console.log(allTasksOfUser);
 
@@ -15,7 +17,11 @@ const addTaskWindow = document.querySelector(".add-task-window");
 
 functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow, true);
 
+console.log(AllTasks.sortbyDate(allTasksOfUser.allCurrentTask));
 
+allTasksOfUser.allCurrentTask.forEach(a => {
+    console.log(differenceInSeconds(a.date, new Date()));
+});
 
 
 

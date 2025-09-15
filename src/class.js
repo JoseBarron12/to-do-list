@@ -1,4 +1,4 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds } from "date-fns";
 import { getHours } from "date-fns/fp";
 
 const isWithinAWeek = (date) => {
@@ -19,6 +19,21 @@ const isWithinAMonth = (date) => {
 const isWithinAYear = (date) => {
     const daysApart = Math.abs(differenceInDays(date, new Date()));
     return isSameYear(date, new Date()) && daysApart >= 30;
+};
+
+const compareDates = (a, b) => {
+    const secondsA = Math.abs(differenceInSeconds(a.date, new Date()));
+    const secondsB = Math.abs(differenceInSeconds(b.date, new Date()));
+
+    if(secondsA > secondsB)
+    {
+        return 1;
+    }
+    else if (secondsB > secondsA )
+    {
+        return -1;
+    }
+    return 0; 
 };
 
 const isWithinHour = (date) => {
@@ -402,7 +417,12 @@ class AllTasks {
         }
     };
 
+    static sortbyDate(array)  {
+        return array.sort(compareDates);
+    };
+
 };
+
 
 
 export {Page,Task, Labels, AllTasks}

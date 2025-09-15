@@ -263,11 +263,11 @@ nav > button {
 }
 
 .content-btns > button {
-  color: var(--accent);
+  color: var(--text);
   background: none;
   border: 1px solid var(--accent);
   font-weight: bold;
-  padding: 0px 12px;
+  padding: 2px 12px;
   border-radius: 8px;
   font-size: smaller;
 }
