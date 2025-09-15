@@ -278,11 +278,35 @@ export const functionality = (function () {
                     btn.removeAttribute("id");
                 })
                 btn.setAttribute("id","active-btn")
-                update.refreshTasksFromType(parent, btn.getAttribute("class"), array);
+                update.refreshTasksFromType(parent, btn.getAttribute("class"), array);      
+            });
+        });   
+    };
+
+    const updateHeaderDisplayBtn = (btns, parent) =>
+    {
+        btns.forEach(btn => { 
+            btn.addEventListener("click", () => {
+                
+                btns.forEach(btn => {
+                    btn.removeAttribute("id");
+                })
+                btn.setAttribute("id","active-btn")
+                const headerName = btn.getAttribute("class");
+                const iconOn = (currentPage == "today") ? true : false;
+                if(headerName != "all")
+                {
+                    update.refreshSectionHeader(parent,headerName,iconOn);
+                }
+                else {
+                    update.refreshCurrentPage();
+                }
+                      
             });
         });   
     };
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn};
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn};
 })();

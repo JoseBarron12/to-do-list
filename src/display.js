@@ -69,7 +69,8 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
         display.displayTasks(tasks, tasksInHdr);
 
     });
-}
+};
+
 
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
@@ -355,7 +356,14 @@ export const display = (function () {
         const tasks = document.querySelector(".tasks");
         
         functionality.addDropdownMenuBtn();
-        functionality.updateTaskDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksFromName(name));
+        if(name == "all")
+        {
+            functionality.updateTaskDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksFromName(name));
+        }
+        else {
+            functionality.updateHeaderDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasksSection)
+        }
+        
     };
 
     const addLabelsWindow = () => {
@@ -597,5 +605,48 @@ export const display = (function () {
         });
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks};
+    const displaySectionHeader = (parent, headerName, iconOn, pageName) => {
+     const section = document.createElement("div");
+        section.classList.add(`${headerName}`);
+        parent.appendChild(section);
+
+        const sectionHeader = document.createElement("div");
+        sectionHeader.classList.add("task-section-header");
+        section.appendChild(sectionHeader);
+
+        if(headerName != "all")
+        {
+            if(iconOn)
+            {
+                const sectionHeaderImg = document.createElement("img");
+                sectionHeaderImg.src = images[headerName];
+                sectionHeaderImg.alt = `${headerName}-icon`;
+                sectionHeaderImg.classList.add("emoji-icon");
+                sectionHeader.appendChild(sectionHeaderImg);
+            }
+            
+            const header = document.createElement("h5");
+            const strBfr = (pageName == "past") ? "Last " : "This ";
+            const headerCurrentName = toUpperCaseFirstChar(headerName);
+            const headerText = (displayStringBefore(headerCurrentName)) ?  strBfr + headerCurrentName : headerCurrentName;
+            header.textContent = headerText;
+            sectionHeader.appendChild(header);
+        }
+        else
+        {
+            sectionHeader.classList.add("border-off");
+        }
+
+        display.dropDownMenu(sectionHeader, true);
+
+        const tasks = document.createElement("div");
+        tasks.classList.add("tasks");
+        section.appendChild(tasks);
+
+        const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
+        display.displayTasks(tasks, tasksInHdr);
+    };
+
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader};
 })();

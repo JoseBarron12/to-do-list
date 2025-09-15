@@ -142,5 +142,10 @@ export const update = (function () {
         timeInput.setAttribute("max", timeMax);
     };
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax };
+    const refreshSectionHeader = (parent, headerName, iconOn) => {
+        parent.replaceChildren();
+        display.displaySectionHeader(parent, headerName, iconOn, currentPage.page);
+    }
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader };
 })();
