@@ -191,8 +191,12 @@ export const functionality = (function () {
 
     const addSubmitTaskBtn = (window, id) => {
         const btn = document.querySelector("button.submit-button");
-        btn.addEventListener("click", (event) => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener("click", (event) => {
             event.preventDefault();
+            console.log(id);
             if(isValid.taskForm(id))
             {
                 update.clearForm(window);
