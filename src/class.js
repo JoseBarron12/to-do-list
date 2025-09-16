@@ -179,6 +179,11 @@ class Task {
         if(projects !== undefined) this.taskProjects = projects;
     };
 
+    isImportantTask() {
+        const isEqualTo = (element) => element == "important";
+        const result = this.taskLabels.findIndex(isEqualTo);
+        if(result != -1 ) return true;
+    };
 
 };
 
@@ -428,6 +433,18 @@ class AllTasks {
 
     static sortbyDate(array)  {
         array.sort(compareDates());
+    };
+
+    static getNumOfImportantTasks(array) {
+        let numOfImpTasks = 0;
+        array.forEach(task => {
+            if(task.isImportantTask())
+            {
+                console.log("worksss")
+                numOfImpTasks++;
+            }
+        });
+        return numOfImpTasks;
     };
 };
 

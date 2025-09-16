@@ -56,7 +56,7 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
         }
         else
         {
-             sectionHeader.classList.add("border-off");
+            sectionHeader.classList.add("border-off");
         }
 
         display.dropDownMenu(sectionHeader, true);
@@ -67,9 +67,9 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
 
         const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
         display.displayTasks(tasks, tasksInHdr);
+
     });
 };
-
 
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
@@ -172,6 +172,26 @@ export const display = (function () {
             const buttonHeader = document.createElement("h5");
             buttonHeader.textContent = toUpperCaseFirstChar(buttonType);
             button.appendChild(buttonHeader);
+
+            const numOfTasks = document.createElement("div");
+            numOfTasks.classList.add("num-tasks");
+            button.appendChild(numOfTasks);
+
+            const numofTtlTasks = allTasksOfUser.getTasksFromName(buttonType).length;
+            const numOfImpTasks = AllTasks.getNumOfImportantTasks(allTasksOfUser.getTasksFromName(buttonType));
+
+            if(numOfImpTasks != 0)
+            {
+                const impTasks = document.createElement("div");
+                impTasks.classList.add("num-imp");
+                impTasks.textContent = numOfImpTasks;
+                numOfTasks.appendChild(impTasks);
+            }
+
+            const ttlTasks = document.createElement("div");
+            ttlTasks.classList.add("num-ttl");
+            ttlTasks.textContent = numofTtlTasks;
+            numOfTasks.appendChild(ttlTasks);
         });
 
         const userList = document.createElement("button");

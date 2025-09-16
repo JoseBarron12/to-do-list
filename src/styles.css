@@ -177,6 +177,27 @@ nav > button, .sidebar-options > button{
   color: var(--text);
 }
 
+.num-tasks {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.num-imp {
+  background-color: red;
+  padding: 0px 8px;
+  border-radius: 16px;
+  color: var(--text);
+  opacity: 80%;
+}
+
+.num-ttl {
+  color: var(--text);
+  opacity: 60%;
+}
+
 button.active-btn {
   background-color: var(--primary);
   border-radius: 8px;
