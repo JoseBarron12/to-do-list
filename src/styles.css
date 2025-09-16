@@ -303,16 +303,18 @@ nav > button {
   padding-bottom: 4px;
   border-bottom: 1px solid var(--text);
   align-items: center;
+  position: relative;
 }
 .border-off  {
   border: none;
 }
 
 .dropdown-menu {
-  margin-left: auto;
+  right: 64px;
   position: relative;
   align-self: center;
   user-select: none;
+  position: fixed;
 }
 
 .up {
