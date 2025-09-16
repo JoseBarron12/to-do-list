@@ -3,7 +3,7 @@ import { getHours } from "date-fns/fp";
 
 const isWithinAWeek = (date) => {
     const hrsApart = Math.abs(differenceInHours(date, new Date()));
-    return !isTomorrow(date)  && !isYesterday(date)&& hrsApart <= 24 * 7;
+    return !isTomorrow(date)  && !isYesterday(date) && hrsApart <= 24 * 7;
 };
 
 const isWithin24Hrs = (date) => {
@@ -12,8 +12,9 @@ const isWithin24Hrs = (date) => {
 };
 
 const isWithinAMonth = (date) => {
+    const hrsApart = Math.abs(differenceInHours(date, new Date()));
     const daysApart = Math.abs(differenceInDays(date, new Date()));
-    return daysApart > 7 && daysApart <= 30;
+    return hrsApart >= 24 * 7 && daysApart <= 30;
 };
 
 const isWithinAYear = (date) => {
