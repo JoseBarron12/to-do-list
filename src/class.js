@@ -1,9 +1,9 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow } from "date-fns";
 import { getHours } from "date-fns/fp";
 
 const isWithinAWeek = (date) => {
     const hrsApart = Math.abs(differenceInHours(date, new Date()));
-    return hrsApart > 24 && hrsApart <= 24 * 7;
+    return !isTomorrow(date)  && !isYesterday(date)&& hrsApart <= 24 * 7;
 };
 
 const isWithin24Hrs = (date) => {
@@ -307,7 +307,7 @@ class AllTasks {
 
     static getYesterdayTasks(array)
     {
-        return array.filter((task) => isWithin24Hrs(task.date));
+        return array.filter((task) => isYesterday(task.date));
     }
 
     static getFutureTasks(array)
@@ -317,7 +317,7 @@ class AllTasks {
 
     static getTmrTasks(array)
     {
-        return array.filter((task) => isWithin24Hrs(task.date));
+        return array.filter((task) => isTomorrow(task.date));
     }
 
     static getWeekTasks(array)
@@ -418,9 +418,8 @@ class AllTasks {
     };
 
     static sortbyDate(array)  {
-        return array.sort(compareDates);
+        array.sort(compareDates());
     };
-
 };
 
 

@@ -67,7 +67,6 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
 
         const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
         display.displayTasks(tasks, tasksInHdr);
-
     });
 };
 
