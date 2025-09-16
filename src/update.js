@@ -145,7 +145,20 @@ export const update = (function () {
     const refreshSectionHeader = (parent, headerName, iconOn) => {
         parent.replaceChildren();
         display.displaySectionHeader(parent, headerName, iconOn, currentPage.page);
+    };
+
+    const currTasksOnPge = () => {
+        const parent = document.querySelector(".tasks-section");
+        const iconOn = (currentPage.page == "today") ? true : false;
+        const headerName = currentPage.header;
+        if(headerName != "all")
+        {
+            update.refreshSectionHeader(parent,headerName,iconOn);
+        }
+        else {
+            update.refreshCurrentPage();
+        }
     }
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader };
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge};
 })();

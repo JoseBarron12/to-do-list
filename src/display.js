@@ -646,6 +646,5 @@ export const display = (function () {
         display.displayTasks(tasks, tasksInHdr);
     };
 
-
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader};
 })();

@@ -60,6 +60,7 @@ class Page {
     constructor(currentPage)
     {
         this.currentPage = currentPage
+        this.currentHeader = "all";
     };
     get page() {
         return this.currentPage;
@@ -68,6 +69,13 @@ class Page {
         this.currentPage = newPage;
     }
 
+    get header() {
+        return this.currentHeader;
+    }
+
+    set header(newHeader) {
+        this.currentHeader = newHeader;
+    }
 }
 
 class Task {

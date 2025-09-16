@@ -100,7 +100,7 @@ export const functionality = (function () {
                 
                 btn.classList.add("active-btn");
                 currentPage.page = btn.getAttribute("id");
-
+                currentPage.header = "all";
                 display.mainPage(btn.getAttribute("id"));
             });
         });
@@ -201,7 +201,7 @@ export const functionality = (function () {
                 update.clearForm(window);
                 update.clearFormLabels();
                 update.selectedFormLabels();
-                update.refreshCurrentPage();
+                update.currTasksOnPge();
                 window.close();
             }
         });
@@ -289,26 +289,30 @@ export const functionality = (function () {
     const updateHeaderDisplayBtn = (btns, parent) =>
     {
         btns.forEach(btn => { 
-            btn.addEventListener("click", () => {
-                
-                btns.forEach(btn => {
-                    btn.removeAttribute("id");
-                })
-                btn.setAttribute("id","active-btn")
-                const headerName = btn.getAttribute("class");
-                const iconOn = (currentPage == "today") ? true : false;
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            newBtn.addEventListener("click", () => {
+
+                const clickedBtn = document.querySelector("button#active-btn");
+                clickedBtn.removeAttribute("id");
+            
+                newBtn.setAttribute("id","active-btn");
+                const headerName = newBtn.getAttribute("class");
+                const iconOn = (currentPage.page == "today") ? true : false;
                 if(headerName != "all")
                 {
+                    currentPage.header = headerName;
                     update.refreshSectionHeader(parent,headerName,iconOn);
                 }
                 else {
+                    currentPage.header = headerName;
                     update.refreshCurrentPage();
                 }
                       
             });
         });   
     };
-
 
 
     return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn};
