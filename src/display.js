@@ -663,6 +663,11 @@ export const display = (function () {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
+        if(headerName == "all")
+        {
+            functionality.addTasksAllHdr(sectionHeader);
+        }
+
         if(iconOn)
         {
             const sectionHeaderImg = document.createElement("img");
@@ -694,5 +699,20 @@ export const display = (function () {
     header.textContent = toUpperCaseFirstChar(name);
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader};
+    const addTaskIconAllHdr = (parent) => {
+        const dropdownMenu = parent.querySelector(".dropdown-menu");
+        
+        const addNewTaskSVG = displaySVG({
+            className: "icon plus-task",
+            viewBox: "0 0 24 24",
+            pathD: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
+            titleText: "plus"
+        });
+        parent.insertBefore(addNewTaskSVG, dropdownMenu);
+
+        const addTaskWindow = document.querySelector(".add-task-window");
+        functionality.addOpenDialogWinBtn(addNewTaskSVG, addTaskWindow, true);
+    }
+ 
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr};
 })();

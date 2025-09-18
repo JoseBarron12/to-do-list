@@ -314,6 +314,18 @@ export const functionality = (function () {
         });   
     };
 
+    const addTasksAllHdr = (div) => {
+        div.addEventListener("mouseenter", () => {
+            display.addTaskIconAllHdr(div);
+            div.addEventListener("mouseleave", () => {
+                const icon = div.querySelector(".icon");
+                if(icon != null)
+                {
+                    icon.remove();
+                }
+            });
+        });
+    };
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, addTasksAllHdr};
 })();
