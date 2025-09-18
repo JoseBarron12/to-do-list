@@ -322,20 +322,21 @@ nav > button {
   display: flex;
   gap: 8px;
   padding-bottom: 4px;
-  border-bottom: 1px solid var(--text);
+  border-bottom: 1px solid var(--accent);
   align-items: center;
   position: relative;
 }
+
 .border-off  {
   border: none;
 }
 
 .dropdown-menu {
-  right: 64px;
+  right: 0px;
   position: relative;
   align-self: center;
   user-select: none;
-  position: fixed;
+  position: absolute;
 }
 
 .up {
@@ -470,6 +471,13 @@ svg.icon-delete {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.task-add-task {
+  border: 1px solid var(--accent);
+  padding: 0px 8px;
+  border-radius: 8px;
+}
+
 
 .content-setting {
   display: flex;

@@ -115,14 +115,17 @@ export const update = (function () {
                 return;
             case "today":
                 clearTasks(parent);
+                display.allHeader(type);
                 display.displayTasks(parent, AllTasks.getTdyTasks(currentArray));
                 return;
             case "upcoming":
                 clearTasks(parent);
+                display.allHeader(type);
                 display.displayTasks(parent, AllTasks.getFutureTasks(currentArray));
                 return;
             case "past":
                 clearTasks(parent);
+                display.allHeader(type);
                 display.displayTasks(parent, AllTasks.getPastTasks(currentArray));
                 return;
         }

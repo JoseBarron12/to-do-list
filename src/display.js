@@ -36,7 +36,7 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
-        if(headerName != "all")
+        if(headerName != "all" || pageName == "all")
         {
             if(iconOn)
             {
@@ -70,6 +70,7 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
 
     });
 };
+
 
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
@@ -115,7 +116,7 @@ const displayStringBefore = (string) => {
         }
     }
     return true;
-}
+};
 
 const displaySVG = ({ className, viewBox, pathD, titleText }) => {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -136,7 +137,7 @@ const displaySVG = ({ className, viewBox, pathD, titleText }) => {
     svg.appendChild(path);
 
     return svg;
-}
+};
 
 export const display = (function () {
     const navbar = () => {
@@ -622,10 +623,27 @@ export const display = (function () {
 
             functionality.editTaskIcons(taskDiv);
         });
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+        taskDiv.classList.add("task-add-task");
+        parent.appendChild(taskDiv);
+
+        const addNewTasklSVG = displaySVG({
+            className: "icon plus-task",
+            viewBox: "0 0 24 24",
+            pathD: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
+            titleText: "plus"
+        });
+        taskDiv.appendChild(addNewTasklSVG);
+
+        const addTaskText = document.createElement("p");
+        addTaskText.textContent = "Add Task";
+        taskDiv.appendChild(addTaskText);
+
     };
 
     const displaySectionHeader = (parent, headerName, iconOn, pageName) => {
-     const section = document.createElement("div");
+        const section = document.createElement("div");
         section.classList.add(`${headerName}`);
         parent.appendChild(section);
 
@@ -666,5 +684,10 @@ export const display = (function () {
         display.displayTasks(tasks, tasksInHdr);
     };
 
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader};
+    const allHeader = (name) => {
+    const header = document.querySelector(".task-section-header>h5");
+    header.textContent = toUpperCaseFirstChar(name);
+    };
+
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader};
 })();
