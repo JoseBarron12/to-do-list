@@ -648,6 +648,10 @@ export const display = (function () {
         addTaskText.textContent = "Add Task";
         taskDiv.appendChild(addTaskText);
 
+        const addTaskWindow = document.querySelector(".add-task-window");
+
+        functionality.addOpenDialogWinBtn(taskDiv, addTaskWindow, true); 
+
     };
 
     const displaySectionHeader = (parent, headerName, iconOn, pageName) => {
