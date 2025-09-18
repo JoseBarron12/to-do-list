@@ -138,11 +138,16 @@ export const update = (function () {
         dateInput.setAttribute("min", dateMin);
         dateInput.setAttribute("max", dateMax);
 
-        const timeInput = parent.querySelector('input[type="time"]');
-        const timeMin = AllTasks.getTimeMin(currentPage.page);
-        const timeMax = AllTasks.getTimeMax(currentPage.page);
-        timeInput.setAttribute("min", timeMin);
-        timeInput.setAttribute("max", timeMax);
+        if(currentPage.page == "today" )
+        {
+            const timeInput = parent.querySelector('input[type="time"]');
+            const timeMin = AllTasks.getTimeMin(currentPage.header);
+            const timeMax = AllTasks.getTimeMax(currentPage.header);
+            timeInput.setAttribute("min", timeMin);
+            timeInput.setAttribute("max", timeMax);
+        }
+        
+        
     };
 
     const refreshSectionHeader = (parent, headerName, iconOn) => {

@@ -1,5 +1,7 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours } from "date-fns";
 import { getHours } from "date-fns/fp";
+import { set } from "date-fns";
+
 
 const isWithinAWeek = (date) => {
     const hrsApart = Math.abs(differenceInHours(date, new Date()));
@@ -408,12 +410,14 @@ class AllTasks {
         switch (name) {
             case "all":
                 return "";
-            case "today":
-                return format(startOfDay(new Date()), "HH:mm");
-            case "past":
-                return "";
-            case "upcoming":
-                return format(startOfTomorrow(new Date()), "HH:mm");
+            case "now":
+                return format(new Date(), "HH:mm");
+            case "morning":
+                return format(set(new Date(), {hours: 4, minutes: 0}), "HH:mm");
+            case "afternoon":
+                return format(set(new Date(), {hours: 12, minutes: 0}), "HH:mm");
+            case "evening": 
+                return format(set(new Date(), {hours: 17, minutes: 0}), "HH:mm");
         }
     };
 
@@ -422,12 +426,14 @@ class AllTasks {
         switch (name) {
             case "all":
                 return "";
-            case "today":
-                return format(endOfToday(new Date()), "HH:mm");
-            case "past":
-                return format(endOfYesterday(new Date()), "HH:mm");
-            case "upcoming":
-                return "";
+            case "now":
+                return format(addHours(new Date(), 1), "HH:mm");
+            case "morning":
+                return format(set(new Date(), {hours: 12, minutes: 0}), "HH:mm");
+            case "afternoon":
+                return format(set(new Date(), {hours: 17, minutes: 0}), "HH:mm");
+            case "evening": 
+                return format(set(new Date(), {hours: 4, minutes: 0}), "HH:mm");
         }
     };
 

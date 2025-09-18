@@ -1,7 +1,7 @@
 import { Task } from "./class";
 import { isToday, isFuture} from "date-fns";
 import { update } from "./update";
-import { allTasksOfUser } from "./default";
+import { allTasksOfUser, currentPage } from "./default";
 
 const setType = (date) => {
     if(isToday(date))
@@ -26,8 +26,27 @@ export const isValid = (function() {
 
     const date = (date) => {
         return (date.length != 0);
-    }
+    };
 
+    const time = (time) => {
+        if(time.value.length == 0)
+        {
+            return false;
+        }
+        else if(time.min == "" && time.max == "")
+        {
+            
+            return true;
+        }
+        else {
+            if(currentPage.header != "evening")
+            {
+                return (time.value >= time.min && time.value < time.max);
+            }
+            return (time.value >= time.min || time.value < time.max);
+            
+        }
+    }
     const taskForm = (id) => {
         const form = document.querySelector("#add-task-form");
         let validForm = true;
@@ -61,7 +80,7 @@ export const isValid = (function() {
         const taskTime = form.querySelector('input[id="task-time"]');
         update.clearValidFlag(taskTime);
 
-        if(! isValid.date(taskTime.value)) 
+        if(! isValid.time(taskTime)) 
         {
             validForm = false
             update.userInvalid(taskTime);
@@ -106,5 +125,5 @@ export const isValid = (function() {
 
         return true;
     }
-    return {name, taskForm, date};
+    return {name, taskForm, date, time};
 })();
