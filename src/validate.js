@@ -80,7 +80,7 @@ export const isValid = (function() {
         const taskTime = form.querySelector('input[id="task-time"]');
         update.clearValidFlag(taskTime);
 
-        if(! isValid.time(taskTime)) 
+        if(! isValid.date(taskTime.value)) 
         {
             validForm = false
             update.userInvalid(taskTime);
