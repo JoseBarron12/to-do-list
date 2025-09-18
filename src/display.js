@@ -321,14 +321,22 @@ export const display = (function () {
     const dialogWindowText = (parent, isAddTaskWin, id) => {
         const header = parent.querySelector("h3");
         const button = parent.querySelector("button.submit-button");
+        
+        let textForHeader = " ";
+        
+        if( currentPage.header != "all")
+        {
+            textForHeader = ` ${currentPage.header} `;
+        }
+
         if(isAddTaskWin)
         {
-            header.textContent = "Create New Task";
+            header.textContent = `Create Task`;
             button.textContent = "Create";
         }
         else
         {
-            header.textContent = "Edit Task";
+            header.textContent = `Edit Task`;
             button.textContent = "Confirm";
             
             update.inputMinMax(parent);
@@ -371,7 +379,7 @@ export const display = (function () {
         tasksSection.classList.add("tasks-section");
         mainPage.appendChild(tasksSection);
 
-        displaySectionHeaders(tasksSection, page[name], (name == "today") ? true: false, name);
+        displaySectionHeader(tasksSection, "all", (name == "today") ? true: false, name);
 
         const tasks = document.querySelector(".tasks");
         
@@ -651,28 +659,21 @@ export const display = (function () {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
-        if(headerName != "all")
+        if(iconOn)
         {
-            if(iconOn)
-            {
-                const sectionHeaderImg = document.createElement("img");
-                sectionHeaderImg.src = images[headerName];
-                sectionHeaderImg.alt = `${headerName}-icon`;
-                sectionHeaderImg.classList.add("emoji-icon");
-                sectionHeader.appendChild(sectionHeaderImg);
-            }
+            const sectionHeaderImg = document.createElement("img");
+            sectionHeaderImg.src = images[headerName];
+            sectionHeaderImg.alt = `${headerName}-icon`;
+            sectionHeaderImg.classList.add("emoji-icon");
+            sectionHeader.appendChild(sectionHeaderImg);
+        }
             
-            const header = document.createElement("h5");
-            const strBfr = (pageName == "past") ? "Last " : "This ";
-            const headerCurrentName = toUpperCaseFirstChar(headerName);
-            const headerText = (displayStringBefore(headerCurrentName)) ?  strBfr + headerCurrentName : headerCurrentName;
-            header.textContent = headerText;
-            sectionHeader.appendChild(header);
-        }
-        else
-        {
-            sectionHeader.classList.add("border-off");
-        }
+        const header = document.createElement("h5");
+        const strBfr = (pageName == "past") ? "Last " : "This ";
+        const headerCurrentName = toUpperCaseFirstChar(headerName);
+        const headerText = (displayStringBefore(headerCurrentName)) ?  strBfr + headerCurrentName : headerCurrentName;
+        header.textContent = headerText;
+        sectionHeader.appendChild(header);
 
         display.dropDownMenu(sectionHeader, true);
 
