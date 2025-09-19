@@ -166,7 +166,7 @@ export const update = (function () {
         else {
             update.refreshCurrentPage();
         }
-    }
+    };
 
     return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge};
 })();

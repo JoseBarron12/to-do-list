@@ -227,7 +227,6 @@ class Labels {
 
 };
 
-
 class AllTasks {
     allTasks = [];
     
@@ -483,6 +482,5 @@ class AllTasks {
     }
 
 };
-
 
 export {Page,Task, Labels, AllTasks}

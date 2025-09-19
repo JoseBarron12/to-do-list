@@ -629,6 +629,7 @@ export const display = (function () {
             descDiv.appendChild(desc);
 
             functionality.editTaskIcons(taskDiv);
+            functionality.checkedDiv(taskDiv);
         });
         const taskDiv = document.createElement("div");
         taskDiv.classList.add("task");

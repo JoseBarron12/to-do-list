@@ -314,5 +314,20 @@ export const functionality = (function () {
         });   
     };
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn};
+    const checkedDiv = (parent) => {
+        const checkbox = parent.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener("input", (e) => {
+            if(e.target.checked)
+            {
+                parent.classList.add("checked");
+            }
+            else
+            {
+                parent.classList.remove("checked");
+            }
+        });
+    }
+
+
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv};
 })();

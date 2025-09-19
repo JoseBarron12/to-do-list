@@ -776,3 +776,9 @@ input:focus, textarea:focus
 #active-btn {
   background-color: var(--primary);
 }
+
+
+.checked {
+  text-decoration: line-through;
+  opacity: 50%;
+}
