@@ -1,4 +1,4 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday, getYear } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday, getYear, startOfToday } from "date-fns";
 import { getHours} from "date-fns/fp";
 import { set } from "date-fns";
 import { currentPage } from "./default";
@@ -26,19 +26,17 @@ const isWithinAYear = (date) => {
 };
 
 const compareDates = (a, b) => {
-    const secondsA = Math.abs(differenceInSeconds(a.date, new Date()));
-    const secondsB = Math.abs(differenceInSeconds(b.date, new Date()));
-
-    if(secondsA > secondsB)
-    {
-        return 1;
-    }
-    else if (secondsB > secondsA )
-    {
-        return -1;
-    }
-    return 0; 
+    
+    const secondsA = differenceInSeconds(a.date, startOfToday());
+    const secondsB = differenceInSeconds(b.date, startOfToday());
+    
+    return secondsB - secondsA;  
 };
+
+const checkDate = (a) => {
+    return differenceInSeconds(a.date, startOfToday()) < 0;
+}
+
 
 const isWithinHour = (date) => {
     const minsApart = Math.abs(differenceInMinutes(date, new Date()));
@@ -242,6 +240,8 @@ class AllTasks {
 
     addTask(newTask) {
         this.allTasks.push(newTask);
+        AllTasks.sortbyDate(this.allTasks);
+        this.sortTasksbyDate();
     };
 
     getTodayTasks() {
@@ -255,6 +255,24 @@ class AllTasks {
     getUpcomingTasks() {
         return this.allCurrentTask.filter((task) => isFuture(task.date) && !isToday(task.date));
     };
+
+    sortTasksbyDate() {
+        const testTasks = this.allTasks;
+        let index = testTasks.findIndex(checkDate)
+
+        if(index != 0)
+        {
+            const positiveNums = testTasks.slice(0,index).reverse();
+            const negativeNums = testTasks.slice(index,testTasks.length);
+
+            const newAllTasks = positiveNums.concat(negativeNums);
+            this.allTasks = newAllTasks;
+        }
+        else
+        {
+            this.allTasks.reverse();
+        }    
+    }
 
 
     getTasksFromName(name) {
@@ -438,7 +456,7 @@ class AllTasks {
     };
 
     static sortbyDate(array)  {
-        array.sort(compareDates());
+        array.sort(compareDates);
     };
 
     static getNumOfImportantTasks(array) {

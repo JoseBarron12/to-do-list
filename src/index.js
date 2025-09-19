@@ -3,7 +3,8 @@ import { functionality } from "./functionality";
 import { display } from "./display";
 import { allTasksOfUser } from "./default";
 import { AllTasks } from "./class";
-import { differenceInSeconds } from "date-fns";
+import { constructFrom, differenceInSeconds } from "date-fns";
+import { startOfToday } from "date-fns";
 
 console.log(allTasksOfUser);
 
@@ -18,8 +19,10 @@ const addTaskWindow = document.querySelector(".add-task-window");
 functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow, true);
 
 allTasksOfUser.allCurrentTask.forEach(a => {
-    console.log(differenceInSeconds(a.date, new Date()));
+    console.log(differenceInSeconds(a.date, startOfToday()));
 });
+
+
 
 
 
