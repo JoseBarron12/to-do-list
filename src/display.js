@@ -383,7 +383,6 @@ export const display = (function () {
 
         const tasks = document.querySelector(".tasks");
         
-        functionality.addDropdownMenuBtn();
         if(name == "all")
         {
             functionality.updateTaskDisplayBtn(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksFromName(name));
@@ -680,6 +679,7 @@ export const display = (function () {
         sectionHeader.appendChild(header);
 
         display.dropDownMenu(sectionHeader, true);
+        functionality.addDropdownMenuBtn();
         addTaskIconAllHdr(sectionHeader);
 
         const tasks = document.createElement("div");
