@@ -662,12 +662,7 @@ export const display = (function () {
         const sectionHeader = document.createElement("div");
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
-
-        if(headerName == "all" || currentPage.page == "today")
-        {
-            functionality.addTasksAllHdr(sectionHeader);
-        }
-
+        
         if(iconOn)
         {
             const sectionHeaderImg = document.createElement("img");
@@ -685,6 +680,7 @@ export const display = (function () {
         sectionHeader.appendChild(header);
 
         display.dropDownMenu(sectionHeader, true);
+        addTaskIconAllHdr(sectionHeader);
 
         const tasks = document.createElement("div");
         tasks.classList.add("tasks");
@@ -707,12 +703,12 @@ export const display = (function () {
         parent.insertBefore(div, dropdownMenu);
 
         const descHdr = document.createElement("p");
-        const text = AllTasks.getTdyTimeDesc(`${currentPage.header}`);
+        const text = AllTasks.getTimeDesc(`${currentPage.header}`);
         if(text != "")
         {
             descHdr.textContent = `(${text})`;
+            div.appendChild(descHdr);
         }
-        div.appendChild(descHdr);
 
         const addNewTaskSVG = displaySVG({
             className: "icon plus-task",

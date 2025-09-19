@@ -1,6 +1,7 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday } from "date-fns";
 import { getHours } from "date-fns/fp";
 import { set } from "date-fns";
+import { currentPage } from "./default";
 
 
 const isWithinAWeek = (date) => {
@@ -453,8 +454,11 @@ class AllTasks {
         return numOfImpTasks;
     };
 
-    static getTdyTimeDesc(name) {
+    static getTimeDesc(name) {
         switch (name) {
+            case "all":
+                if(currentPage.page == "today") return format(new Date(), 'eee MMM do');
+                return ""
             case "now":
                 return ">1hr";
             case "morning":
@@ -463,6 +467,10 @@ class AllTasks {
                 return "12pm-5pm";
             case "evening": 
                 return "5pm-4am";
+            case "tommorow":
+                return format(startOfTomorrow(), 'eee MMM do');
+            case "yesterday":
+                return format(startOfYesterday(), 'eee MMM do');
             default:
                 return "";
         }

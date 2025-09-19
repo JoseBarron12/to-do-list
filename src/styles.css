@@ -338,8 +338,13 @@ nav > button {
 }
 
 .hover > p {
-  font-size: smaller;
+  font-size: 0.9rem;
   opacity: 80%;
+}
+
+.hover > svg {
+  height: 20px;
+  width: auto;
 }
 
 .dropdown-menu {
