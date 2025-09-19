@@ -452,6 +452,22 @@ class AllTasks {
         });
         return numOfImpTasks;
     };
+
+    static getTdyTimeDesc(name) {
+        switch (name) {
+            case "now":
+                return ">1hr";
+            case "morning":
+                return "4am-12pm";
+            case "afternoon":
+                return "12pm-5pm";
+            case "evening": 
+                return "5pm-4am";
+            default:
+                return "";
+        }
+    }
+
 };
 
 

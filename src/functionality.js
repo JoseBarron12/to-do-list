@@ -318,10 +318,10 @@ export const functionality = (function () {
         div.addEventListener("mouseenter", () => {
             display.addTaskIconAllHdr(div);
             div.addEventListener("mouseleave", () => {
-                const icon = div.querySelector(".icon");
-                if(icon != null)
+                const hover = div.querySelector(".hover");
+                if(hover != null)
                 {
-                    icon.remove();
+                    hover.remove();
                 }
             });
         });

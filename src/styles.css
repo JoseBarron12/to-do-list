@@ -331,6 +331,17 @@ nav > button {
   border: none;
 }
 
+.hover {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.hover > p {
+  font-size: smaller;
+  opacity: 80%;
+}
+
 .dropdown-menu {
   right: 0px;
   position: relative;

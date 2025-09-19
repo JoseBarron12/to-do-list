@@ -663,7 +663,7 @@ export const display = (function () {
         sectionHeader.classList.add("task-section-header");
         section.appendChild(sectionHeader);
 
-        if(headerName == "all")
+        if(headerName == "all" || currentPage.page == "today")
         {
             functionality.addTasksAllHdr(sectionHeader);
         }
@@ -702,13 +702,26 @@ export const display = (function () {
     const addTaskIconAllHdr = (parent) => {
         const dropdownMenu = parent.querySelector(".dropdown-menu");
         
+        const div = document.createElement("div");
+        div.classList.add("hover");
+        parent.insertBefore(div, dropdownMenu);
+
+        const descHdr = document.createElement("p");
+        const text = AllTasks.getTdyTimeDesc(`${currentPage.header}`);
+        if(text != "")
+        {
+            descHdr.textContent = `(${text})`;
+        }
+        div.appendChild(descHdr);
+
         const addNewTaskSVG = displaySVG({
             className: "icon plus-task",
             viewBox: "0 0 24 24",
             pathD: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
             titleText: "plus"
         });
-        parent.insertBefore(addNewTaskSVG, dropdownMenu);
+        
+        div.appendChild(addNewTaskSVG);
 
         const addTaskWindow = document.querySelector(".add-task-window");
         functionality.addOpenDialogWinBtn(addNewTaskSVG, addTaskWindow, true);
