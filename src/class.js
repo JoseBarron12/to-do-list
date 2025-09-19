@@ -1,5 +1,5 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday } from "date-fns";
-import { getHours } from "date-fns/fp";
+import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday, getYear } from "date-fns";
+import { getHours} from "date-fns/fp";
 import { set } from "date-fns";
 import { currentPage } from "./default";
 
@@ -471,6 +471,12 @@ class AllTasks {
                 return format(startOfTomorrow(), 'eee MMM do');
             case "yesterday":
                 return format(startOfYesterday(), 'eee MMM do');
+            case "week":
+                return "Within 7 days";
+            case "month":
+                return "Within 30 days"
+            case "year":
+                return getYear(new Date());
             default:
                 return "";
         }
