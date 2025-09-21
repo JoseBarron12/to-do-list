@@ -108,10 +108,6 @@ export const functionality = (function () {
     };
     
     const addNewListBtn = (btn) => {
-        const newBtn = btn.cloneNode(true);
-        console.log(newBtn);
-        //newBtn.parentNode.replaceChild(newBtn, btn);
-        
         btn.addEventListener("click", () => {
             const window = document.querySelector("dialog.add-list-window");
             window.showModal();
@@ -120,7 +116,10 @@ export const functionality = (function () {
             addExitBtn(exitBtn,window);
 
             const submitBtn = window.querySelector(".submit-list-btn");
-            submitBtn.addEventListener("click", (e) => {
+            const newBtn = submitBtn.cloneNode(true);
+            submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+            
+            newBtn.addEventListener("click", (e) => {
                 e.preventDefault();
                 
                 const nameInput = window.querySelector('input[type="text"]');

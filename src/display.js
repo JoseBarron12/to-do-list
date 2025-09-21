@@ -215,7 +215,6 @@ export const display = (function () {
         });
 
         userList.appendChild(addNewListSVG);
-        functionality.addNewListBtn(addNewListSVG);
 
         const projects = document.createElement("div");
         projects.classList.add("projects");
@@ -246,7 +245,6 @@ export const display = (function () {
         svgPlus.appendChild(pathPlus);
         
         addSection.appendChild(svgPlus);
-        functionality.addNewListBtn(svgPlus);
 
         const addSectionHeader = document.createElement("h5");
         addSectionHeader.textContent = "New list";
@@ -277,6 +275,9 @@ export const display = (function () {
         svgSetting.appendChild(pathSetting);
 
         settingSection.appendChild(svgSetting);
+
+        functionality.addNewListBtn(addNewListSVG);
+        functionality.addNewListBtn(svgPlus);
 
         functionality.addNavbarBtn();
 
