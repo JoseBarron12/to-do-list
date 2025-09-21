@@ -76,5 +76,33 @@
 
             </form>
     </dialog>
+
+    <dialog class="add-list-window" open>
+        <form id="add-label-form">
+            <svg class="icon exit-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+            <h3>Add List</h3>
+            <div class="name-list-input">
+                <label for="name-list">Name*</label>
+                <input type="text" id="name-list">
+            </div>
+            <div class="display-list-input">
+                <div class="color-list-input">
+                    <label for="color-list">Color*</label>
+                    <input type="color" id="color-list">
+                </div>
+                <div class="icon-list-input">
+                    <label for="icon-options">Icon*</label>
+                    <select name="icons" id="icon-options">
+                    </select>
+                </div>
+            </div>
+            <div class="desc-list-input">
+                <label for="list-desc">Description</label>
+                <textarea name="description" id="list-desc"></textarea>
+            </div>
+            <button class="submit-list-btn">Confirm</button>
+        </form>
+            
+    </dialog>
 </body>
 </html>
