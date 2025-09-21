@@ -105,9 +105,13 @@ export const functionality = (function () {
             });
         });
     };
-    const addNewLabelBtn = (btn, parent) => {
+    const addNewListBtn = (btn) => {
         btn.addEventListener("click", () => {
-            display.addListsWindow(parent);
+            const window = document.querySelector("dialog.add-list-window");
+            window.showModal();
+
+            const exitBtn = window.querySelector(".exit-button");
+            addExitBtn(exitBtn,window);
         })
     }
     
@@ -334,5 +338,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewLabelBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn};
 })();

@@ -24,7 +24,7 @@
             <div id="content">
             </div>
             <div class="content-setting">
-                <svg class="icon"  id="addTask"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                <svg class="icon" id="addTask"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                 <svg class="icon" id="addHeader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>card-plus</title><path d="M13.09 20H4C2.9 20 2 19.11 2 18V6C2 4.89 2.9 4 4 4H20C21.11 4 22 4.89 22 6V13.81C21.12 13.3 20.09 13 19 13C15.69 13 13 15.69 13 19C13 19.34 13.04 19.67 13.09 20M18 15V18H15V20H18V23H20V20H23V18H20V15H18Z" /></svg>
                 <svg class="icon" id="calendar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>calendar-month</title><path d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z" /></svg>
                 <svg class="icon" id="left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-left</title><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
@@ -77,13 +77,13 @@
             </form>
     </dialog>
 
-    <dialog class="add-list-window" open>
+    <dialog class="add-list-window">
         <form id="add-label-form">
             <svg class="icon exit-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
             <h3>Add List</h3>
             <div class="name-list-input">
                 <label for="name-list">Name*</label>
-                <input type="text" id="name-list">
+                <input type="text" id="name-list" placeholder="Title...">
             </div>
             <div class="display-list-input">
                 <div class="color-list-input">
@@ -98,7 +98,7 @@
             </div>
             <div class="desc-list-input">
                 <label for="list-desc">Description</label>
-                <textarea name="description" id="list-desc"></textarea>
+                <textarea name="description" id="list-desc" placeholder="Type here..."></textarea>
             </div>
             <button class="submit-list-btn">Confirm</button>
         </form>

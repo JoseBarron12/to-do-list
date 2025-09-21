@@ -71,7 +71,6 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
     });
 };
 
-
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
     btnDiv.classList.add("content-btns");
@@ -216,7 +215,7 @@ export const display = (function () {
         });
 
         userList.appendChild(addNewListSVG);
-        functionality.addNewLabelBtn(addNewListSVG, userList);
+        functionality.addNewListBtn(addNewListSVG);
 
         const projects = document.createElement("div");
         projects.classList.add("projects");
@@ -247,6 +246,7 @@ export const display = (function () {
         svgPlus.appendChild(pathPlus);
         
         addSection.appendChild(svgPlus);
+        functionality.addNewListBtn(svgPlus);
 
         const addSectionHeader = document.createElement("h5");
         addSectionHeader.textContent = "New list";
@@ -478,48 +478,6 @@ export const display = (function () {
         functionality.addExitBtn(closeLabelWindowBtn, addLabelWindow);
         functionality.addLabelBtns();
     };
-
-    const addListsWindow = (parent) => {
-        const addListWindowFlag = document.querySelector(".add-list");
-        if(addListWindowFlag != null)
-        {
-            console.log("make yuh;")
-            return;
-        }
-        const addListWin = document.createElement("div");
-        addListWin.classList.add("add-list");
-        parent.appendChild(addListWin);
-
-        const header = document.createElement("h5");
-        header.textContent = "Add List";
-        addListWin.appendChild(header);
-
-        const form = document.createElement("form");
-        form.setAttribute("id", "add-label-form");
-        addListWin.appendChild(form);
-
-        const label = document.createElement("label");
-        label.textContent = "Name*"
-        label.setAttribute("for", "name-list");
-        form.appendChild(label);
-
-        const input = document.createElement("input");
-        input.setAttribute("type", "text");
-        form.appendChild(input);
-
-        const submitBtn = document.createElement("button");
-        submitBtn.textContent = "Confirm";
-        addListWin.appendChild(submitBtn);
-
-        const svgEl = displaySVG({
-        className: "icon-list",
-        viewBox: "0 0 24 24",
-        pathD: "M7,15L12,10L17,15H7Z",
-        titleText: "menu-up"
-        });
-
-        parent.appendChild(svgEl);
-    }
 
     const labels = (parent,labelName) => {
         
@@ -776,5 +734,5 @@ export const display = (function () {
         functionality.addOpenDialogWinBtn(addNewTaskSVG, addTaskWindow, true);
     }
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, addListsWindow};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr};
 })();
