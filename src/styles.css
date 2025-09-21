@@ -264,6 +264,58 @@ nav > button {
   font-size: 0.9rem;
 }
 
+input[type="color"] {
+	appearance: none;
+  padding: 0px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select::picker-icon {
+  color: var(--background);
+}
+
+::picker(select) {
+  border: 1px solid var(--background);
+  border-radius: 8px;
+  margin-top: 2px;
+}
+
+select {
+  align-items: center;
+}
+
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 4px;
+  background: var(--text);
+  padding: 2px 8px;
+  color: var(--background);
+  align-items: center;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: 1px solid var(--background);
+}
+
+
+.option-icon {
+  border-right: 1px solid black;
+}
+
+
 .desc-list-input > textarea {
   height: 100%;
   padding: 0px 4px;
