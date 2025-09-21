@@ -105,6 +105,11 @@ export const functionality = (function () {
             });
         });
     };
+    const addNewLabelBtn = (btn, parent) => {
+        btn.addEventListener("click", () => {
+            display.addListsWindow(parent);
+        })
+    }
     
     const addExitBtn = (btn,parentToClose) => {
         btn.addEventListener("click", (e) => {
@@ -329,5 +334,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewLabelBtn};
 })();

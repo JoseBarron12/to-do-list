@@ -207,7 +207,70 @@ nav > button {
   border-bottom: 1px solid var(--text);
   padding-bottom: 8px;
 }
- 
+
+.add-new-list {
+  height: 20px;
+  width: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+.add-list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+  font-size: smaller;
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 8px;
+  border-radius: 8px;
+  left: 180px;
+  top: 284px;
+}
+
+.add-list > h5 {
+  width: 100%;
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 4px;
+}
+
+.add-list > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: smaller;
+}
+
+.add-list > form > input {
+  border: none;
+  background: none;
+  border: 1px solid var(--text);
+  padding-left: 4px;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.add-list > button {
+  border: none;
+  background: none;
+  color: var(--primary);
+  background-color: var(--text);
+  border-radius: 4px;
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.icon-list {
+  position: absolute;
+  width: 48px;
+  height: auto;
+  left: 242px;
+  top: 254px;
+  fill: var(--primary);
+}
+
 .sidebar-options {
   display: flex;
   flex-direction: column;

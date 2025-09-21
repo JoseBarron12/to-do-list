@@ -1,7 +1,7 @@
 import listImage from "./images/list.svg";
 import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser} from "./default";
 import { functionality } from "./functionality";
-import { format } from "date-fns";
+import { format, sub } from "date-fns";
 import { update } from "./update";
 import { AllTasks } from "./class";
 
@@ -207,6 +207,16 @@ export const display = (function () {
         const userListHeader = document.createElement("h5");
         userListHeader.textContent = "My Lists";
         userList.appendChild(userListHeader);
+
+        const addNewListSVG = displaySVG({
+            className: "add-new-list",
+            viewBox: "0 0 24 24",
+            pathD: "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z",
+            titleText: "plus"
+        });
+
+        userList.appendChild(addNewListSVG);
+        functionality.addNewLabelBtn(addNewListSVG, userList);
 
         const projects = document.createElement("div");
         projects.classList.add("projects");
@@ -469,6 +479,48 @@ export const display = (function () {
         functionality.addLabelBtns();
     };
 
+    const addListsWindow = (parent) => {
+        const addListWindowFlag = document.querySelector(".add-list");
+        if(addListWindowFlag != null)
+        {
+            console.log("make yuh;")
+            return;
+        }
+        const addListWin = document.createElement("div");
+        addListWin.classList.add("add-list");
+        parent.appendChild(addListWin);
+
+        const header = document.createElement("h5");
+        header.textContent = "Add List";
+        addListWin.appendChild(header);
+
+        const form = document.createElement("form");
+        form.setAttribute("id", "add-label-form");
+        addListWin.appendChild(form);
+
+        const label = document.createElement("label");
+        label.textContent = "Name*"
+        label.setAttribute("for", "name-list");
+        form.appendChild(label);
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "text");
+        form.appendChild(input);
+
+        const submitBtn = document.createElement("button");
+        submitBtn.textContent = "Confirm";
+        addListWin.appendChild(submitBtn);
+
+        const svgEl = displaySVG({
+        className: "icon-list",
+        viewBox: "0 0 24 24",
+        pathD: "M7,15L12,10L17,15H7Z",
+        titleText: "menu-up"
+        });
+
+        parent.appendChild(svgEl);
+    }
+
     const labels = (parent,labelName) => {
         
         const LabelFlag = parent.querySelector(`.label>input[id=${labelName}]`);
@@ -724,5 +776,5 @@ export const display = (function () {
         functionality.addOpenDialogWinBtn(addNewTaskSVG, addTaskWindow, true);
     }
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, addListsWindow};
 })();
