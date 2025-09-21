@@ -10,6 +10,16 @@ import morningImage from "./images/morning.svg";
 import afternoonImage from "./images/afternoon.svg";
 import eveningImage from "./images/evening.svg";
 
+import personalImage from "./images/personal.svg";
+import workImage from  "./images/work.svg";
+import schoolImage from "./images/school.svg";
+import healthImage from "./images/health.svg";
+import financeImage from "./images/finance.svg";
+import travelImage from "./images/travel.svg";
+import shoppingImage from "./images/shopping.svg";
+import socialImage from "./images/social.svg";
+
+
 
 const images = {
     all: allImage,
@@ -21,6 +31,18 @@ const images = {
     afternoon: afternoonImage,
     evening: eveningImage,
 };
+
+const projectIcons = {
+    personal: personalImage,
+    work: workImage,
+    school: schoolImage,
+    health: healthImage,
+    finance: financeImage, 
+    travel: travelImage,
+    shopping: shoppingImage,
+    social: socialImage,
+};
+
 
 const buttonTypes = ["all", "today", "upcoming", "past"];
 
@@ -39,4 +61,4 @@ const defaultLabels = new Labels();
 
 const allTasksOfUser = update.currentUserTasks();
 
-export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser};
+export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons};

@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons} from "./default";
 import { functionality } from "./functionality";
 import { format, sub } from "date-fns";
 import { update } from "./update";
@@ -732,7 +732,27 @@ export const display = (function () {
 
         const addTaskWindow = document.querySelector(".add-task-window");
         functionality.addOpenDialogWinBtn(addNewTaskSVG, addTaskWindow, true);
+    };
+
+    const displayProject = (parent, projectObj) => {
+        const project = document.createElement("button");
+        project.classList.add("project");
+        parent.appendChild(project);
+
+        const icon = document.createElement("img");
+        icon.src = projectIcons[projectObj.icon];
+        icon.classList.add("icon");
+        project.appendChild(icon);
+
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("project-text");
+        project.appendChild(textDiv);
+
+        const header = document.createElement("h5");
+        header.textContent = projectObj.name;
+        textDiv.appendChild(header);
+        
     }
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject};
 })();

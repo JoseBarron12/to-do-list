@@ -108,6 +108,10 @@ export const functionality = (function () {
     };
     
     const addNewListBtn = (btn) => {
+        const newBtn = btn.cloneNode(true);
+        console.log(newBtn);
+        //newBtn.parentNode.replaceChild(newBtn, btn);
+        
         btn.addEventListener("click", () => {
             const window = document.querySelector("dialog.add-list-window");
             window.showModal();
@@ -125,7 +129,9 @@ export const functionality = (function () {
                 const descInput = window.querySelector("textarea");
                 
                 const newProject = new Project(nameInput.value, descInput.value, colorInput.value, iconInput.value);
-                console.log(newProject);
+                
+                display.displayProject(document.querySelector(".projects"), newProject);
+                window.close();
             });
         })
     }
