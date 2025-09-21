@@ -353,7 +353,7 @@ option:not(option:last-of-type) {
 .projects {
   height: 100%;
   overflow-y: auto;
-  margin: 0px 16px 16px;
+  margin: 0px 8px ;
   display: grid;
   grid-auto-rows: 33.59px;
   gap: 16px;
