@@ -501,4 +501,52 @@ class AllTasks {
 
 };
 
-export {Page,Task, Labels, AllTasks}
+class Project {
+    constructor (name, desc, color, icon)
+    {
+        this._id = crypto.randomUUID();
+        this._name = name;
+        this._desc = desc;
+        this._color = color;
+        this._icon = icon; 
+    }
+
+    getId() {
+        return this._id;
+    }
+    setId(newId) {
+        this._id = newId;
+    }
+
+    get name() {
+        return this._name;
+    }
+    set name(newName) {
+        this._name = newName;
+    }
+    
+    get desc() {
+        return this._desc;
+    }
+    set desc(newDesc)
+    {
+        this._desc = newDesc;
+    }
+
+    get color() {
+        return this._color;
+    }
+    set color(newColor) {
+        this._color = newColor;
+    }
+
+    get icon() {
+        return this._icon;
+    }
+    set icon(newIcon) {
+        this._icon = newIcon;
+    }
+
+}
+
+export {Page,Task, Labels, AllTasks, Project}

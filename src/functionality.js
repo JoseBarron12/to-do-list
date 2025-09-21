@@ -3,6 +3,7 @@ import { allTasksOfUser, currentPage } from "./default";
 import { defaultLabels } from "./default";
 import { update } from "./update";
 import { isValid } from "./validate";
+import { Project } from "./class";
 
 export const functionality = (function () {
     const addMenuBtn = () => {
@@ -105,6 +106,7 @@ export const functionality = (function () {
             });
         });
     };
+    
     const addNewListBtn = (btn) => {
         btn.addEventListener("click", () => {
             const window = document.querySelector("dialog.add-list-window");
@@ -112,6 +114,19 @@ export const functionality = (function () {
 
             const exitBtn = window.querySelector(".exit-button");
             addExitBtn(exitBtn,window);
+
+            const submitBtn = window.querySelector(".submit-list-btn");
+            submitBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                
+                const nameInput = window.querySelector('input[type="text"]');
+                const colorInput = window.querySelector('input[type="color"]');
+                const iconInput = window.querySelector("select");
+                const descInput = window.querySelector("textarea");
+                
+                const newProject = new Project(nameInput.value, descInput.value, colorInput.value, iconInput.value);
+                console.log(newProject);
+            });
         })
     }
     
