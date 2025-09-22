@@ -188,7 +188,11 @@ export const isValid = (function() {
         else
         {
             allProjectsOfUser.editProjectfromID(id, projectName.value, projectDesc.value, projectColor.value, projectIcon.value);
+            console.log(allProjectsOfUser.getProjectFromId(id));
+            display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
+            
         }
+
         update.savedProjects();
 
         return true;

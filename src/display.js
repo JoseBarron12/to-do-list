@@ -421,7 +421,6 @@ export const display = (function () {
         }
     }
 
-
     const mainPage = (name) => {
         const content = document.querySelector("#content");
 
@@ -807,29 +806,46 @@ export const display = (function () {
     };
 
     const displayProject = (parent, projectObj) => {
-        const project = document.createElement("button");
-        project.classList.add("project");
-        project.setAttribute("id", `${projectObj.getId()}`);
-        project.style.border = `1px solid ${projectObj.color}`;
-        project.style.borderLeft= `8px solid ${projectObj.color}`;
-        parent.appendChild(project);
+        const btn =  parent.querySelector("[id='" + `${projectObj.getId()}` + "']");
+        if(btn != undefined)
+        {
+            const icon = btn.querySelector("img.icon");
+            icon.src = projectIcons[projectObj.icon];
 
-        const icon = document.createElement("img");
-        icon.src = projectIcons[projectObj.icon];
-        icon.classList.add("icon");
-        project.appendChild(icon);
+            const header = btn.querySelector(".project-text>p");
+            header.textContent = projectObj.name;
 
-        const textDiv = document.createElement("div");
-        textDiv.classList.add("project-text");
-        project.appendChild(textDiv);
+            btn.style.border = `1px solid ${projectObj.color}`;
+            btn.style.borderLeft= `8px solid ${projectObj.color}`;
 
-        const header = document.createElement("p");
-        header.textContent = projectObj.name;
-        textDiv.appendChild(header);
+        }
+        else
+        {
+            const project = document.createElement("button");
+            project.classList.add("project");
+            project.setAttribute("id", `${projectObj.getId()}`);
+            project.style.border = `1px solid ${projectObj.color}`;
+            project.style.borderLeft= `8px solid ${projectObj.color}`;
+            parent.appendChild(project);
 
-        const editDiv = document.createElement("div");
-        editDiv.classList.add("edit-project");
-        project.appendChild(editDiv); 
+            const icon = document.createElement("img");
+            icon.src = projectIcons[projectObj.icon];
+            icon.classList.add("icon");
+            project.appendChild(icon);
+
+            const textDiv = document.createElement("div");
+            textDiv.classList.add("project-text");
+            project.appendChild(textDiv);
+
+            const header = document.createElement("p");
+            header.textContent = projectObj.name;
+            textDiv.appendChild(header);
+
+            const editDiv = document.createElement("div");
+            editDiv.classList.add("edit-project");
+            project.appendChild(editDiv); 
+        }
+        
     };
  
     return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText };
