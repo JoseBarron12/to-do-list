@@ -356,7 +356,7 @@ option:not(option:last-of-type) {
   margin: 0px 8px ;
   display: grid;
   grid-auto-rows: 33.59px;
-  gap: 16px;
+  gap: 8px;
 }
 
 .projects::-webkit-scrollbar{
@@ -375,6 +375,26 @@ option:not(option:last-of-type) {
   gap: 8px;
   padding: 4px 8px;
   color: var(--text);
+  border-radius: 4px;
+  width: calc(100%);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.project-text { 
+  height: calc(100%);
+  width: calc(100%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-text > p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
 }
 
 .sidebar-settings {

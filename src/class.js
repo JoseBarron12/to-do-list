@@ -547,6 +547,6 @@ class Project {
         this._icon = newIcon;
     }
 
-}
+};
 
 export {Page,Task, Labels, AllTasks, Project}

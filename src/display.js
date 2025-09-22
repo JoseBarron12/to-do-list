@@ -738,6 +738,9 @@ export const display = (function () {
     const displayProject = (parent, projectObj) => {
         const project = document.createElement("button");
         project.classList.add("project");
+        project.setAttribute("id", `${projectObj.getId()}`);
+        project.style.border = `1px solid ${projectObj.color}`;
+        project.style.borderLeft= `8px solid ${projectObj.color}`;
         parent.appendChild(project);
 
         const icon = document.createElement("img");
@@ -749,7 +752,7 @@ export const display = (function () {
         textDiv.classList.add("project-text");
         project.appendChild(textDiv);
 
-        const header = document.createElement("h5");
+        const header = document.createElement("p");
         header.textContent = projectObj.name;
         textDiv.appendChild(header);
         
