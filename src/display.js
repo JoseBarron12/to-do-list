@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser} from "./default";
 import { functionality } from "./functionality";
 import { format, sub } from "date-fns";
 import { update } from "./update";
@@ -219,6 +219,11 @@ export const display = (function () {
         const projects = document.createElement("div");
         projects.classList.add("projects");
         navbar.appendChild(projects);
+
+        for(const project of allProjectsOfUser.allCurrentProjects)
+        {
+            displayProject(projects, project);
+        }
 
         const sidebarSettings = document.createElement("div");
         sidebarSettings.classList.add("sidebar-settings");
