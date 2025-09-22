@@ -1,12 +1,13 @@
 import "./styles.css";
 import { functionality } from "./functionality";
 import { display } from "./display";
-import { allTasksOfUser } from "./default";
+import { allTasksOfUser,allProjectsOfUser } from "./default";
 import { AllTasks } from "./class";
 import { constructFrom, differenceInSeconds } from "date-fns";
 import { startOfToday } from "date-fns";
 
 console.log(allTasksOfUser);
+console.log(allProjectsOfUser);
 
 functionality.addMenuBtn();
 functionality.addThemeBtn();

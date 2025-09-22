@@ -1,5 +1,5 @@
 import { display } from "./display";
-import { allTasksOfUser, currentPage } from "./default";
+import { allTasksOfUser, currentPage, allProjectsOfUser } from "./default";
 import { defaultLabels } from "./default";
 import { update } from "./update";
 import { isValid } from "./validate";
@@ -129,8 +129,13 @@ export const functionality = (function () {
                 
                 const newProject = new Project(nameInput.value, descInput.value, colorInput.value, iconInput.value);
                 
+                allProjectsOfUser.addProject(newProject);
+                update.savedProjects();
+
                 display.displayProject(document.querySelector(".projects"), newProject);
+
                 window.close();
+            
             });
         })
     }

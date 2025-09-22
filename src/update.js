@@ -1,6 +1,6 @@
-import { allTasksOfUser, currentPage, defaultLabels } from "./default";
+import { allTasksOfUser, currentPage, defaultLabels, allProjectsOfUser } from "./default";
 import { display } from "./display";
-import { AllTasks, Task } from "./class";
+import { AllTasks, Task, AllProjects, Project} from "./class";
 import { constructFrom } from "date-fns";
 import { constructFromSymbol } from "date-fns/constants";
 
@@ -69,6 +69,11 @@ export const update = (function () {
         localStorage.setItem("userTasks", currentTasks);
     };
 
+    const savedProjects = () => {
+        const currentProjects = JSON.stringify(allProjectsOfUser.allCurrentProjects);
+        localStorage.setItem("userProjects", currentProjects);
+    }
+
     const currentUserTasks = () => {
         const savedTasksData = localStorage.getItem("userTasks");
         const userTasks = new AllTasks();
@@ -93,6 +98,31 @@ export const update = (function () {
         }
         return userTasks;
     };
+
+    const currentUserProjects = () => {
+        const savedProjectsData = localStorage.getItem("userProjects");
+        const userProjects = new AllProjects();
+        if(savedProjectsData != null)
+        {
+            console.log("Saved and shit");
+            const dataObjs = JSON.parse(localStorage.getItem("userProjects"));
+            for (const dataObj of dataObjs) 
+            {
+                const name = dataObj._name;
+                const desc = dataObj._desc;
+                const color = dataObj._color;
+                const icon = dataObj._icon;
+
+                const project = new Project(name, desc, color, icon);
+                project.setId(dataObj._id);
+
+                userProjects.addProject(project);
+            }
+            return userProjects;
+        }
+        return userProjects;
+    }
+
 
     const clearCurrentPage = () => {
         const content = document.querySelector("#content");
@@ -168,5 +198,5 @@ export const update = (function () {
         }
     };
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge};
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects};
 })();

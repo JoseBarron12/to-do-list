@@ -547,6 +547,32 @@ class Project {
         this._icon = newIcon;
     }
 
+    editAllOfProject(name, desc, color, icon) {
+        this._name = name;
+        this._desc = desc;
+        this._color = color;
+        this._icon = icon; 
+    }
+
 };
 
-export {Page,Task, Labels, AllTasks, Project}
+class AllProjects {
+    allProjects = [];
+
+    constructor () {};
+
+    get allCurrentProjects() {
+        return this.allProjects;
+    };
+
+    set allCurrentProjects(replacementTasks) {
+        this.allProjects = replacementTasks;
+    };
+
+    addProject(newProject) {
+        this.allProjects.push(newProject);
+    }
+
+}
+
+export {Page,Task, Labels, AllTasks, Project, AllProjects}

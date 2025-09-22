@@ -61,4 +61,6 @@ const defaultLabels = new Labels();
 
 const allTasksOfUser = update.currentUserTasks();
 
-export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons};
+const allProjectsOfUser = update.currentUserProjects();
+
+export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser};
