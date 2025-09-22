@@ -573,6 +573,12 @@ class AllProjects {
         this.allProjects.push(newProject);
     }
 
+    removeTaskfromID(id) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allProjects.findIndex(isEqualTo);
+        if(result != -1 ) this.allProjects.splice(result,1);
+    }; 
+
 }
 
 export {Page,Task, Labels, AllTasks, Project, AllProjects}

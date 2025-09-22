@@ -608,6 +608,7 @@ export const display = (function () {
                 titleText: "delete"
             });
             parent.appendChild(deleteIcon);
+            functionality.deleteProjectIcon(deleteIcon, id);
  
         }
     };

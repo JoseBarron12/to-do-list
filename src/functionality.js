@@ -312,12 +312,20 @@ export const functionality = (function () {
         })
     };
 
-
     const deleteTaskIcon = (btn, id) => {
         btn.addEventListener("click", () => {
             allTasksOfUser.removeTaskfromID(id);
             update.savedTasks();
             update.refreshCurrentPage();
+        });
+    };
+
+    const deleteProjectIcon = (btn, id) => {
+        btn.addEventListener("click", () => {
+            allProjectsOfUser.removeTaskfromID(id);
+            update.savedProjects();
+            const btn =  document.querySelector("[id='" + `${id}` + "']");
+            btn.remove();
         });
     };
 
@@ -378,5 +386,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon};
 })();
