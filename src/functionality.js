@@ -115,28 +115,7 @@ export const functionality = (function () {
             const exitBtn = window.querySelector(".exit-button");
             addExitBtn(exitBtn,window);
 
-            const submitBtn = window.querySelector(".submit-list-btn");
-            const newBtn = submitBtn.cloneNode(true);
-            submitBtn.parentNode.replaceChild(newBtn, submitBtn);
-            
-            newBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                
-                const nameInput = window.querySelector('input[type="text"]');
-                const colorInput = window.querySelector('input[type="color"]');
-                const iconInput = window.querySelector("select");
-                const descInput = window.querySelector("textarea");
-                
-                const newProject = new Project(nameInput.value, descInput.value, colorInput.value, iconInput.value);
-                
-                allProjectsOfUser.addProject(newProject);
-                update.savedProjects();
-
-                display.displayProject(document.querySelector(".projects"), newProject);
-
-                window.close();
-            
-            });
+            addSubmitProjectBtn(window);
         })
     }
     
@@ -223,7 +202,7 @@ export const functionality = (function () {
         })
     };
 
-    const addSubmitTaskBtn = (window, id) => {
+    const addSubmitTaskBtn = (window) => {
         const btn = document.querySelector("button.submit-button");
         const newBtn = btn.cloneNode(true);
         btn.parentNode.replaceChild(newBtn, btn);
@@ -240,6 +219,21 @@ export const functionality = (function () {
             }
         });
     };
+
+    const addSubmitProjectBtn = (window, id) => {
+        const submitBtn = window.querySelector(".submit-list-btn");
+        const newBtn = submitBtn.cloneNode(true);
+        submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+            
+        newBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if((isValid.projectForm(id)))
+                {
+                    update.clearForm(window);
+                    window.close();
+                }
+            });
+    }
 
     const addClearText = (inputBox) => {
         const input = inputBox.querySelector("input");
@@ -384,5 +378,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn};
 })();

@@ -1,7 +1,8 @@
-import { Task } from "./class";
+import { Project, Task } from "./class";
 import { isToday, isFuture} from "date-fns";
 import { update } from "./update";
-import { allTasksOfUser, currentPage } from "./default";
+import { allTasksOfUser, currentPage, allProjectsOfUser } from "./default";
+import { display } from "./display";
 
 const setType = (date) => {
     if(isToday(date))
@@ -47,6 +48,7 @@ export const isValid = (function() {
             
         }
     }
+    
     const taskForm = (id) => {
         const form = document.querySelector("#add-task-form");
         let validForm = true;
@@ -124,6 +126,68 @@ export const isValid = (function() {
         update.savedTasks();
 
         return true;
-    }
-    return {name, taskForm, date, time};
+    };
+
+    const projectForm = (id) => {
+        const form = document.querySelector("#add-label-form");
+        let validForm = true;
+
+        const projectName = form.querySelector('input[type="text"]');
+        update.clearValidFlag(projectName);
+        
+        if( ! isValid.name(projectName.value))
+        {
+            validForm = false
+            update.userInvalid(projectName);
+        }
+        else
+        {
+            update.userValid(projectName);
+        }
+
+        const projectColor = form.querySelector('input[type="color"]');
+        update.clearValidFlag(projectColor);
+
+        if( ! isValid.name(projectColor.value))
+        {
+            validForm = false
+            update.userInvalid(projectColor);
+        }
+        else
+        {
+            update.userValid(projectColor);
+        }
+
+        const projectIcon = form.querySelector('select');
+        update.clearValidFlag(projectIcon);
+
+        if( ! isValid.name(projectIcon.value))
+        {
+            validForm = false
+            update.userInvalid(projectIcon);
+        }
+        else
+        {
+            update.userValid(projectIcon);
+        }
+
+        if(validForm == false)
+        {
+            return false;
+        }
+
+        const projectDesc = form.querySelector('textarea');
+
+        const newProject = new Project(projectName.value, projectDesc.value, projectColor.value, projectIcon.value)
+
+        allProjectsOfUser.addProject(newProject);
+        update.savedProjects();
+
+        display.displayProject(document.querySelector(".projects"), newProject);
+
+        return true;
+
+    };
+
+    return {name, taskForm, date, time, projectForm};
 })();
