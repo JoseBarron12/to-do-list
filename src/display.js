@@ -281,8 +281,8 @@ export const display = (function () {
 
         settingSection.appendChild(svgSetting);
         
-        functionality.addNewListBtn(addNewListSVG);
-        functionality.addNewListBtn(svgPlus);
+        functionality.addNewListBtn(addNewListSVG,true);
+        functionality.addNewListBtn(svgPlus, true);
         functionality.editProjectIcons(svgSetting, navbar);
 
         functionality.addNavbarBtn();
@@ -381,6 +381,46 @@ export const display = (function () {
             taskDesc.value = currTask.desc;
         }
     };
+
+    const projectWinText = (parent, isAddProjectWin, id) => {
+        const header = parent.querySelector("form>h3");
+        const button = parent.querySelector("button.submit-list-btn");
+        
+        let textForHeader = " ";
+        
+        if( currentPage.header != "all")
+        {
+            textForHeader = ` ${currentPage.header} `;
+        }
+
+        if(isAddProjectWin)
+        {
+            header.textContent = `Create List`;
+            button.textContent = "Create";
+        }
+        else
+        {
+            header.textContent = `Edit List`;
+            button.textContent = "Confirm";
+            
+            const currProject = allProjectsOfUser.getProjectFromId(id);
+
+            const form = parent.querySelector("form");
+
+            const projectName = form.querySelector('input[type="text"]');
+            projectName.value = currProject.name;
+            
+            const projectColor = form.querySelector('input[type="color"]');
+            projectColor.value = currProject.color;
+
+            const projectIcon = form.querySelector('select');
+            projectIcon.value = currProject.icon;
+
+            const projectDesc = form.querySelector('textarea');
+            projectDesc.value = currProject.desc;
+        }
+    }
+
 
     const mainPage = (name) => {
         const content = document.querySelector("#content");
@@ -600,6 +640,8 @@ export const display = (function () {
                 titleText: "square-edit-outline"
             });
             parent.appendChild(pencilIcon);
+            const addTaskWindow = document.querySelector(".add-list-window");
+            functionality.addNewListBtn(pencilIcon, false, id);
             
             const deleteIcon = displaySVG({
                 className: "icon-delete", // optional
@@ -790,5 +832,5 @@ export const display = (function () {
         project.appendChild(editDiv); 
     };
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons };
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText };
 })();

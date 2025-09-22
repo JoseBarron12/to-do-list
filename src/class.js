@@ -573,11 +573,27 @@ class AllProjects {
         this.allProjects.push(newProject);
     }
 
-    removeTaskfromID(id) {
+    removeProjectfromID(id) {
         const isEqualTo = (element) => element.getId() == id;
         const result = this.allProjects.findIndex(isEqualTo);
         if(result != -1 ) this.allProjects.splice(result,1);
     }; 
+
+    getProjectFromId(id) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allProjects.findIndex(isEqualTo);
+        if(result != -1 ) return this.allProjects[result];
+    };
+
+    editProjectfromID(id, name, desc, color, icon) {
+        const isEqualTo = (element) => element.getId() == id;
+        const result = this.allProjects.findIndex(isEqualTo);
+        if(result != -1 ) 
+        {
+            this.allProjects[result].editAllOfProject(name, desc, color, icon);
+        }
+    };
+
 
 }
 

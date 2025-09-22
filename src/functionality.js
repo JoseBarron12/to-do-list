@@ -107,15 +107,16 @@ export const functionality = (function () {
         });
     };
     
-    const addNewListBtn = (btn) => {
+    const addNewListBtn = (btn, isAddProjectWin, id) => {
         btn.addEventListener("click", () => {
             const window = document.querySelector("dialog.add-list-window");
+            display.projectWinText(window, isAddProjectWin, id)
             window.showModal();
 
             const exitBtn = window.querySelector(".exit-button");
             addExitBtn(exitBtn,window);
 
-            addSubmitProjectBtn(window);
+            addSubmitProjectBtn(window, id);
         })
     }
     
@@ -322,7 +323,7 @@ export const functionality = (function () {
 
     const deleteProjectIcon = (btn, id) => {
         btn.addEventListener("click", () => {
-            allProjectsOfUser.removeTaskfromID(id);
+            allProjectsOfUser.removeProjectfromID(id);
             update.savedProjects();
             const btn =  document.querySelector("[id='" + `${id}` + "']");
             btn.remove();

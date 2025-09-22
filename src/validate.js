@@ -180,10 +180,16 @@ export const isValid = (function() {
 
         const newProject = new Project(projectName.value, projectDesc.value, projectColor.value, projectIcon.value)
 
-        allProjectsOfUser.addProject(newProject);
+        if(id == undefined)
+        {
+            allProjectsOfUser.addProject(newProject);
+            display.displayProject(document.querySelector(".projects"), newProject);
+        }
+        else
+        {
+            allProjectsOfUser.editProjectfromID(id, projectName.value, projectDesc.value, projectColor.value, projectIcon.value);
+        }
         update.savedProjects();
-
-        display.displayProject(document.querySelector(".projects"), newProject);
 
         return true;
 
