@@ -397,6 +397,18 @@ option:not(option:last-of-type) {
   font-weight: bold;
 }
 
+.edit-project {
+  display: flex;
+  gap: 4px;
+}
+
+.edit-project > svg {
+  height: 24px;
+  width: 24px;
+  fill: var(--text);
+}
+
+
 .sidebar-settings {
   display: flex;
   justify-content: space-between;

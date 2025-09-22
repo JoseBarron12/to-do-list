@@ -123,7 +123,6 @@ export const update = (function () {
         return userProjects;
     }
 
-
     const clearCurrentPage = () => {
         const content = document.querySelector("#content");
         content.replaceChildren();
