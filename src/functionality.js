@@ -106,6 +106,27 @@ export const functionality = (function () {
             });
         });
     };
+
+    const addProjectBtn = (btn) => {
+        
+        btn.addEventListener("click", () => {
+            update.clearCurrentPage();
+
+            const navButtons = document.querySelectorAll(".sidebar-options>button");
+            navButtons.forEach((btns) => {
+                btns.classList.remove("active-btn");
+            });
+
+            const projectBtns = document.querySelectorAll(".project");
+            projectBtns.forEach((btns) => {
+                btns.classList.remove("active-btn");
+            });
+
+            btn.classList.add("active-btn");
+        })
+    };
+
+
     
     const addNewListBtn = (btn, isAddProjectWin, id) => {
         btn.addEventListener("click", () => {
@@ -387,5 +408,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon, addProjectBtn};
 })();

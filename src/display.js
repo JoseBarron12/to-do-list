@@ -844,6 +844,8 @@ export const display = (function () {
             const editDiv = document.createElement("div");
             editDiv.classList.add("edit-project");
             project.appendChild(editDiv); 
+
+            functionality.addProjectBtn(project);
         }
         
     };
