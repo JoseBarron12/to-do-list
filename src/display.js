@@ -39,6 +39,15 @@ const displayMainProjectHeader = (parent, projectObj) => {
     const contentHeader = document.createElement("h3");
     contentHeader.textContent = toUpperCaseFirstChar(projectObj.name);
     pageHeader.appendChild(contentHeader);
+
+    const pageDesc = document.createElement("div");
+    pageDesc.classList.add("content-desc");
+    parent.appendChild(pageDesc);
+
+    const desc = document.createElement("p");
+    desc.textContent = `${projectObj.desc}`;
+    pageDesc.appendChild(desc);
+
 };
 
 
