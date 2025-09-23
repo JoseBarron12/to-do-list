@@ -104,12 +104,13 @@ export const functionality = (function () {
         });
     };
 
-    const addProjectBtn = (btn) => {
+    const addProjectBtn = (btn, id) => {
         
         btn.addEventListener("click", () => {
             update.clearCurrentPage();
             update.clearAllNavBtns();
             btn.classList.add("active-btn");
+            display.listPage(id);
         })
     };
 

@@ -25,6 +25,23 @@ const displayMainPageHeader = (parent, headerName) => {
         pageHeader.appendChild(contentHeader);
 };
 
+const displayMainProjectHeader = (parent, projectObj) => {
+    const pageHeader = document.createElement("div");
+    pageHeader.classList.add("content-header");
+    parent.appendChild(pageHeader);
+
+    const contentImage = document.createElement("img");
+    contentImage.src = projectIcons[projectObj.icon];
+    contentImage.alt = `${projectObj.name}-icon`;
+    contentImage.classList.add("header-icon");
+    pageHeader.appendChild(contentImage);
+
+    const contentHeader = document.createElement("h3");
+    contentHeader.textContent = toUpperCaseFirstChar(projectObj.name);
+    pageHeader.appendChild(contentHeader);
+};
+
+
 const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
     headerNames.forEach((headerName) => {
 
@@ -70,6 +87,8 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
 
     });
 };
+
+
 
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
@@ -449,6 +468,25 @@ export const display = (function () {
         
     };
 
+    const listPage = (id) => {
+        const content = document.querySelector("#content");
+
+        const mainPage = document.createElement("div");
+        mainPage.classList.add("page");
+        content.appendChild(mainPage);
+        
+        displayMainProjectHeader(mainPage, allProjectsOfUser.getProjectFromId(id));
+        displaySectionBtns(mainPage,"all");
+
+        const tasksSection = document.createElement("div");
+        tasksSection.classList.add("tasks-section");
+        mainPage.appendChild(tasksSection);
+
+        displaySectionHeader(tasksSection, "all",false, "all", true);
+    }
+
+
+
     const addLabelsWindow = () => {
         const taskLabels = document.querySelector("#task-labels");
         
@@ -735,7 +773,7 @@ export const display = (function () {
 
     };
 
-    const displaySectionHeader = (parent, headerName, iconOn, pageName) => {
+    const displaySectionHeader = (parent, headerName, iconOn, pageName, isProject) => {
         const section = document.createElement("div");
         section.classList.add(`${headerName}`);
         parent.appendChild(section);
@@ -768,9 +806,20 @@ export const display = (function () {
         tasks.classList.add("tasks");
         section.appendChild(tasks);
 
-        const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
-        display.displayTasks(tasks, tasksInHdr);
+        if(isProject == true)
+        {
+            
+        }
+        else
+        {
+            const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
+            display.displayTasks(tasks, tasksInHdr);
+        }
+        
+        
     };
+
+
 
     const allHeader = (name) => {
     const header = document.querySelector(".task-section-header>h5");
@@ -845,10 +894,10 @@ export const display = (function () {
             editDiv.classList.add("edit-project");
             project.appendChild(editDiv); 
 
-            functionality.addProjectBtn(project);
+            functionality.addProjectBtn(project, projectObj.getId());
         }
         
     };
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText };
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText, listPage};
 })();
