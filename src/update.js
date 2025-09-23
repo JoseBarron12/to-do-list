@@ -206,5 +206,17 @@ export const update = (function () {
         }
     };
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects};
+    const clearAllNavBtns = () => {
+        const navButtons = document.querySelectorAll(".sidebar-options>button");
+            navButtons.forEach((btns) => {
+                btns.classList.remove("active-btn");
+            });
+
+        const projectBtns = document.querySelectorAll(".project");
+        projectBtns.forEach((btns) => {
+            btns.classList.remove("active-btn");
+        });
+    }
+
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects, clearAllNavBtns};
 })();

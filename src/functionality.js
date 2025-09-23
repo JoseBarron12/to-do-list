@@ -94,11 +94,8 @@ export const functionality = (function () {
             btn.addEventListener("click", () => {
                 //remove current page
                 update.clearCurrentPage();
-                
-                navButtons.forEach((btns) => {
-                    btns.classList.remove("active-btn");
-                })
-                
+                update.clearAllNavBtns();
+            
                 btn.classList.add("active-btn");
                 currentPage.page = btn.getAttribute("id");
                 currentPage.header = "all";
@@ -111,17 +108,7 @@ export const functionality = (function () {
         
         btn.addEventListener("click", () => {
             update.clearCurrentPage();
-
-            const navButtons = document.querySelectorAll(".sidebar-options>button");
-            navButtons.forEach((btns) => {
-                btns.classList.remove("active-btn");
-            });
-
-            const projectBtns = document.querySelectorAll(".project");
-            projectBtns.forEach((btns) => {
-                btns.classList.remove("active-btn");
-            });
-
+            update.clearAllNavBtns();
             btn.classList.add("active-btn");
         })
     };
