@@ -186,6 +186,12 @@ class Task {
         if(result != -1 ) return true;
     };
 
+    isOfProject(id) {
+        const isEqualTo = (element) => element.getID() == id;
+        const result = this.taskProjects.findIndex(isEqualTo);
+        if(result != -1 ) return true;
+    }
+
 };
 
 class Labels {
@@ -307,6 +313,11 @@ class AllTasks {
         {
             this.allTasks[result].editAllOfTask(name, desc, date, type, labels, projects)
         }
+    };
+
+
+    getTasksOfProject(id) {
+        return this.allTasks.filter((task) => task.isOfProject(id));
     };
 
     static getTdyTasks(array)

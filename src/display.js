@@ -521,9 +521,12 @@ export const display = (function () {
         mainPage.appendChild(tasksSection);
 
         displaySectionHeader(tasksSection, "all",false, "all", true);
-    }
 
+        const tasks = document.querySelector(".tasks");
+        display.displayTasks(tasks, allTasksOfUser.getTasksOfProject(id));
 
+        functionality.updateTaskDisplayBtnForProjects(mainPage.querySelectorAll("div.content-btns>button"), tasks, allTasksOfUser.getTasksOfProject(id), id);
+    };
 
     const addLabelsWindow = () => {
         const taskLabels = document.querySelector("#task-labels");

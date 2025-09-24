@@ -354,6 +354,20 @@ export const functionality = (function () {
         });   
     };
 
+    const updateTaskDisplayBtnForProjects = (btns, parent, array, id) =>
+    {
+        btns.forEach(btn => { 
+            btn.addEventListener("click", () => {
+                
+                btns.forEach(btn => {
+                    btn.removeAttribute("id");
+                })
+                btn.setAttribute("id","active-btn")
+                update.refreshTasksFromTypeProject(parent, btn.getAttribute("class"), array, id);      
+            });
+        });   
+    };
+
     const updateHeaderDisplayBtn = (btns, parent) =>
     {
         btns.forEach(btn => { 
@@ -397,5 +411,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon, addProjectBtn};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon, addProjectBtn, updateTaskDisplayBtnForProjects};
 })();

@@ -142,6 +142,12 @@ export const update = (function () {
         display.mainPage(currentPage.page);
     };
 
+    const refreshCurrentProjectPage = (id) => {
+        clearCurrentPage();
+        display.listPage(id);
+    };
+
+
     const clearTasks = (parent) => {
         parent.replaceChildren();
     };
@@ -168,6 +174,31 @@ export const update = (function () {
                 return;
         }
     };
+
+    const refreshTasksFromTypeProject = (parent, type, currentArray, id) => {
+        switch (type) {
+            case "all":
+                refreshCurrentProjectPage(id);
+                return;
+            case "today":
+                clearTasks(parent);
+                display.allHeader(type);
+                display.displayTasks(parent, AllTasks.getTdyTasks(currentArray));
+                return;
+            case "upcoming":
+                clearTasks(parent);
+                display.allHeader(type);
+                display.displayTasks(parent, AllTasks.getFutureTasks(currentArray));
+                return;
+            case "past":
+                clearTasks(parent);
+                display.allHeader(type);
+                display.displayTasks(parent, AllTasks.getPastTasks(currentArray));
+                return;
+        }
+    };
+
+
 
     const inputMinMax = (parent) => {
         const dateInput = parent.querySelector('input[type="date"]');
@@ -218,5 +249,5 @@ export const update = (function () {
         });
     }
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects, clearAllNavBtns};
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects, clearAllNavBtns, refreshTasksFromTypeProject};
 })();
