@@ -161,7 +161,10 @@ class Task {
     };
 
     addProject(newProject) {
-        this.taskProjects.push(newProject);
+        
+        const isEqualTo = (element) => element.getId() == newProject.getId();
+        const result = this.taskProjects.findIndex(isEqualTo);
+        if(result == -1 ) this.taskProjects.push(newProject);;
     };
 
     removeProject(projectToRemove) {
@@ -187,10 +190,12 @@ class Task {
     };
 
     isOfProject(id) {
-        const isEqualTo = (element) => element.getID() == id;
+        const isEqualTo = (element) => element.getId() == id;
         const result = this.taskProjects.findIndex(isEqualTo);
         if(result != -1 ) return true;
     }
+
+
 
 };
 

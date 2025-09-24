@@ -99,7 +99,21 @@ export const update = (function () {
                 
                 task.setId(dataObj._id);
                 task.labels = dataObj.taskLabels;
-                task.projects= dataObj.taskProjects;
+
+                const projects = dataObj.taskProjects;
+                for(const project of projects)
+                {
+                    const projectName = project._name;
+                    const projectDesc  = project._desc;
+                    const projectColor = project._color;
+                    const projectIcon = project._icon;
+                    const projectId = project._id;
+
+                    const newProject = new Project(projectName, projectDesc, projectColor, projectIcon);
+                    newProject.setId(projectId);
+
+                    task.addProject(newProject);
+                }
 
                 userTasks.addTask(task);
             }

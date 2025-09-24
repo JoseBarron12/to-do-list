@@ -112,10 +112,14 @@ export const isValid = (function() {
             });
         }
 
+        const taskProject = form.querySelector("select");
+
+
         if(id == undefined)
         {
             const newTask = new Task(taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime));
             newTask.labels = labels
+            newTask.addProject(allProjectsOfUser.getProjectFromId(taskProject.value));
             allTasksOfUser.addTask(newTask);
         }
         else
