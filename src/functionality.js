@@ -110,11 +110,12 @@ export const functionality = (function () {
             update.clearCurrentPage();
             update.clearAllNavBtns();
             btn.classList.add("active-btn");
+            currentPage.page = id;
+            currentPage.header = "all";
+
             display.listPage(id);
         })
     };
-
-
     
     const addNewListBtn = (btn, isAddProjectWin, id) => {
         btn.addEventListener("click", () => {
@@ -212,7 +213,7 @@ export const functionality = (function () {
         })
     };
 
-    const addSubmitTaskBtn = (window) => {
+    const addSubmitTaskBtn = (window, id) => {
         const btn = document.querySelector("button.submit-button");
         const newBtn = btn.cloneNode(true);
         btn.parentNode.replaceChild(newBtn, btn);

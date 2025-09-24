@@ -1,5 +1,5 @@
 import listImage from "./images/list.svg";
-import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser} from "./default";
+import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser, projectEmojis} from "./default";
 import { functionality } from "./functionality";
 import { format, sub } from "date-fns";
 import { update } from "./update";
@@ -97,7 +97,30 @@ const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
     });
 };
 
+const displayCurrProjects = (parent) => {
+    const currProjects = allProjectsOfUser.allCurrentProjects;
+    
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "None";
+    defaultOption.style.opacity = "80%";
+    parent.appendChild(defaultOption);
 
+    currProjects.forEach((project) => {
+        const option = document.createElement("option");
+        option.value = project.getId();
+        parent.appendChild(option);
+        
+        const spanIcon = document.createElement("span");
+        spanIcon.textContent = projectEmojis[project.icon] + " ";
+        option.appendChild(spanIcon);
+
+        const spanText = document.createElement("span");
+        spanText.textContent = project.name;
+        option.appendChild(spanText);
+        
+    });
+}
 
 const displaySectionBtns = (parent, pageName) => {
     const btnDiv = document.createElement("div");
@@ -366,6 +389,12 @@ export const display = (function () {
     const dialogWindowText = (parent, isAddTaskWin, id) => {
         const header = parent.querySelector("h3");
         const button = parent.querySelector("button.submit-button");
+        
+        const select = parent.querySelector("select");
+        if(select.children.length == 0)
+        {
+            displayCurrProjects(select);
+        }
         
         let textForHeader = " ";
         
@@ -827,8 +856,6 @@ export const display = (function () {
         
         
     };
-
-
 
     const allHeader = (name) => {
     const header = document.querySelector(".task-section-header>h5");

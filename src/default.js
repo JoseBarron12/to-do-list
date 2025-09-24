@@ -43,6 +43,18 @@ const projectIcons = {
     social: socialImage,
 };
 
+const projectEmojis = {
+    personal: "🏠",
+    work: "💼",
+    school: "🏫",
+    health: "🍎",
+    finance: "💵", 
+    travel: "✈",
+    shopping: "🛒",
+    social: "🎉",
+}
+
+
 
 const buttonTypes = ["all", "today", "upcoming", "past"];
 
@@ -63,4 +75,4 @@ const allTasksOfUser = update.currentUserTasks();
 
 const allProjectsOfUser = update.currentUserProjects();
 
-export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser};
+export {images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser, projectEmojis};

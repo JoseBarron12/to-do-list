@@ -720,7 +720,7 @@ svg.icon-delete {
   display: grid;
   height: 100%;
   width: 350px;
-  grid-template-rows: max-content repeat(3,1fr) 2fr 1fr;
+  grid-template-rows: max-content repeat(4,1fr) 2fr 1fr;
   gap: 32px;
 }
 
@@ -735,14 +735,14 @@ svg.icon-delete {
   text-align: center;
 }
 
-.form-task-name,.form-task-labels, 
+.form-task-name,.form-task-labels,.form-task-projects,
 .date, .time, .form-task-desc {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.form-task-name > input, .date > input, .time > input  {
+.form-task-name > input, .date > input, .time > input, .form-task-projects > select{
   height: 100%;
   border: 1px solid var(--background);
   border-radius: 4px;
@@ -765,6 +765,7 @@ svg.icon-delete {
 .label-inputs {
   width: 100%;
   display: flex;
+  align-items: center;
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
@@ -933,7 +934,7 @@ input:focus, textarea:focus
 
 .input-icon {
   position: absolute;
-  bottom: 16px;
+  bottom: 8px;
   right: 8px;
   width: 16px;
   height: auto;
