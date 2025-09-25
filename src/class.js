@@ -160,11 +160,11 @@ class Task {
         if(result != -1 ) this.taskLabels.splice(result,1);
     };
 
-    addProject(newProject) {
-        
-        const isEqualTo = (element) => element.getId() == newProject.getId();
-        const result = this.taskProjects.findIndex(isEqualTo);
-        if(result == -1 ) this.taskProjects.push(newProject);;
+    addProject(project) {
+        if (project && typeof project.getId === "function") {
+        this.taskProjects.push(project);
+        }
+
     };
 
     removeProject(projectToRemove) {
@@ -190,6 +190,10 @@ class Task {
     };
 
     isOfProject(id) {
+        if(this.taskProjects.length == 0)
+        {
+            return false;
+        }
         const isEqualTo = (element) => element.getId() == id;
         const result = this.taskProjects.findIndex(isEqualTo);
         if(result != -1 ) return true;

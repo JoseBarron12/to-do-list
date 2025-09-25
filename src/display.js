@@ -449,6 +449,13 @@ export const display = (function () {
             taskTime.value = format(currTask.date, "HH:mm");
 
             taskDesc.value = currTask.desc;
+
+            if(currTask.projects.length != 0)
+            {         
+                const option = select.querySelector("option[value='" + `${currTask.projects[0].getId()}` + "']");
+                option.selected = true;
+            }
+
         }
     };
 
