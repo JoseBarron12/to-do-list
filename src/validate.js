@@ -124,7 +124,15 @@ export const isValid = (function() {
         }
         else
         {
-            allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels);
+            if(taskProject.value != "")
+            {
+                allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels, [allProjectsOfUser.getProjectFromId(taskProject.value)]);
+            }
+            else
+            {
+                allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels, []);
+            }
+            
         }
         
         update.savedTasks();

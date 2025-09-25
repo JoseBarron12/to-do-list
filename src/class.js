@@ -175,6 +175,10 @@ class Task {
         if(result != -1 ) this.taskProjects.splice(result,1);
     };
 
+    removeAllProjects() {
+        this.taskProjects = [];
+    }
+
     editAllOfTask(name, desc, date, type, labels, projects)
     {
         this._name = name;
