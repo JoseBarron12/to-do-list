@@ -404,10 +404,10 @@ export const display = (function () {
         const button = parent.querySelector("button.submit-button");
         
         const select = parent.querySelector("select");
-        if(select.children.length == 0)
-        {
-            displayCurrProjects(select);
-        }
+        
+        select.replaceChildren();
+        displayCurrProjects(select);
+        
         
         let textForHeader = " ";
         
