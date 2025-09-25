@@ -107,13 +107,30 @@ export const functionality = (function () {
     const addProjectBtn = (btn, id) => {
         
         btn.addEventListener("click", () => {
-            update.clearCurrentPage();
-            update.clearAllNavBtns();
-            btn.classList.add("active-btn");
-            currentPage.page = id;
-            currentPage.header = "all";
-
-            display.listPage(id);
+            
+            if(allProjectsOfUser.getProjectFromId(id) != undefined)
+            {
+                update.clearCurrentPage();
+                update.clearAllNavBtns();
+                btn.classList.add("active-btn");
+                currentPage.page = id;
+                currentPage.header = "all";
+                display.listPage(id);
+            }
+            else
+            {
+                if(currentPage.page == id)
+                {
+                    currentPage.page = "today";
+                    currentPage.header = "all";
+                    update.clearCurrentPage();
+                    update.clearAllNavBtns();
+                    const todayBtn = document.querySelector("button#today");
+                    todayBtn.classList.add("active-btn");
+                    display.mainPage("today");
+                }
+            }
+            
         })
     };
     
