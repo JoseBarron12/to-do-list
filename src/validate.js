@@ -187,7 +187,10 @@ export const isValid = (function() {
         if(id == undefined)
         {
             allProjectsOfUser.addProject(newProject);
-            display.displayProject(document.querySelector(".projects"), newProject);
+            if(document.querySelector(".projects") != null)
+            {
+                display.displayProject(document.querySelector(".projects"), newProject);
+            }
         }
         else
         {
@@ -200,6 +203,10 @@ export const isValid = (function() {
             }   
             else
             {
+                if(document.querySelector(".projects") != null)
+                {
+                    
+                }
                 display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
             }
                    

@@ -19,6 +19,10 @@ const addTaskWindow = document.querySelector(".add-task-window");
 
 functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow, true);
 
+const addListBtn = document.querySelector("#addHeader");
+functionality.addNewListBtn(addListBtn, true);
+
+
 allTasksOfUser.allCurrentTask.forEach(a => {
     console.log(differenceInSeconds(a.date, startOfToday()));
 });
