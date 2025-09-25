@@ -455,6 +455,20 @@ option:not(option:last-of-type) {
   display: flex;
   gap: 8px;
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.content-header > h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-project-icon {
+  width: 24px;
+  height: 24px;
+  align-self: center;
 }
 
 .content-desc {

@@ -132,7 +132,7 @@ export const isValid = (function() {
         return true;
     };
 
-    const projectForm = (id) => {
+    const projectForm = (id, refreshPageFlag) => {
         const form = document.querySelector("#add-label-form");
         let validForm = true;
 
@@ -193,7 +193,16 @@ export const isValid = (function() {
         {
             allProjectsOfUser.editProjectfromID(id, projectName.value, projectDesc.value, projectColor.value, projectIcon.value);
             console.log(allProjectsOfUser.getProjectFromId(id));
-            display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
+            
+            if(refreshPageFlag == true)
+            {
+                update.refreshCurrentProjectPage(id);
+            }   
+            else
+            {
+                display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
+            }
+                   
             
         }
 

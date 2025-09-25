@@ -117,7 +117,7 @@ export const functionality = (function () {
         })
     };
     
-    const addNewListBtn = (btn, isAddProjectWin, id) => {
+    const addNewListBtn = (btn, isAddProjectWin, id, refreshPageFlag) => {
         btn.addEventListener("click", () => {
             const window = document.querySelector("dialog.add-list-window");
             display.projectWinText(window, isAddProjectWin, id)
@@ -126,7 +126,7 @@ export const functionality = (function () {
             const exitBtn = window.querySelector(".exit-button");
             addExitBtn(exitBtn,window);
 
-            addSubmitProjectBtn(window, id);
+            addSubmitProjectBtn(window, id, refreshPageFlag);
         })
     }
     
@@ -231,14 +231,14 @@ export const functionality = (function () {
         });
     };
 
-    const addSubmitProjectBtn = (window, id) => {
+    const addSubmitProjectBtn = (window, id,refreshPageFlag) => {
         const submitBtn = window.querySelector(".submit-list-btn");
         const newBtn = submitBtn.cloneNode(true);
         submitBtn.parentNode.replaceChild(newBtn, submitBtn);
             
         newBtn.addEventListener("click", (e) => {
                 e.preventDefault();
-                if((isValid.projectForm(id)))
+                if((isValid.projectForm(id, refreshPageFlag)))
                 {
                     update.clearForm(window);
                     window.close();

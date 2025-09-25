@@ -40,6 +40,19 @@ const displayMainProjectHeader = (parent, projectObj) => {
     contentHeader.textContent = toUpperCaseFirstChar(projectObj.name);
     pageHeader.appendChild(contentHeader);
 
+
+    const dotsHorizontalIcon = displaySVG({
+        className: "header-icon",   
+        viewBox: "0 0 24 24",
+        pathD: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z",
+        titleText: "dots-horizontal"         // accessible <title>
+    });
+
+    pageHeader.appendChild(dotsHorizontalIcon);
+
+    functionality.addNewListBtn(dotsHorizontalIcon, false, projectObj.getId(), true);
+
+
     const pageDesc = document.createElement("div");
     pageDesc.classList.add("content-desc");
     parent.appendChild(pageDesc);

@@ -263,5 +263,5 @@ export const update = (function () {
         });
     }
 
-    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects, clearAllNavBtns, refreshTasksFromTypeProject};
+    return {selectedFormLabels, clearValidFlag, userValid, userInvalid, clearForm, clearFormLabels, savedTasks, currentUserTasks, clearCurrentPage, refreshCurrentPage,refreshTasksFromType, inputMinMax,refreshSectionHeader, currTasksOnPge, currentUserProjects, savedProjects, clearAllNavBtns, refreshTasksFromTypeProject, refreshCurrentProjectPage};
 })();
