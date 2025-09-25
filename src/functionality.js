@@ -242,7 +242,17 @@ export const functionality = (function () {
                 update.clearForm(window);
                 update.clearFormLabels();
                 update.selectedFormLabels();
-                update.currTasksOnPge();
+                
+                if(currentPage.page == "all" ||
+                   currentPage.page == "today" ||
+                   currentPage.page == "upcoming" ||
+                   currentPage.page == "past" ){
+                    update.currTasksOnPge();
+                }
+                else
+                {
+                    update.refreshCurrentProjectPage(currentPage.page);
+                }
                 window.close();
             }
         });
