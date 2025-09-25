@@ -361,7 +361,9 @@ export const functionality = (function () {
     const deleteProjectIcon = (btn, id) => {
         btn.addEventListener("click", () => {
             allProjectsOfUser.removeProjectfromID(id);
-            update.savedProjects();
+            allTasksOfUser.deleteProjectFromAllTasks(id);
+            update.savedProjects(); 
+            update.savedTasks();
             const btn =  document.querySelector("[id='" + `${id}` + "']");
             btn.remove();
         });

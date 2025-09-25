@@ -335,6 +335,16 @@ class AllTasks {
         return this.allTasks.filter((task) => task.isOfProject(id));
     };
 
+    deleteProjectFromAllTasks(id)
+    {
+        this.allTasks.forEach((task) => {
+            if(task.isOfProject(id))
+            {
+                task.projects = [];
+            }
+        });
+    }
+
     static getTdyTasks(array)
     {
         return array.filter((task) => isToday(task.date));
