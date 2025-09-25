@@ -162,9 +162,11 @@ class Task {
 
     addProject(project) {
         if (project && typeof project.getId === "function") {
-        this.taskProjects.push(project);
+         
+            const isEqualTo = (element) => element.getId() == project.getId();
+            const result = this.taskProjects.findIndex(isEqualTo);
+            if(result == -1 ) this.taskProjects.push(project);
         }
-
     };
 
     removeProject(projectToRemove) {
