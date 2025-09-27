@@ -144,7 +144,7 @@ export const isValid = (function() {
         const form = document.querySelector("#add-label-form");
         let validForm = true;
 
-        const projectName = form.querySelector('input[type="text"]');
+        const projectName = form.querySelector('#name-list');
         update.clearValidFlag(projectName);
         
         if( ! isValid.name(projectName.value))

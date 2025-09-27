@@ -19,6 +19,7 @@ export const update = (function () {
     };
 
     const clearValidFlag = (elementToClear) => {
+        if(!elementToClear) return;
         elementToClear.classList.remove("user-invalid");
         elementToClear.classList.remove("user-valid");
     };
