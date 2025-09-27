@@ -145,6 +145,11 @@ header {
   opacity: 0%;
 }
 
+.notification {
+  position: relative;
+}
+
+
 main{
   height: calc(100vh - var(--header-height));
   width: 100vw;
@@ -993,4 +998,9 @@ input:focus, textarea:focus
 .checked {
   text-decoration: line-through;
   opacity: 50%;
+}
+
+button, input, .icon, .header-icon {
+  cursor: pointer;
+  user-select: none;
 }
