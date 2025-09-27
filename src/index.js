@@ -11,6 +11,7 @@ console.log(allProjectsOfUser);
 
 functionality.addMenuBtn();
 functionality.addThemeBtn();
+display.displayNotification();
 
 display.mainPage("today");
 

@@ -149,6 +149,17 @@ header {
   position: relative;
 }
 
+.noti-div {
+  position: absolute;
+  background-color: red;
+  padding: 0px 8px;
+  border-radius: 16px;
+  color: var(--text);
+  scale: 0.65;
+  top: 14px;
+  right: 8px;
+}
+
 
 main{
   height: calc(100vh - var(--header-height));

@@ -964,6 +964,27 @@ export const display = (function () {
         }
         
     };
+
+    const displayNotification = () => {
+        const icon = document.querySelector(".header-buttons");
+
+        const isDisplayed = icon.querySelector("noti-div");
+
+        if(icon.querySelector("noti-div") != null)
+        {
+            isDisplayed.remove();
+        }
+
+        const tdyTasks = allTasksOfUser.getTodayTasks().length;
+
+        if(tdyTasks != 0)
+        {
+            const notiDiv = document.createElement("div");
+            notiDiv.classList.add("noti-div");
+            notiDiv.textContent = `${tdyTasks}`;
+            icon.appendChild(notiDiv);
+        }
+    }
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText, listPage};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText, listPage, displayNotification};
 })();
