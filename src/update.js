@@ -135,7 +135,6 @@ export const update = (function () {
         const userProjects = new AllProjects();
         if(savedProjectsData != null)
         {
-            console.log("Saved and shit");
             const dataObjs = JSON.parse(localStorage.getItem("userProjects"));
             for (const dataObj of dataObjs) 
             {

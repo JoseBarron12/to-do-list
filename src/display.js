@@ -203,6 +203,22 @@ const displaySVG = ({ className, viewBox, pathD, titleText }) => {
 };
 
 export const display = (function () {
+    const initialPage = () => {
+        functionality.addMenuBtn();
+        functionality.addThemeBtn();
+        display.displayNotification();
+
+        display.mainPage("today");
+
+        const addTaskBtn = document.querySelector("#addTask");
+        const addTaskWindow = document.querySelector(".add-task-window");
+
+        functionality.addOpenDialogWinBtn(addTaskBtn, addTaskWindow, true);
+
+        const addListBtn = document.querySelector("#addHeader");
+        functionality.addNewListBtn(addListBtn, true);
+    }
+    
     const navbar = () => {
         const main = document.querySelector("main");
         const mainContent = document.querySelector(".main-content");
@@ -986,5 +1002,5 @@ export const display = (function () {
         }
     }
  
-    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText, listPage, displayNotification};
+    return {navbar, menuButtonSection, dropDownMenu, mainPage, addLabelsWindow, labels, textClearBtn, inputClearBtn, taskIcons, dialogWindowText, displayTasks, displaySectionHeader, allHeader, addTaskIconAllHdr, displayProject, projectEditIcons,projectWinText, listPage, displayNotification, initialPage};
 })();

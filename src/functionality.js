@@ -6,6 +6,7 @@ import { isValid } from "./validate";
 import { Project } from "./class";
 
 export const functionality = (function () {
+    
     const addMenuBtn = () => {
         const menuButton = document.querySelector(".menu-tab>svg");
         
