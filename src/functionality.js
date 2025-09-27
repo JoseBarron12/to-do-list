@@ -253,6 +253,7 @@ export const functionality = (function () {
                 {
                     update.refreshCurrentProjectPage(currentPage.page);
                 }
+                display.displayNotification();
                 window.close();
             }
         });
@@ -355,6 +356,7 @@ export const functionality = (function () {
             allTasksOfUser.removeTaskfromID(id);
             update.savedTasks();
             update.refreshCurrentPage();
+            display.displayNotification();
         });
     };
 
