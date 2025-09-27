@@ -968,9 +968,9 @@ export const display = (function () {
     const displayNotification = () => {
         const icon = document.querySelector(".header-buttons");
 
-        const isDisplayed = icon.querySelector("noti-div");
+        const isDisplayed = icon.querySelector(".noti-div");
 
-        if(icon.querySelector("noti-div") != null)
+        if(isDisplayed)
         {
             isDisplayed.remove();
         }
