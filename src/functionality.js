@@ -431,10 +431,15 @@ export const functionality = (function () {
             if(e.target.checked)
             {
                 parent.classList.add("checked");
+                allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), true);
+                update.savedTasks();
+
             }
             else
             {
                 parent.classList.remove("checked");
+                allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), false);
+                update.savedTasks();
             }
         });
     }

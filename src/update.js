@@ -95,10 +95,13 @@ export const update = (function () {
                 const desc = dataObj._desc;
                 const type = dataObj._type;
                 const date = new Date(dataObj._date);
+                const isChecked = dataObj._checked;
                 const task = new Task(name, desc, date, type);
                 
                 task.setId(dataObj._id);
                 task.labels = dataObj.taskLabels;
+
+                task.checked = isChecked;
 
                 const projects = dataObj.taskProjects;
 

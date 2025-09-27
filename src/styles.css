@@ -1000,7 +1000,7 @@ input:focus, textarea:focus
   opacity: 50%;
 }
 
-button, input, .icon, .header-icon {
+button, input, .icon, .header-icon, .edit-task > svg {
   cursor: pointer;
   user-select: none;
 }

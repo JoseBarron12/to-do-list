@@ -763,7 +763,14 @@ export const display = (function () {
             const input = document.createElement("input");
             input.setAttribute("type", "checkbox");
             input.setAttribute("id", `${task.getId()}`);
+            if(task.checked) 
+            {
+                input.checked = true;
+                taskDiv.classList.add("checked");
+            }
+                
             taskDiv.appendChild(input);
+
 
             const label = document.createElement("label");
             taskDiv.appendChild(label);

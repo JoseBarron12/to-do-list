@@ -84,7 +84,7 @@ class Task {
     taskProjects = [];
     taskLabels = []; // important, or other descriptors that distinguihs task
 
-    constructor (name, desc, dueDate, type, label, project)
+    constructor (name, desc, dueDate, type, label, project, isChecked)
     {
         this._id = crypto.randomUUID();
         this._name = name;
@@ -93,6 +93,7 @@ class Task {
         this._type = type; // today, upcoming, past
         if(label !== undefined) this.taskLabels.push(label);
         if(project !== undefined) this.taskProjects.push(project);
+        this._checked = (isChecked !== undefined) ? isChecked : false;
     }
 
     getId() {
@@ -145,11 +146,22 @@ class Task {
     {
         return this.taskProjects;
     }
-
-    set projects(newProject) {
+    
+    set projects(newProject) 
+    {
         this.taskProjects = newProject;
     }
- 
+    
+    get checked() 
+    {
+        return this._checked;
+    }
+
+    set checked(check)
+    {
+        this._checked = check;
+    }
+
     addLabel(newLabel) {
         this.taskLabels.push(newLabel);
     };
@@ -179,7 +191,7 @@ class Task {
         this.taskProjects = [];
     }
 
-    editAllOfTask(name, desc, date, type, labels, projects)
+    editAllOfTask(name, desc, date, type, labels, projects, isChecked)
     {
         this._name = name;
         this._desc = desc;
@@ -187,6 +199,7 @@ class Task {
         this._type = type;
         if(labels !== undefined) this.taskLabels = labels;
         if(projects !== undefined) this.taskProjects = projects;
+        this._checked = (isChecked !== undefined) ? isChecked : false;
     };
 
     isImportantTask() {
@@ -330,6 +343,15 @@ class AllTasks {
         }
     };
 
+    editTaskChecked(id, check)
+    {
+         const isEqualTo = (element) => element.getId() == id;
+        const result = this.allTasks.findIndex(isEqualTo);
+        if(result != -1 ) 
+        {
+            this.allTasks[result].checked = check;
+        }
+    }
 
     getTasksOfProject(id) {
         return this.allTasks.filter((task) => task.isOfProject(id));
