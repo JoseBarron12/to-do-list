@@ -5,447 +5,422 @@ import { update } from "./update";
 import { isValid } from "./validate";
 
 export const functionality = (function () {
-    
-    const addMenuBtn = () => {
-        const menuButton = document.querySelector(".menu-tab>svg");
-        
-        menuButton.addEventListener("click", () => {
-            const main = document.querySelector("main");
-            const mainContent = document.querySelector(".main-content");
-        
-            if(main.children.length != 1) // sidebar opened
-            {
-                main.children[0].remove();
-                mainContent.style.width = "100%";
-                display.menuButtonSection(false);
-        
-            }
-            else // sidebar close
-            {
-                display.navbar();
-                mainContent.style.width = "calc(100% - var(--side-bar-width))";
-                display.menuButtonSection(true);
-            }
-        
-            
+  const addMenuBtn = () => {
+    const menuButton = document.querySelector(".menu-tab>svg");
+
+    menuButton.addEventListener("click", () => {
+      const main = document.querySelector("main");
+      const mainContent = document.querySelector(".main-content");
+
+      if (main.children.length != 1) {
+        // sidebar opened
+        main.children[0].remove();
+        mainContent.style.width = "100%";
+        display.menuButtonSection(false);
+      } // sidebar close
+      else {
+        display.navbar();
+        mainContent.style.width = "calc(100% - var(--side-bar-width))";
+        display.menuButtonSection(true);
+      }
+    });
+  };
+
+  const addThemeBtn = () => {
+    const toggleThemebtn = document.querySelector(".theme");
+
+    toggleThemebtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme == "dark" ? "light" : "dark";
+
+      const lightIcon = document.querySelector(".light");
+      const darkIcon = document.querySelector(".dark");
+
+      if (newTheme == "light") {
+        lightIcon.style.opacity = "0%";
+        darkIcon.style.opacity = "100%";
+      } else {
+        lightIcon.style.opacity = "100%";
+        darkIcon.style.opacity = "0%";
+      }
+
+      document.documentElement.setAttribute("data-theme", newTheme);
+    });
+  };
+
+  const addDropdownMenuBtn = () => {
+    const dropdownMenus = document.querySelectorAll(".dropdown-menu");
+
+    dropdownMenus.forEach((dropdownMenu) => {
+      dropdownMenu.addEventListener("click", () => {
+        const upIcon = dropdownMenu.querySelector(".up");
+        const downIcon = dropdownMenu.querySelector(".down");
+
+        const isOpen = dropdownMenu.classList.toggle("open");
+
+        const elementToHide = dropdownMenu.parentNode.nextElementSibling;
+
+        if (isOpen) {
+          upIcon.style.opacity = "100%";
+          downIcon.style.opacity = "0%";
+          elementToHide.style.display = "grid";
+        } else {
+          upIcon.style.opacity = "0%";
+          downIcon.style.opacity = "100%";
+          elementToHide.style.display = "none";
+        }
+      });
+    });
+  };
+
+  const addNavbarBtn = () => {
+    const navButtons = document.querySelectorAll(".sidebar-options>button");
+    navButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        //remove current page
+        update.clearCurrentPage();
+        update.clearAllNavBtns();
+
+        btn.classList.add("active-btn");
+        currentPage.page = btn.getAttribute("id");
+        currentPage.header = "all";
+        display.mainPage(btn.getAttribute("id"));
+      });
+    });
+  };
+
+  const addProjectBtn = (btn, id) => {
+    btn.addEventListener("click", () => {
+      if (allProjectsOfUser.getProjectFromId(id) != undefined) {
+        update.clearCurrentPage();
+        update.clearAllNavBtns();
+        btn.classList.add("active-btn");
+        currentPage.page = id;
+        currentPage.header = "all";
+        display.listPage(id);
+      } else {
+        if (currentPage.page == id) {
+          currentPage.page = "today";
+          currentPage.header = "all";
+          update.clearCurrentPage();
+          update.clearAllNavBtns();
+          const todayBtn = document.querySelector("button#today");
+          todayBtn.classList.add("active-btn");
+          display.mainPage("today");
+        }
+      }
+    });
+  };
+
+  const addNewListBtn = (btn, isAddProjectWin, id, refreshPageFlag) => {
+    btn.addEventListener("click", () => {
+      const window = document.querySelector("dialog.add-list-window");
+      display.projectWinText(window, isAddProjectWin, id);
+      window.showModal();
+
+      const exitBtn = window.querySelector(".exit-button");
+      addExitBtn(exitBtn, window);
+
+      addSubmitProjectBtn(window, id, refreshPageFlag);
+    });
+  };
+
+  const addExitBtn = (btn, parentToClose) => {
+    btn.addEventListener("click", () => {
+      if (parentToClose instanceof HTMLDialogElement) {
+        update.clearForm(parentToClose);
+        update.clearFormLabels();
+        update.selectedFormLabels();
+        parentToClose.close();
+      } else {
+        update.selectedFormLabels();
+        parentToClose.remove();
+      }
+    });
+  };
+
+  const addOpenDialogWinBtn = (btn, parentToOpen, isAddTaskWin, id) => {
+    btn.addEventListener("click", () => {
+      update.clearForm(parentToOpen);
+      display.dialogWindowText(parentToOpen, isAddTaskWin, id);
+
+      parentToOpen.showModal();
+
+      update.inputMinMax(parentToOpen);
+
+      const exitBtn = document.querySelector(".exit-button");
+      addExitBtn(exitBtn, parentToOpen);
+
+      addSubmitTaskBtn(parentToOpen, id);
+
+      const textInputBox = parentToOpen.querySelector(".form-task-name");
+      addClearText(textInputBox);
+
+      const dateInputBox = parentToOpen.querySelector(".date");
+      addClearInput(dateInputBox);
+
+      const timeInputBox = parentToOpen.querySelector(".time");
+      addClearInput(timeInputBox);
+
+      const descInputBox = parentToOpen.querySelector(".form-task-desc");
+      addClearTextArea(descInputBox);
+
+      const openLabelsWinBtn = document.querySelector(".open-labels");
+      addOpenLabelsWinBtn(openLabelsWinBtn);
+    });
+  };
+
+  const addOpenLabelsWinBtn = (btn) => {
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      display.addLabelsWindow();
+    });
+  };
+
+  const addLabelBtns = () => {
+    const labelBtns = document.querySelectorAll(".label-options>label");
+    labelBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selection = btn.querySelector('[type="checkbox"]');
+        if (selection.checked) {
+          defaultLabels.addLabel(selection.getAttribute("name"));
+          update.selectedFormLabels();
+        } else {
+          defaultLabels.removeLabel(selection.getAttribute("name"));
+          update.selectedFormLabels();
+        }
+      });
+    });
+  };
+
+  const addDeleteLabelBtn = (btn, elementToDelete, labelName) => {
+    btn.addEventListener("click", () => {
+      defaultLabels.removeLabel(labelName);
+      elementToDelete.remove();
+    });
+  };
+
+  const addSubmitTaskBtn = (window, id) => {
+    const btn = document.querySelector("button.submit-button");
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+
+    newBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (isValid.taskForm(id)) {
+        update.clearForm(window);
+        update.clearFormLabels();
+        update.selectedFormLabels();
+
+        if (
+          currentPage.page == "all" ||
+          currentPage.page == "today" ||
+          currentPage.page == "upcoming" ||
+          currentPage.page == "past"
+        ) {
+          update.currTasksOnPge();
+        } else {
+          update.refreshCurrentProjectPage(currentPage.page);
+        }
+        display.displayNotification();
+        window.close();
+      }
+    });
+  };
+
+  const addSubmitProjectBtn = (window, id, refreshPageFlag) => {
+    const submitBtn = window.querySelector(".submit-list-btn");
+    const newBtn = submitBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+
+    newBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (isValid.projectForm(id, refreshPageFlag)) {
+        update.clearForm(window);
+        window.close();
+      }
+    });
+  };
+
+  const addClearText = (inputBox) => {
+    const input = inputBox.querySelector("input");
+    input.addEventListener("input", () => {
+      display.textClearBtn(inputBox);
+    });
+  };
+
+  const addClearInput = (inputBox) => {
+    const input = inputBox.querySelector("input");
+    input.addEventListener("input", () => {
+      display.inputClearBtn(inputBox);
+    });
+  };
+
+  const addClearTextArea = (inputBox) => {
+    const input = inputBox.querySelector("textarea");
+    input.addEventListener("input", () => {
+      display.inputClearBtn(inputBox);
+    });
+  };
+
+  const addClearTextBtn = (closeBtn, inputBox) => {
+    closeBtn.addEventListener("click", () => {
+      const input = inputBox.querySelector("input");
+      if (input != null) {
+        input.value = "";
+      } else {
+        const textArea = inputBox.querySelector("textarea");
+        textArea.value = "";
+      }
+      closeBtn.remove();
+    });
+  };
+
+  const closeAddLabelWin = (windowToClose) => {
+    windowToClose.addEventListener("mouseleave", () => {
+      windowToClose.remove();
+    });
+  };
+
+  const editTaskIcons = (parent) => {
+    parent.addEventListener("mouseenter", () => {
+      const editTask = parent.querySelector(".edit-task");
+      const input = parent.querySelector("input");
+      display.taskIcons(editTask, input.getAttribute("id"));
+      parent.addEventListener("mouseleave", () => {
+        const icons = editTask.querySelectorAll("svg");
+        icons.forEach((icon) => {
+          icon.remove();
         });
-    };
+      });
+    });
+  };
 
-    const addThemeBtn = () => {
-        const toggleThemebtn = document.querySelector(".theme")
+  const editProjectIcons = (btn, parent) => {
+    btn.addEventListener("click", () => {
+      const projects = parent.querySelectorAll("button.project");
+      projects.forEach((project) => {
+        const editProject = project.querySelector(".edit-project");
 
-        toggleThemebtn.addEventListener("click", () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme == 'dark' ? 'light' : 'dark';
+        if (editProject.children.length == 0) {
+          display.projectEditIcons(editProject, project.getAttribute("id"));
+        } else {
+          editProject.replaceChildren();
+        }
+      });
+    });
+  };
 
-            const lightIcon = document.querySelector(".light");
-            const darkIcon = document.querySelector(".dark");
-            
-            if(newTheme == 'light')
-            {
-                lightIcon.style.opacity = "0%";
-                darkIcon.style.opacity = "100%";
-            }
-            else
-            {
-                lightIcon.style.opacity = "100%";
-                darkIcon.style.opacity = "0%"
-            }
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
+  const deleteTaskIcon = (btn, id) => {
+    btn.addEventListener("click", () => {
+      allTasksOfUser.removeTaskfromID(id);
+      update.savedTasks();
+      update.refreshCurrentPage();
+      display.displayNotification();
+    });
+  };
 
+  const deleteProjectIcon = (btn, id) => {
+    btn.addEventListener("click", () => {
+      allProjectsOfUser.removeProjectfromID(id);
+      allTasksOfUser.deleteProjectFromAllTasks(id);
+      update.savedProjects();
+      update.savedTasks();
+      const btn = document.querySelector("[id='" + `${id}` + "']");
+      btn.remove();
+    });
+  };
+
+  const updateTaskDisplayBtn = (btns, parent, array) => {
+    btns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btns.forEach((btn) => {
+          btn.removeAttribute("id");
         });
-    };
+        btn.setAttribute("id", "active-btn");
+        update.refreshTasksFromType(parent, btn.getAttribute("class"), array);
+      });
+    });
+  };
 
-    const addDropdownMenuBtn = () => 
-    {
-        const dropdownMenus = document.querySelectorAll(".dropdown-menu");
-
-        dropdownMenus.forEach((dropdownMenu) => {
-            dropdownMenu.addEventListener("click", () => {
-                
-                const upIcon = dropdownMenu.querySelector(".up");
-                const downIcon = dropdownMenu.querySelector(".down");
-
-                const isOpen = dropdownMenu.classList.toggle("open");
-
-                const elementToHide = dropdownMenu.parentNode.nextElementSibling;
-
-                if(isOpen)
-                {
-                    upIcon.style.opacity = "100%";
-                    downIcon.style.opacity = "0%"
-                    elementToHide.style.display = "grid";
-                }
-                else
-                {
-                    upIcon.style.opacity = "0%";
-                    downIcon.style.opacity = "100%";
-                    elementToHide.style.display = "none"
-
-                }
-            });
+  const updateTaskDisplayBtnForProjects = (btns, parent, array, id) => {
+    btns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btns.forEach((btn) => {
+          btn.removeAttribute("id");
         });
-    };
+        btn.setAttribute("id", "active-btn");
+        update.refreshTasksFromTypeProject(
+          parent,
+          btn.getAttribute("class"),
+          array,
+          id,
+        );
+      });
+    });
+  };
 
-    const addNavbarBtn = () => {
-        const navButtons = document.querySelectorAll(".sidebar-options>button");
-        navButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                //remove current page
-                update.clearCurrentPage();
-                update.clearAllNavBtns();
-            
-                btn.classList.add("active-btn");
-                currentPage.page = btn.getAttribute("id");
-                currentPage.header = "all";
-                display.mainPage(btn.getAttribute("id"));
-            });
-        });
-    };
+  const updateHeaderDisplayBtn = (btns, parent) => {
+    btns.forEach((btn) => {
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
 
-    const addProjectBtn = (btn, id) => {
-        
-        btn.addEventListener("click", () => {
-            
-            if(allProjectsOfUser.getProjectFromId(id) != undefined)
-            {
-                update.clearCurrentPage();
-                update.clearAllNavBtns();
-                btn.classList.add("active-btn");
-                currentPage.page = id;
-                currentPage.header = "all";
-                display.listPage(id);
-            }
-            else
-            {
-                if(currentPage.page == id)
-                {
-                    currentPage.page = "today";
-                    currentPage.header = "all";
-                    update.clearCurrentPage();
-                    update.clearAllNavBtns();
-                    const todayBtn = document.querySelector("button#today");
-                    todayBtn.classList.add("active-btn");
-                    display.mainPage("today");
-                }
-            }
-            
-        })
-    };
-    
-    const addNewListBtn = (btn, isAddProjectWin, id, refreshPageFlag) => {
-        btn.addEventListener("click", () => {
-            const window = document.querySelector("dialog.add-list-window");
-            display.projectWinText(window, isAddProjectWin, id)
-            window.showModal();
+      newBtn.addEventListener("click", () => {
+        const clickedBtn = document.querySelector("button#active-btn");
+        clickedBtn.removeAttribute("id");
 
-            const exitBtn = window.querySelector(".exit-button");
-            addExitBtn(exitBtn,window);
+        newBtn.setAttribute("id", "active-btn");
+        const headerName = newBtn.getAttribute("class");
+        const iconOn = currentPage.page == "today" ? true : false;
+        if (headerName != "all") {
+          currentPage.header = headerName;
+          update.refreshSectionHeader(parent, headerName, iconOn);
+        } else {
+          currentPage.header = headerName;
+          update.refreshCurrentPage();
+        }
+      });
+    });
+  };
 
-            addSubmitProjectBtn(window, id, refreshPageFlag);
-        })
-    }
-    
-    const addExitBtn = (btn,parentToClose) => {
-        btn.addEventListener("click", () => {
-            if(parentToClose instanceof HTMLDialogElement)
-            {
-                update.clearForm(parentToClose);
-                update.clearFormLabels();
-                update.selectedFormLabels();
-                parentToClose.close();
+  const checkedDiv = (parent) => {
+    const checkbox = parent.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener("input", (e) => {
+      if (e.target.checked) {
+        parent.classList.add("checked");
+        allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), true);
+        update.savedTasks();
+      } else {
+        parent.classList.remove("checked");
+        allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), false);
+        update.savedTasks();
+      }
+    });
+  };
 
-            }
-            else
-            {
-                update.selectedFormLabels();
-                parentToClose.remove();
-            }
-        });
-    };
-
-    const addOpenDialogWinBtn = (btn, parentToOpen, isAddTaskWin, id) => {
-        btn.addEventListener("click", () => {
-            update.clearForm(parentToOpen);
-            display.dialogWindowText(parentToOpen, isAddTaskWin, id);
-        
-            parentToOpen.showModal();
-            
-            update.inputMinMax(parentToOpen);
-            
-            const exitBtn = document.querySelector(".exit-button");
-            addExitBtn(exitBtn,parentToOpen);
-
-            addSubmitTaskBtn(parentToOpen, id);
-
-            const textInputBox = parentToOpen.querySelector(".form-task-name");
-            addClearText(textInputBox);
-
-            const dateInputBox = parentToOpen.querySelector(".date");
-            addClearInput(dateInputBox);
-            
-            const timeInputBox = parentToOpen.querySelector(".time");
-            addClearInput(timeInputBox);
-
-            const descInputBox = parentToOpen.querySelector(".form-task-desc");
-            addClearTextArea(descInputBox);
-
-            const openLabelsWinBtn = document.querySelector(".open-labels");
-            addOpenLabelsWinBtn(openLabelsWinBtn);
-        });
-    };
-
-    const addOpenLabelsWinBtn = (btn) => {
-        btn.addEventListener("click", (event) => {
-            event.preventDefault();
-            display.addLabelsWindow();
-        });
-    };
-
-    const addLabelBtns = () => {
-        const labelBtns = document.querySelectorAll(".label-options>label");
-        labelBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const selection = btn.querySelector('[type="checkbox"]');
-                if(selection.checked)
-                {
-                    defaultLabels.addLabel(selection.getAttribute("name"));
-                    update.selectedFormLabels();
-                }
-                else
-                {
-                    defaultLabels.removeLabel(selection.getAttribute("name"));
-                    update.selectedFormLabels();
-                    
-                }
-            })
-        });
-    };
-
-    const addDeleteLabelBtn = (btn, elementToDelete, labelName) => {
-        btn.addEventListener("click", () => {
-            defaultLabels.removeLabel(labelName);
-            elementToDelete.remove();
-        })
-    };
-
-    const addSubmitTaskBtn = (window, id) => {
-        const btn = document.querySelector("button.submit-button");
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-
-        newBtn.addEventListener("click", (event) => {
-            event.preventDefault();
-            if(isValid.taskForm(id))
-            {
-                update.clearForm(window);
-                update.clearFormLabels();
-                update.selectedFormLabels();
-                
-                if(currentPage.page == "all" ||
-                   currentPage.page == "today" ||
-                   currentPage.page == "upcoming" ||
-                   currentPage.page == "past" ){
-                    update.currTasksOnPge();
-                }
-                else
-                {
-                    update.refreshCurrentProjectPage(currentPage.page);
-                }
-                display.displayNotification();
-                window.close();
-            }
-        });
-    };
-
-    const addSubmitProjectBtn = (window, id,refreshPageFlag) => {
-        const submitBtn = window.querySelector(".submit-list-btn");
-        const newBtn = submitBtn.cloneNode(true);
-        submitBtn.parentNode.replaceChild(newBtn, submitBtn);
-            
-        newBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                if((isValid.projectForm(id, refreshPageFlag)))
-                {
-                    update.clearForm(window);
-                    window.close();
-                }
-            });
-    }
-
-    const addClearText = (inputBox) => {
-        const input = inputBox.querySelector("input");
-        input.addEventListener("input", () => {
-            display.textClearBtn(inputBox);
-        });
-    };
-
-    const addClearInput = (inputBox) => {
-        const input = inputBox.querySelector("input");
-        input.addEventListener("input", () => {
-            display.inputClearBtn(inputBox);
-        });
-    };
-
-    const addClearTextArea = (inputBox) => {
-        const input = inputBox.querySelector("textarea");
-        input.addEventListener("input", () => {
-            display.inputClearBtn(inputBox);
-        });
-    };
-
-    const addClearTextBtn = (closeBtn, inputBox) => {
-        closeBtn.addEventListener("click", () => {
-            const input = inputBox.querySelector("input");
-            if(input != null)
-            {
-                input.value = "";
-            }
-            else
-            {
-                const textArea = inputBox.querySelector("textarea");
-                textArea.value = "";
-            }
-            closeBtn.remove();
-        })
-    };
-
-    const closeAddLabelWin = (windowToClose) => {
-        windowToClose.addEventListener("mouseleave", () => {
-            windowToClose.remove();
-        });
-    };
-
-    const editTaskIcons = (parent) => {
-        parent.addEventListener("mouseenter", () => {
-            const editTask = parent.querySelector(".edit-task");
-            const input = parent.querySelector("input");
-            display.taskIcons(editTask,input.getAttribute("id"));
-            parent.addEventListener("mouseleave", () => {
-                const icons = editTask.querySelectorAll("svg");
-                icons.forEach((icon) => {
-                    icon.remove();
-                });
-            });
-        });
-    };
-
-    const editProjectIcons = (btn, parent) => {
-        btn.addEventListener("click", () => {
-            const projects = parent.querySelectorAll("button.project");
-            projects.forEach((project) => {
-                const editProject = project.querySelector(".edit-project");
-                
-                if(editProject.children.length == 0)
-                {
-                    display.projectEditIcons(editProject, project.getAttribute("id"));
-                }
-                else
-                {
-                    editProject.replaceChildren();
-                }
-                
-            });
-
-        })
-    };
-
-    const deleteTaskIcon = (btn, id) => {
-        btn.addEventListener("click", () => {
-            allTasksOfUser.removeTaskfromID(id);
-            update.savedTasks();
-            update.refreshCurrentPage();
-            display.displayNotification();
-        });
-    };
-
-    const deleteProjectIcon = (btn, id) => {
-        btn.addEventListener("click", () => {
-            allProjectsOfUser.removeProjectfromID(id);
-            allTasksOfUser.deleteProjectFromAllTasks(id);
-            update.savedProjects(); 
-            update.savedTasks();
-            const btn =  document.querySelector("[id='" + `${id}` + "']");
-            btn.remove();
-        });
-    };
-
-    const updateTaskDisplayBtn = (btns, parent, array) =>
-    {
-        btns.forEach(btn => { 
-            btn.addEventListener("click", () => {
-                
-                btns.forEach(btn => {
-                    btn.removeAttribute("id");
-                })
-                btn.setAttribute("id","active-btn")
-                update.refreshTasksFromType(parent, btn.getAttribute("class"), array);      
-            });
-        });   
-    };
-
-    const updateTaskDisplayBtnForProjects = (btns, parent, array, id) =>
-    {
-        btns.forEach(btn => { 
-            btn.addEventListener("click", () => {
-                
-                btns.forEach(btn => {
-                    btn.removeAttribute("id");
-                })
-                btn.setAttribute("id","active-btn")
-                update.refreshTasksFromTypeProject(parent, btn.getAttribute("class"), array, id);      
-            });
-        });   
-    };
-
-    const updateHeaderDisplayBtn = (btns, parent) =>
-    {
-        btns.forEach(btn => { 
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-            
-            newBtn.addEventListener("click", () => {
-
-                const clickedBtn = document.querySelector("button#active-btn");
-                clickedBtn.removeAttribute("id");
-            
-                newBtn.setAttribute("id","active-btn");
-                const headerName = newBtn.getAttribute("class");
-                const iconOn = (currentPage.page == "today") ? true : false;
-                if(headerName != "all")
-                {
-                    currentPage.header = headerName;
-                    update.refreshSectionHeader(parent,headerName,iconOn);
-                }
-                else {
-                    currentPage.header = headerName;
-                    update.refreshCurrentPage();
-                }
-                      
-            });
-        });   
-    };
-
-    const checkedDiv = (parent) => {
-        const checkbox = parent.querySelector('input[type="checkbox"]');
-        checkbox.addEventListener("input", (e) => {
-            if(e.target.checked)
-            {
-                parent.classList.add("checked");
-                allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), true);
-                update.savedTasks();
-
-            }
-            else
-            {
-                parent.classList.remove("checked");
-                allTasksOfUser.editTaskChecked(checkbox.getAttribute("id"), false);
-                update.savedTasks();
-            }
-        });
-    }
-
-
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, deleteProjectIcon, addProjectBtn, updateTaskDisplayBtnForProjects};
+  return {
+    addMenuBtn,
+    addThemeBtn,
+    addDropdownMenuBtn,
+    addNavbarBtn,
+    addExitBtn,
+    addOpenDialogWinBtn,
+    addOpenLabelsWinBtn,
+    addLabelBtns,
+    addDeleteLabelBtn,
+    addSubmitTaskBtn,
+    addClearText,
+    addClearTextBtn,
+    closeAddLabelWin,
+    editTaskIcons,
+    deleteTaskIcon,
+    updateTaskDisplayBtn,
+    updateHeaderDisplayBtn,
+    checkedDiv,
+    addNewListBtn,
+    editProjectIcons,
+    deleteProjectIcon,
+    addProjectBtn,
+    updateTaskDisplayBtnForProjects,
+  };
 })();

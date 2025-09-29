@@ -1,227 +1,212 @@
 import { Project, Task } from "./class";
-import { isToday, isFuture} from "date-fns";
+import { isToday, isFuture } from "date-fns";
 import { update } from "./update";
 import { allTasksOfUser, currentPage, allProjectsOfUser } from "./default";
 import { display } from "./display";
 
 const setType = (date) => {
-    if(isToday(date))
-    {
-        return "today";
+  if (isToday(date)) {
+    return "today";
+  } else if (isFuture(date)) {
+    return "upcoming";
+  } else {
+    return "past";
+  }
+};
+
+export const isValid = (function () {
+  const name = (inputName) => {
+    return inputName.replace(/^\s+|\s+$/gm, "").length != 0 ? true : false;
+  };
+
+  const date = (date) => {
+    return date.length != 0;
+  };
+
+  const time = (time) => {
+    if (time.value.length == 0) {
+      return false;
+    } else if (time.min == "" && time.max == "") {
+      return true;
+    } else {
+      if (currentPage.header != "evening") {
+        return time.value >= time.min && time.value < time.max;
+      }
+      return time.value >= time.min || time.value < time.max;
     }
-    else if(isFuture(date))
-    {
-        return "upcoming"
+  };
+
+  const taskForm = (id) => {
+    const form = document.querySelector("#add-task-form");
+    let validForm = true;
+
+    const taskName = form.querySelector('input[id="task-name"]');
+    update.clearValidFlag(taskName);
+
+    if (!isValid.name(taskName.value)) {
+      validForm = false;
+      update.userInvalid(taskName);
+    } else {
+      update.userValid(taskName);
     }
-    else
-    {
-        return "past";
+
+    const taskDate = form.querySelector('input[id="task-date"]');
+    update.clearValidFlag(taskDate);
+
+    if (!isValid.date(taskDate.value)) {
+      validForm = false;
+      update.userInvalid(taskDate);
+    } else {
+      update.userValid(taskDate);
     }
-    
-}
 
-export const isValid = (function() {
-    const name = (inputName) => {
-        return (inputName.replace(/^\s+|\s+$/gm,'').length != 0) ? true : false;
+    const taskTime = form.querySelector('input[id="task-time"]');
+    update.clearValidFlag(taskTime);
+
+    if (!isValid.date(taskTime.value)) {
+      validForm = false;
+      update.userInvalid(taskTime);
+    } else {
+      update.userValid(taskTime);
     }
 
-    const date = (date) => {
-        return (date.length != 0);
-    };
-
-    const time = (time) => {
-        if(time.value.length == 0)
-        {
-            return false;
-        }
-        else if(time.min == "" && time.max == "")
-        {
-            
-            return true;
-        }
-        else {
-            if(currentPage.header != "evening")
-            {
-                return (time.value >= time.min && time.value < time.max);
-            }
-            return (time.value >= time.min || time.value < time.max);
-            
-        }
+    if (validForm == false) {
+      return false;
     }
-    
-    const taskForm = (id) => {
-        const form = document.querySelector("#add-task-form");
-        let validForm = true;
-        
-        const taskName = form.querySelector('input[id="task-name"]');
-        update.clearValidFlag(taskName);
-        
-        if( ! isValid.name(taskName.value))
-        {
-            validForm = false
-            update.userInvalid(taskName);
-        }
-        else
-        {
-            update.userValid(taskName);
-        }
-        
-        const taskDate = form.querySelector('input[id="task-date"]');
-        update.clearValidFlag(taskDate);
 
-        if(! isValid.date(taskDate.value)) 
-        {
-            validForm = false
-            update.userInvalid(taskDate);
-        }
-        else
-        {
-            update.userValid(taskDate);
-        }
-        
-        const taskTime = form.querySelector('input[id="task-time"]');
-        update.clearValidFlag(taskTime);
+    const dateTime = taskDate.value + "T" + taskTime.value;
 
-        if(! isValid.date(taskTime.value)) 
-        {
-            validForm = false
-            update.userInvalid(taskTime);
-        }
-        else
-        {
-            update.userValid(taskTime);
-        }
-        
-        if(validForm == false)
-        {
-            return false;
-        }
+    const taskDesc = form.querySelector('textarea[id="task-desc"]');
 
-        const dateTime = taskDate.value + 'T' + taskTime.value;
-        
-        const taskDesc = form.querySelector('textarea[id="task-desc"]');
+    let labels = [];
+    const labelOptions = form.querySelector(".label-inputs");
 
-        let labels = [];
-        const labelOptions = form.querySelector(".label-inputs");
-        
-        if(labelOptions.children.length != 0)
-        {
-            const taskLabels = labelOptions.querySelectorAll('input[type="checkbox"]');
-            taskLabels.forEach(label => {
-                labels.push(label.name);
-            });
-        }
+    if (labelOptions.children.length != 0) {
+      const taskLabels = labelOptions.querySelectorAll(
+        'input[type="checkbox"]',
+      );
+      taskLabels.forEach((label) => {
+        labels.push(label.name);
+      });
+    }
 
-        const taskProject = form.querySelector("select");
+    const taskProject = form.querySelector("select");
 
+    if (id == undefined) {
+      const newTask = new Task(
+        taskName.value,
+        taskDesc.value,
+        new Date(dateTime),
+        setType(dateTime),
+      );
+      newTask.labels = labels;
+      newTask.addProject(allProjectsOfUser.getProjectFromId(taskProject.value));
+      allTasksOfUser.addTask(newTask);
+    } else {
+      if (taskProject.value != "") {
+        allTasksOfUser.editTaskformID(
+          id,
+          taskName.value,
+          taskDesc.value,
+          new Date(dateTime),
+          setType(dateTime),
+          labels,
+          [allProjectsOfUser.getProjectFromId(taskProject.value)],
+        );
+      } else {
+        allTasksOfUser.editTaskformID(
+          id,
+          taskName.value,
+          taskDesc.value,
+          new Date(dateTime),
+          setType(dateTime),
+          labels,
+          [],
+        );
+      }
+    }
 
-        if(id == undefined)
-        {
-            const newTask = new Task(taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime));
-            newTask.labels = labels
-            newTask.addProject(allProjectsOfUser.getProjectFromId(taskProject.value));
-            allTasksOfUser.addTask(newTask);
-        }
-        else
-        {
-            if(taskProject.value != "")
-            {
-                allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels, [allProjectsOfUser.getProjectFromId(taskProject.value)]);
-            }
-            else
-            {
-                allTasksOfUser.editTaskformID(id, taskName.value, taskDesc.value, new Date(dateTime), setType(dateTime), labels, []);
-            }
-            
-        }
-        
-        update.savedTasks();
+    update.savedTasks();
 
-        return true;
-    };
+    return true;
+  };
 
-    const projectForm = (id, refreshPageFlag) => {
-        const form = document.querySelector("#add-label-form");
-        let validForm = true;
+  const projectForm = (id, refreshPageFlag) => {
+    const form = document.querySelector("#add-label-form");
+    let validForm = true;
 
-        const projectName = form.querySelector('#name-list');
-        update.clearValidFlag(projectName);
-        
-        if( ! isValid.name(projectName.value))
-        {
-            validForm = false
-            update.userInvalid(projectName);
-        }
-        else
-        {
-            update.userValid(projectName);
-        }
+    const projectName = form.querySelector("#name-list");
+    update.clearValidFlag(projectName);
 
-        const projectColor = form.querySelector('input[type="color"]');
-        update.clearValidFlag(projectColor);
+    if (!isValid.name(projectName.value)) {
+      validForm = false;
+      update.userInvalid(projectName);
+    } else {
+      update.userValid(projectName);
+    }
 
-        if( ! isValid.name(projectColor.value))
-        {
-            validForm = false
-            update.userInvalid(projectColor);
-        }
-        else
-        {
-            update.userValid(projectColor);
-        }
+    const projectColor = form.querySelector('input[type="color"]');
+    update.clearValidFlag(projectColor);
 
-        const projectIcon = form.querySelector('select');
-        update.clearValidFlag(projectIcon);
+    if (!isValid.name(projectColor.value)) {
+      validForm = false;
+      update.userInvalid(projectColor);
+    } else {
+      update.userValid(projectColor);
+    }
 
-        if( ! isValid.name(projectIcon.value))
-        {
-            validForm = false
-            update.userInvalid(projectIcon);
-        }
-        else
-        {
-            update.userValid(projectIcon);
-        }
+    const projectIcon = form.querySelector("select");
+    update.clearValidFlag(projectIcon);
 
-        if(validForm == false)
-        {
-            return false;
-        }
+    if (!isValid.name(projectIcon.value)) {
+      validForm = false;
+      update.userInvalid(projectIcon);
+    } else {
+      update.userValid(projectIcon);
+    }
 
-        const projectDesc = form.querySelector('textarea');
+    if (validForm == false) {
+      return false;
+    }
 
-        const newProject = new Project(projectName.value, projectDesc.value, projectColor.value, projectIcon.value)
+    const projectDesc = form.querySelector("textarea");
 
-        if(id == undefined)
-        {
-            allProjectsOfUser.addProject(newProject);
-            if(document.querySelector(".projects") != null)
-            {
-                display.displayProject(document.querySelector(".projects"), newProject);
-            }
-        }
-        else
-        {
-            allProjectsOfUser.editProjectfromID(id, projectName.value, projectDesc.value, projectColor.value, projectIcon.value);
-            console.log(allProjectsOfUser.getProjectFromId(id));
-            
-            if(refreshPageFlag == true)
-            {
-                update.refreshCurrentProjectPage(id);
-            }   
-            else
-            {
-                display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
-            }
-                   
-            
-        }
+    const newProject = new Project(
+      projectName.value,
+      projectDesc.value,
+      projectColor.value,
+      projectIcon.value,
+    );
 
-        update.savedProjects();
+    if (id == undefined) {
+      allProjectsOfUser.addProject(newProject);
+      if (document.querySelector(".projects") != null) {
+        display.displayProject(document.querySelector(".projects"), newProject);
+      }
+    } else {
+      allProjectsOfUser.editProjectfromID(
+        id,
+        projectName.value,
+        projectDesc.value,
+        projectColor.value,
+        projectIcon.value,
+      );
+      console.log(allProjectsOfUser.getProjectFromId(id));
 
-        return true;
+      if (refreshPageFlag == true) {
+        update.refreshCurrentProjectPage(id);
+      } else {
+        display.displayProject(
+          document.querySelector(".projects"),
+          allProjectsOfUser.getProjectFromId(id),
+        );
+      }
+    }
 
-    };
+    update.savedProjects();
 
-    return {name, taskForm, date, time, projectForm};
+    return true;
+  };
+
+  return { name, taskForm, date, time, projectForm };
 })();
