@@ -3,7 +3,6 @@ import { allTasksOfUser, currentPage, allProjectsOfUser } from "./default";
 import { defaultLabels } from "./default";
 import { update } from "./update";
 import { isValid } from "./validate";
-import { Project } from "./class";
 
 export const functionality = (function () {
     
@@ -149,7 +148,7 @@ export const functionality = (function () {
     }
     
     const addExitBtn = (btn,parentToClose) => {
-        btn.addEventListener("click", (e) => {
+        btn.addEventListener("click", () => {
             if(parentToClose instanceof HTMLDialogElement)
             {
                 update.clearForm(parentToClose);
@@ -448,5 +447,5 @@ export const functionality = (function () {
     }
 
 
-    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, addSubmitTaskBtn , deleteProjectIcon, addProjectBtn, updateTaskDisplayBtnForProjects};
+    return {addMenuBtn, addThemeBtn, addDropdownMenuBtn, addNavbarBtn, addExitBtn, addOpenDialogWinBtn, addOpenLabelsWinBtn, addLabelBtns, addDeleteLabelBtn, addSubmitTaskBtn, addClearText, addClearTextBtn, closeAddLabelWin, editTaskIcons, deleteTaskIcon, updateTaskDisplayBtn, updateHeaderDisplayBtn, checkedDiv, addNewListBtn, editProjectIcons, deleteProjectIcon, addProjectBtn, updateTaskDisplayBtnForProjects};
 })();

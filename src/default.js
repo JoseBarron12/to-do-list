@@ -1,4 +1,4 @@
-import { Page, Labels, AllTasks } from "./class";
+import { Page, Labels} from "./class";
 import { update } from "./update";
 import allImage from "./images/all.svg";
 import todayImage from "./images/today.svg";

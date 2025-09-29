@@ -1,4 +1,4 @@
-import { isToday, isPast, isFuture, isYesterday, isSameWeek, isSameMonth, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, setHours, startOfYesterday, getYear, startOfToday } from "date-fns";
+import { isToday, isPast, isFuture, isYesterday, isSameYear, differenceInDays, differenceInHours, differenceInMinutes, format, startOfDay, startOfTomorrow, endOfToday, endOfYesterday, differenceInSeconds, isTomorrow, addHours, startOfYesterday, getYear, startOfToday } from "date-fns";
 import { getHours} from "date-fns/fp";
 import { set } from "date-fns";
 import { currentPage } from "./default";
@@ -9,10 +9,6 @@ const isWithinAWeek = (date) => {
     return !isTomorrow(date)  && !isYesterday(date) && hrsApart <= 24 * 7;
 };
 
-const isWithin24Hrs = (date) => {
-    const hrsApart = Math.abs(differenceInHours(date, new Date()));
-    return hrsApart <= 24;
-};
 
 const isWithinAMonth = (date) => {
     const hrsApart = Math.abs(differenceInHours(date, new Date()));

@@ -1,8 +1,6 @@
 import { allTasksOfUser, currentPage, defaultLabels, allProjectsOfUser } from "./default";
 import { display } from "./display";
 import { AllTasks, Task, AllProjects, Project} from "./class";
-import { constructFrom } from "date-fns";
-import { constructFromSymbol } from "date-fns/constants";
 
 export const update = (function () {
     

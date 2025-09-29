@@ -1,7 +1,7 @@
 import listImage from "./images/list.svg";
 import { images, buttonTypes, page, nameFlags, currentPage, defaultLabels, allTasksOfUser, projectIcons, allProjectsOfUser, projectEmojis} from "./default";
 import { functionality } from "./functionality";
-import { format, sub } from "date-fns";
+import { format} from "date-fns";
 import { update } from "./update";
 import { AllTasks } from "./class";
 
@@ -61,53 +61,6 @@ const displayMainProjectHeader = (parent, projectObj) => {
     desc.textContent = `${projectObj.desc}`;
     pageDesc.appendChild(desc);
 
-};
-
-
-const displaySectionHeaders = (parent, headerNames, iconOn, pageName) => {
-    headerNames.forEach((headerName) => {
-
-        const section = document.createElement("div");
-        section.classList.add(`${headerName}`);
-        parent.appendChild(section);
-
-        const sectionHeader = document.createElement("div");
-        sectionHeader.classList.add("task-section-header");
-        section.appendChild(sectionHeader);
-
-        if(headerName != "all" || pageName == "all")
-        {
-            if(iconOn)
-            {
-                const sectionHeaderImg = document.createElement("img");
-                sectionHeaderImg.src = images[headerName];
-                sectionHeaderImg.alt = `${headerName}-icon`;
-                sectionHeaderImg.classList.add("emoji-icon");
-                sectionHeader.appendChild(sectionHeaderImg);
-            }
-            
-            const header = document.createElement("h5");
-            const strBfr = (pageName == "past") ? "Last " : "This ";
-            const headerCurrentName = toUpperCaseFirstChar(headerName);
-            const headerText = (displayStringBefore(headerCurrentName)) ?  strBfr + headerCurrentName : headerCurrentName;
-            header.textContent = headerText;
-            sectionHeader.appendChild(header);
-        }
-        else
-        {
-            sectionHeader.classList.add("border-off");
-        }
-
-        display.dropDownMenu(sectionHeader, true);
-
-        const tasks = document.createElement("div");
-        tasks.classList.add("tasks");
-        section.appendChild(tasks);
-
-        const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
-        display.displayTasks(tasks, tasksInHdr);
-
-    });
 };
 
 const displayCurrProjects = (parent) => {
@@ -423,14 +376,6 @@ export const display = (function () {
         
         select.replaceChildren();
         displayCurrProjects(select);
-        
-        
-        let textForHeader = " ";
-        
-        if( currentPage.header != "all")
-        {
-            textForHeader = ` ${currentPage.header} `;
-        }
 
         if(isAddTaskWin)
         {
@@ -478,13 +423,7 @@ export const display = (function () {
     const projectWinText = (parent, isAddProjectWin, id) => {
         const header = parent.querySelector("form>h3");
         const button = parent.querySelector("button.submit-list-btn");
-        
-        let textForHeader = " ";
-        
-        if( currentPage.header != "all")
-        {
-            textForHeader = ` ${currentPage.header} `;
-        }
+                
 
         if(isAddProjectWin)
         {
@@ -754,7 +693,6 @@ export const display = (function () {
                 titleText: "square-edit-outline"
             });
             parent.appendChild(pencilIcon);
-            const addTaskWindow = document.querySelector(".add-list-window");
             functionality.addNewListBtn(pencilIcon, false, id);
             
             const deleteIcon = displaySVG({
@@ -890,16 +828,11 @@ export const display = (function () {
         tasks.classList.add("tasks");
         section.appendChild(tasks);
 
-        if(isProject == true)
-        {
-            
-        }
-        else
+        if(isProject !== true)
         {
             const tasksInHdr = AllTasks.getTaskFromHdrName(allTasksOfUser.getTasksFromName(pageName), headerName);
             display.displayTasks(tasks, tasksInHdr);
         }
-        
         
     };
 

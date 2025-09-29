@@ -211,10 +211,6 @@ export const isValid = (function() {
             }   
             else
             {
-                if(document.querySelector(".projects") != null)
-                {
-                    
-                }
                 display.displayProject(document.querySelector(".projects"), allProjectsOfUser.getProjectFromId(id));
             }
                    
